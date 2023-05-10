@@ -7,15 +7,15 @@ class Phonebook
 {
 private:
 
-	Contact _contacts[8];
 	/* data */
 
 public:
+	Contact contacts[8];
 
 	Phonebook(/* args */);
 	~Phonebook();
 
-	void	add_contact();
+	void	add_contact(std::int8_t index);
 };
 
 
