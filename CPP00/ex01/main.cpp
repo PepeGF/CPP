@@ -4,18 +4,24 @@
 int main()
 {
 	Phonebook cuaderno;
-	std::int8_t index;
+	static int index = 0;
 	std::string	line;
 
-	while (std::getline(std::cin, line))
+	while (true)
 	{
+		std::cout << "Insert your command, please: " << std::endl;
+		std::getline(std::cin, line);
 		if (line == "ADD")
 		{
+			if (cuaderno.add_contact(index) == 2)
+				//mensaje de error y salir
 			continue;
 			// añadir contacto
 		}
 		else if (line == "SEARCH")
 		{
+			std::cout << "Searching..." << std::endl;
+			cuaderno.print_table_header();
 			continue;
 			// función mostrar lista resumida
 			// pedir índice
@@ -23,20 +29,20 @@ int main()
 		}
 		else if (line == "EXIT")
 		{
-			// print EXIT
+			std::cout << "ByeBye!!" << std::endl;
 			break;
 		}
 		else if (std::cin.eof())
 		{
 			break;
 		}
+		else
+		{
+			std::cout << "Invalid command: ";
+			std::cout << "ADD, SEARCH or EXIT" << std::endl;
+		}
 	}
 	std::cin.clear();
-
-
-	index = 3;
-	cuaderno.add_contact(index);
-	std::cout << cuaderno.contacts[index].first_name << std::endl;
 
 	return 0;
 }

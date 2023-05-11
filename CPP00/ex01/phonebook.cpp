@@ -10,7 +10,7 @@ Phonebook::~Phonebook()
 	return;
 }
 
-void Phonebook::add_contact(std::int8_t index)
+int Phonebook::add_contact(int index)
 {
 	std::cout << "Introduce nombre: " << std::endl;
 	// std::cin >> contacts[0].first_name;
@@ -24,10 +24,20 @@ void Phonebook::add_contact(std::int8_t index)
 	{
 		std::cout << "El nombre no puede ser un campo vacío" << std::endl;
 		std::cout << "Introduce nombre: " << std::endl;
-	    if (!std::getline(std::cin, contacts[0].first_name))
+		if (!std::getline(std::cin, contacts[0].first_name))
 			break;
 		
 	}
 	
-    return;
+	return;
+}
+
+void Phonebook::print_table_header()
+{
+	// index, first name, last name, nickname
+	for (int i = 1; i <= 45; i++)
+		std::cout << "*";
+	std::cout << std::endl;
+
+	return ;
 }

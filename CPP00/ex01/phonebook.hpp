@@ -15,7 +15,8 @@ public:
 	Phonebook(/* args */);
 	~Phonebook();
 
-	void	add_contact(std::int8_t index);
+	int	add_contact(int index);
+	void	print_table_header();
 };
 
 
