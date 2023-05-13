@@ -12,11 +12,13 @@ private:
 public:
 	Contact contacts[8];
 
-	Phonebook(/* args */);
-	~Phonebook();
+	// Phonebook(/* args */);
+	// ~Phonebook();
 
 	int	add_contact(int index);
 	void	print_table_header();
+	void	print_table_tail();
+	void	print_table_body(int redorded);
 };
 
 
