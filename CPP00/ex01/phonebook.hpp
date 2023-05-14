@@ -1,14 +1,10 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
-#include "contact.hpp"
+# include "contact.hpp"
 
 class Phonebook
 {
-private:
-
-	/* data */
-
 public:
 	Contact contacts[8];
 	int		info_index;
@@ -24,4 +20,4 @@ public:
 
 
 
-#endif
+#endif //PHONEBOOK_HPP

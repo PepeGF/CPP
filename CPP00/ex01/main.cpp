@@ -23,7 +23,6 @@ int main()
 			}
 			cuaderno.contacts[index - 1].add_contact();
 			std::cout << std::endl;
-			// cuaderno.contacts[index - 1].print_cosas();
 			index++;
 			recorded++;
 			if (recorded > 8)
@@ -33,7 +32,6 @@ int main()
 				std::cin.clear();
 			}
 			continue;
-			// añadir contacto
 		}
 		else if (line == "SEARCH")
 		{

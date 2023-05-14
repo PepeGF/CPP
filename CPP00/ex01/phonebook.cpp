@@ -12,7 +12,7 @@
 // }
 
 
-void Phonebook::print_table_header()
+void	Phonebook::print_table_header()
 {
 	// index, first name, last name, nickname
 	for (int i = 1; i <= 45; i++)
@@ -25,14 +25,14 @@ void Phonebook::print_table_header()
 	return ;
 }
 
-void Phonebook::print_table_tail()
+void	Phonebook::print_table_tail()
 {
 	for (int i = 1; i <= 45; i++)
 		std::cout << "*";
 	std::cout << std::endl;
 }
 
-void Phonebook::print_table_body(int recorded)
+void	Phonebook::print_table_body(int recorded)
 {
 	for (int i = 0; i <= recorded - 1; i++)
 	{
@@ -55,7 +55,7 @@ void Phonebook::print_table_body(int recorded)
 	}
 }
 
-int	Phonebook::select_index(int recorded)
+int		Phonebook::select_index(int recorded)
 {
 	int aux = 0;
 	bool is_num = true;

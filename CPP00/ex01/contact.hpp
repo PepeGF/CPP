@@ -1,8 +1,7 @@
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
-#include <iostream>
-
+# include <iostream>
 
 class Contact
 {
@@ -23,11 +22,6 @@ public:
 	std::string get_nickname();
 	std::string get_phone();
 	std::string get_secret();
-
-
-	Contact();
-	~Contact();
-
 };
 
 

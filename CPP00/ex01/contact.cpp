@@ -1,15 +1,5 @@
 #include "contact.hpp"
 
-Contact::Contact(/* args */)
-{
-	return;
-}
-
-Contact::~Contact()
-{
-	return;
-}
-
 std::string Contact::_fill_buffer(std::string field)
 {
 	std::string buffer;
