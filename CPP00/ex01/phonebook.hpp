@@ -11,14 +11,14 @@ private:
 
 public:
 	Contact contacts[8];
+	int		info_index;
 
-	// Phonebook(/* args */);
-	// ~Phonebook();
-
-	int	add_contact(int index);
+	int		add_contact(int index);
 	void	print_table_header();
 	void	print_table_tail();
 	void	print_table_body(int redorded);
+	int		select_index(int recorded);
+	void	print_index_info(int index);
 };
 
 

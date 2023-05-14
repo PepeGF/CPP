@@ -36,15 +36,6 @@ std::string Contact::_fill_buffer(std::string field)
 	return (buffer);
 }
 
-void Contact::print_cosas()
-{
-	std::cout << this->_first_name << std::endl;
-	std::cout << this->_last_name << std::endl;
-	std::cout << this->_nickname << std::endl;
-	std::cout << this->_phone_number << std::endl;
-	std::cout << this->_darkest_secret << std::endl;
-}
-
 int	Contact::add_contact()
 {
 	std::string	buffer;

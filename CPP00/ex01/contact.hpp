@@ -13,13 +13,11 @@ private:
 	std::string _nickname;
 	std::string _phone_number;
 	std::string _darkest_secret;
-	// bool		_valid;
-	// int			_index;
 	std::string _fill_buffer(std::string field);
+
 public:
 
 	int			add_contact(void);
-	void		print_cosas();
 	std::string	get_first_name();
 	std::string get_last_name();
 	std::string get_nickname();

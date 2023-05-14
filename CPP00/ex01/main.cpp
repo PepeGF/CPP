@@ -22,6 +22,7 @@ int main()
 				index = 1;
 			}
 			cuaderno.contacts[index - 1].add_contact();
+			std::cout << std::endl;
 			// cuaderno.contacts[index - 1].print_cosas();
 			index++;
 			recorded++;
@@ -39,36 +40,14 @@ int main()
 			std::cout << "Searching..." << std::endl;
 			cuaderno.print_table_header();
 			cuaderno.print_table_body(recorded);
-			/* for (int i = 0; i <= recorded - 1; i++)
-			{
-				std::cout << "*";
-				if (cuaderno.contacts[i].get_first_name().length() > 10)
-					std::cout << cuaderno.contacts[i].get_first_name().substr(0, 9) << ".";
-				else
-					std::cout << std::right << std::setw(10) << cuaderno.contacts[i].get_first_name();
-				std::cout << "|";
-				if (cuaderno.contacts[i].get_last_name().length() > 10)
-					std::cout << cuaderno.contacts[i].get_last_name().substr(0, 9) << ".";
-				else
-					std::cout << std::right << std::setw(10) << cuaderno.contacts[i].get_last_name();
-				std::cout << "|";
-				if (cuaderno.contacts[i].get_nickname().length() > 10)
-					std::cout << cuaderno.contacts[i].get_nickname().substr(0, 9) << ".";
-				else
-					std::cout << std::right << std::setw(10) << cuaderno.contacts[i].get_nickname();
-				std::cout << "|";
-				if (cuaderno.contacts[i].get_phone().length() > 10)
-					std::cout << cuaderno.contacts[i].get_phone().substr(0, 9) << ".";
-				else
-					std::cout << std::right << std::setw(10) << cuaderno.contacts[i].get_phone();
-				std::cout << "*" << std::endl;
-			} */
 			if (recorded != 0)
 				cuaderno.print_table_tail();
+			cuaderno.info_index = cuaderno.select_index(recorded);
+			if (cuaderno.info_index != -1 && cuaderno.info_index != 0)
+				cuaderno.print_index_info(cuaderno.info_index);
+			if (cuaderno.info_index == -1)
+				std::cout << "Invalid index" << std::endl;
 			continue;
-			// función mostrar lista resumida
-			// pedir índice
-			// mostrar contacto índice
 		}
 		else if (line == "EXIT")
 		{
