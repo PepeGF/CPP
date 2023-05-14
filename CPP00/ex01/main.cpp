@@ -18,20 +18,13 @@ int main()
 		if (line == "ADD")
 		{
 			if (index == 9)
-			{
 				index = 1;
-			}
 			cuaderno.contacts[index - 1].add_contact();
 			std::cout << std::endl;
 			index++;
 			recorded++;
 			if (recorded > 8)
 				recorded = 8;
-			if (std::cin.eof())
-			{
-				std::cin.clear();
-			}
-			continue;
 		}
 		else if (line == "SEARCH")
 		{
@@ -45,7 +38,6 @@ int main()
 				cuaderno.print_index_info(cuaderno.info_index);
 			if (cuaderno.info_index == -1)
 				std::cout << "Invalid index" << std::endl;
-			continue;
 		}
 		else if (line == "EXIT")
 		{
@@ -53,9 +45,7 @@ int main()
 			break;
 		}
 		else if (std::cin.eof())
-		{
 			break;
-		}
 		else
 		{
 			std::cout << "Invalid command: ";
@@ -63,6 +53,5 @@ int main()
 		}
 	}
 	std::cin.clear();
-
 	return 0;
 }

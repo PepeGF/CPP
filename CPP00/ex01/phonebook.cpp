@@ -63,7 +63,7 @@ int		Phonebook::select_index(int recorded)
 
 	while (buffer.length() == 0)
 	{
-		std::cout << "Select an index contact (1 to 8): " << std::endl;
+		std::cout << "Select an index contact (1 to 8): ";
 		std::getline(std::cin, buffer);
 		if (std::cin.eof())
 		{
@@ -85,7 +85,7 @@ int		Phonebook::select_index(int recorded)
 	}
 	if (aux >= 1 && aux <= 8 && aux > recorded)
 	{
-		std::cout << "Registry " << aux << " is empty" << std::endl;	
+		std::cout << "Registry " << aux << " is empty" << std::endl << std::endl;	
 		return (0);
 	}	
 	else if (aux >= 1 && aux <= 8)
