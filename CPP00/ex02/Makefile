@@ -7,11 +7,12 @@ CIAN	= '\033[36m'
 WHITE	= '\033[37m'
 NONE	= '\033[0m'
 
-NAME = phonebook
+NAME = accounts
 
 BIN_PATH = bin/
 
-SRCS =	tests.cpp
+SRCS =	tests.cpp \
+		Account.cpp
 
 
 OBJS = $(SRCS:%.cpp=bin/%.o)

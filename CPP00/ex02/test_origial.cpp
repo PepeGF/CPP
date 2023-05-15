@@ -12,16 +12,7 @@
 #include <functional>
 #include "Account.hpp"
 
-int main ()
-{
-	Account cuenta (42);
 
-	cuenta.checkAmount();
-
-	return (0);
-}
-
-/* 
 int		main( void ) {
 
 	typedef std::vector<Account::t>							  accounts_t;
@@ -71,7 +62,7 @@ int		main( void ) {
 
 	return 0;
 }
- */
+
 
 // ************************************************************************** //
 // vim: set ts=4 sw=4 tw=80 noexpandtab:                                      //
