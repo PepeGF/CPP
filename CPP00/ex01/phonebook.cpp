@@ -1,5 +1,6 @@
 #include "phonebook.hpp"
 #include <iomanip>
+#include <sstream>
 
 
 void	Phonebook::print_table_header() const
@@ -71,7 +72,8 @@ int		Phonebook::select_index(int recorded) const
 	}
 	if (is_num == true)
 	{
-		aux = std::stoi(buffer);
+		std::istringstream string_aux(buffer);
+		string_aux >> aux;
 	}
 	if (aux >= 1 && aux <= 8 && aux > recorded)
 	{
@@ -81,7 +83,7 @@ int		Phonebook::select_index(int recorded) const
 	else if (aux >= 1 && aux <= 8)
 		return (aux);
 	else
-		return (-1);	
+		return (-1);
 }
 
 void	Phonebook::print_index_info(int index) const

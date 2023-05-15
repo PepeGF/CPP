@@ -32,22 +32,24 @@ bin/%.o: %.cpp
 
 	
 $(NAME): $(OBJS)
-	@echo $(PURPLE)"[Creating $(NAME)]"$(NONE)
-	@$(CC) -o $(NAME) $(OBJS)
-	@echo $(GREEN)"$(NAME): ready to be executed"$(NONE)
+	echo $(PURPLE)"[Creating $(NAME)]"$(NONE)
+	$(CC) -o $(NAME) $(OBJS)
+	echo $(GREEN)"$(NAME): ready to be executed"$(NONE)
 
 clean:
-	@$(RM) $(OBJS)
-	@rm -rf bin/
-	@echo $(RED)"[Object Files Deleted]"$(NONE)
+	$(RM) $(OBJS)
+	rm -rf bin/
+	echo $(RED)"[Object Files Deleted]"$(NONE)
 
 fclean: clean
-	@$(RM) $(NAME)
-	@echo $(RED)"[Executable File Deleted]"$(NONE)
+	$(RM) $(NAME)
+	echo $(RED)"[Executable File Deleted]"$(NONE)
 
 re: fclean
-	@sleep 1
-	@clear
-	@$(MAKE)	
+	sleep 1
+	clear
+	$(MAKE)	
 	
 .PHONY: all clean fclean re
+
+.SILENT:

@@ -18,7 +18,7 @@ SRCS =	main.cpp \
 
 OBJS = $(SRCS:%.cpp=bin/%.o)
 
-# CC = g++
+CC = g++
 CC = clang++
 CFLAGS = -std=c++98 -Wall -Werror -Wextra -g -O0
 RM = rm -f
@@ -28,27 +28,29 @@ RM = rm -f
 all: $(NAME)
 
 bin/%.o: %.cpp
-	@mkdir -p bin
-	@$(CC) $(CFLAGS) -c $< -o $@
+	mkdir -p bin
+	$(CC) $(CFLAGS) -c $< -o $@
 
 	
 $(NAME): $(OBJS)
-	@echo $(PURPLE)"[Creating $(NAME)]"$(NONE)
-	@$(CC) -o $(NAME) $(OBJS)
-	@echo $(GREEN)"$(NAME): ready to be executed"$(NONE)
+	echo $(PURPLE)"[Creating $(NAME)]"$(NONE)
+	$(CC) -o $(NAME) $(OBJS)
+	echo $(GREEN)"$(NAME): ready to be executed"$(NONE)
 
 clean:
-	@$(RM) $(OBJS)
-	@rm -rf bin/
-	@echo $(RED)"[Object Files Deleted]"$(NONE)
+	$(RM) $(OBJS)
+	rm -rf bin/
+	echo $(RED)"[Object Files Deleted]"$(NONE)
 
 fclean: clean
-	@$(RM) $(NAME)
-	@echo $(RED)"[Executable File Deleted]"$(NONE)
+	$(RM) $(NAME)
+	echo $(RED)"[Executable File Deleted]"$(NONE)
 
 re: fclean
-	@sleep 1
-	@clear
-	@$(MAKE)	
-	
+	sleep 1
+	clear
+	$(MAKE)	
+
 .PHONY: all clean fclean re
+
+.SILENT:

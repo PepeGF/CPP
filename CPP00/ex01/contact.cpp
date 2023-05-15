@@ -74,17 +74,3 @@ std::string Contact::get_secret() const
 {
 	return(this->_darkest_secret);
 }
-
-// int Contact::_cuantity = 0;
-
-// Contact::Contact()
-// {
-// 	Contact::_cuantity += 1;
-// 	std::cout << Contact::_cuantity << " instancias creadas" << std::endl;
-// }
-
-// Contact::~Contact()
-// {
-// 	Contact::_cuantity -= 1;
-// 	std::cout << Contact::_cuantity << " instancias existentes" << std::endl;
-// }
