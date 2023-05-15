@@ -50,27 +50,41 @@ int	Contact::add_contact()
 	return (0);
 }
 
-std::string Contact::get_first_name()
+std::string Contact::get_first_name() const
 {
 	return(this->_first_name);
 }
 
-std::string Contact::get_last_name()
+std::string Contact::get_last_name() const
 {
 	return(this->_last_name);
 }
 
-std::string Contact::get_nickname()
+std::string Contact::get_nickname() const
 {
 	return(this->_nickname);
 }
 
-std::string Contact::get_phone()
+std::string Contact::get_phone() const
 {
 	return(this->_phone_number);
 }
 
-std::string Contact::get_secret()
+std::string Contact::get_secret() const
 {
 	return(this->_darkest_secret);
 }
+
+// int Contact::_cuantity = 0;
+
+// Contact::Contact()
+// {
+// 	Contact::_cuantity += 1;
+// 	std::cout << Contact::_cuantity << " instancias creadas" << std::endl;
+// }
+
+// Contact::~Contact()
+// {
+// 	Contact::_cuantity -= 1;
+// 	std::cout << Contact::_cuantity << " instancias existentes" << std::endl;
+// }

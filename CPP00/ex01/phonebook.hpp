@@ -10,14 +10,11 @@ public:
 	int		info_index;
 
 	int		add_contact(int index);
-	void	print_table_header();
-	void	print_table_tail();
-	void	print_table_body(int redorded);
-	int		select_index(int recorded);
-	void	print_index_info(int index);
+	void	print_table_header() const;
+	void	print_table_tail() const;
+	void	print_table_body(int redorded) const;
+	void	print_index_info(int index) const;
+	int		select_index(int recorded) const;
 };
-
-
-
 
 #endif //PHONEBOOK_HPP

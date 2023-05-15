@@ -14,14 +14,19 @@ private:
 	std::string _darkest_secret;
 	std::string _fill_buffer(std::string field);
 
+	// static int	_cuantity;
+
 public:
 
+	// Contact();
+	// ~Contact();
+
 	int			add_contact(void);
-	std::string	get_first_name();
-	std::string get_last_name();
-	std::string get_nickname();
-	std::string get_phone();
-	std::string get_secret();
+	std::string	get_first_name() const;
+	std::string get_last_name() const;
+	std::string get_nickname() const;
+	std::string get_phone() const;
+	std::string get_secret() const;
 };
 
 

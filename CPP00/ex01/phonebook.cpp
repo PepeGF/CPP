@@ -1,18 +1,8 @@
 #include "phonebook.hpp"
 #include <iomanip>
 
-// Phonebook::Phonebook(/* args */)
-// {
-// 	return;
-// }
 
-// Phonebook::~Phonebook()
-// {
-// 	return;
-// }
-
-
-void	Phonebook::print_table_header()
+void	Phonebook::print_table_header() const
 {
 	// index, first name, last name, nickname
 	for (int i = 1; i <= 45; i++)
@@ -25,14 +15,14 @@ void	Phonebook::print_table_header()
 	return ;
 }
 
-void	Phonebook::print_table_tail()
+void	Phonebook::print_table_tail() const
 {
 	for (int i = 1; i <= 45; i++)
 		std::cout << "*";
 	std::cout << std::endl;
 }
 
-void	Phonebook::print_table_body(int recorded)
+void	Phonebook::print_table_body(int recorded) const
 {
 	for (int i = 0; i <= recorded - 1; i++)
 	{
@@ -55,7 +45,7 @@ void	Phonebook::print_table_body(int recorded)
 	}
 }
 
-int		Phonebook::select_index(int recorded)
+int		Phonebook::select_index(int recorded) const
 {
 	int aux = 0;
 	bool is_num = true;
@@ -94,12 +84,12 @@ int		Phonebook::select_index(int recorded)
 		return (-1);	
 }
 
-void	Phonebook::print_index_info(int index)
+void	Phonebook::print_index_info(int index) const
 {
 	std::cout << "First Name: " << this->contacts[index - 1].get_first_name() << std::endl;
 	std::cout << "Last Name: " << this->contacts[index - 1].get_last_name() << std::endl;
 	std::cout << "Nickname: " << this->contacts[index - 1].get_nickname() << std::endl;
 	std::cout << "Phone number: " << this->contacts[index - 1].get_phone() << std::endl;
 	std::cout << "Darkest Secret: " << this->contacts[index - 1].get_secret() << std::endl;
-
+	std::cout << std::endl;
 }
