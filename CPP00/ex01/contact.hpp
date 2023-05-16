@@ -14,12 +14,7 @@ private:
 	std::string _darkest_secret;
 	std::string _fill_buffer(std::string field);
 
-	// static int	_cuantity;
-
 public:
-
-	// Contact();
-	// ~Contact();
 
 	int			add_contact(void);
 	std::string	get_first_name() const;
@@ -28,8 +23,5 @@ public:
 	std::string get_phone() const;
 	std::string get_secret() const;
 };
-
-
-
 
 #endif // CONTACT_HPP
