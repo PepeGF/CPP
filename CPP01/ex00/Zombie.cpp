@@ -7,7 +7,6 @@ Zombie::Zombie()
 
 Zombie::~Zombie()
 {
-	delete();
 	std::cout << this->_name << " zombie definitely dead" << std::endl;
 }
 
@@ -17,16 +16,16 @@ void	Zombie::announce (void)
 }
 
 
-Zombie	Zombie::*newZombie( name )
+Zombie	*Zombie::newZombie( std::string name )
 {
 	(void)name;
-	Zombie *newZombie;
+	Zombie *newZombie = NULL;
 
-	newZombie = new(Zombie);
 	return (newZombie);
 }
 
-void	Zombie::randomChump( name )
+void	Zombie::randomChump( std::string name )
 {
+	(void) name;
 	Zombie newZombie;
 }

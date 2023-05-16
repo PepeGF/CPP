@@ -7,7 +7,7 @@ CIAN	= '\033[36m'
 WHITE	= '\033[37m'
 NONE	= '\033[0m'
 
-NAME = phonebook
+NAME = zombie
 
 BIN_PATH = bin/
 
