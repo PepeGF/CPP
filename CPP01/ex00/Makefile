@@ -12,7 +12,9 @@ NAME = zombie
 BIN_PATH = bin/
 
 SRCS =	main.cpp \
-		Zombie.cpp
+		Zombie.cpp \
+		newZombie.cpp \
+		randomChump.cpp
 
 
 OBJS = $(SRCS:%.cpp=bin/%.o)
