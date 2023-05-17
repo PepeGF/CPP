@@ -12,11 +12,12 @@ class Zombie
 	public:
 
 		Zombie(std::string name);
+		Zombie();
 		~Zombie();
-		
+
+		void	set_name(std::string name);
 };
 
-void	randomChump( std::string name );
-Zombie	*newZombie( std::string name );
+Zombie	*zombieHorde(int N, std::string name);
 
 #endif
