@@ -7,13 +7,11 @@ CIAN	= '\033[36m'
 WHITE	= '\033[37m'
 NONE	= '\033[0m'
 
-NAME = zombie
+NAME = ptr_ref
 
 BIN_PATH = bin/
 
-SRCS =	main.cpp \
-		Zombie.cpp \
-		zombieHorde.cpp
+SRCS =	main.cpp
 
 
 OBJS = $(SRCS:%.cpp=bin/%.o)
