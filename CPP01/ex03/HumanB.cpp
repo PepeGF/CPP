@@ -9,9 +9,12 @@ HumanB::HumanB()
 HumanB::~HumanB()
 {}
 
-void	HumanB::setWeapon(Weapon &weapon)
+void	HumanB::setWeapon(Weapon &w)
 {
-	this->_weapon = &weapon;
+	std::cout << &w << std::endl;
+	std::cout << &this->_weapon << std::endl;
+	this->_weapon = &w;
+	std::cout << &this->_weapon << std::endl;
 }
 
 void	HumanB::attack() const
