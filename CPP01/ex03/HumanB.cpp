@@ -1,20 +1,21 @@
 #include "HumanB.hpp"
 
 HumanB::HumanB(std::string name) : _name(name)
-{}
+{
+	this->_weapon = NULL;
+}
 
 HumanB::HumanB()
-{}
+{
+	this->_weapon = NULL;
+}
 
 HumanB::~HumanB()
 {}
 
 void	HumanB::setWeapon(Weapon &w)
 {
-	std::cout << &w << std::endl;
-	std::cout << &this->_weapon << std::endl;
 	this->_weapon = &w;
-	std::cout << &this->_weapon << std::endl;
 }
 
 void	HumanB::attack() const
@@ -23,7 +24,7 @@ void	HumanB::attack() const
 		std::cout 
 			<< this->_name 
 			<< " attacks with their " 
-			<< "bare hands" 
+			<< "bare handssss" 
 			<< std::endl;
 	else
 		std::cout 

@@ -19,6 +19,9 @@ const std::string	&Weapon::getType() const
 
 void Weapon::setType(std::string type)
 {
-	this->_type = type;
+	if (type == "")
+		this->_type = "bare hands";
+	else
+		this->_type = type;
 	return ;
 }

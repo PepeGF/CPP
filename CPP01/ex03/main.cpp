@@ -21,5 +21,17 @@ int main()
 		club.setType("some other type of club");
 		jim.attack();
 	}
+	{
+		Weapon katana = Weapon("katana");
+		HumanB pepe("pepe");
+		pepe.attack();
+		pepe.setWeapon(katana);
+		pepe.attack();
+		katana.setType("katana afiladisima");
+		pepe.attack();
+		katana.setType("");
+		//katana.setType();
+		pepe.attack();
+	}
 	return 0;
 }
