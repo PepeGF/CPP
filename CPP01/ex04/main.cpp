@@ -21,7 +21,7 @@ int	main(int argc, char *argv[])
 	// {
 	// 	std::cout << "Error: unable to open " << argv[1] << std::endl;
 	// }
-	}
+}
 	if(!infile)
 	{
 		std::cout << "Error: " << argv[1] << " not found" << std::endl;
@@ -29,11 +29,15 @@ int	main(int argc, char *argv[])
 	}
 	while (std::getline(infile, buffer))
 	{
-		found = buffer.find((std::string)argv[2]);
-		if (found != std::string::npos)
-		{
-			std::cout << "text founded in psition " << found << std::endl;
-		}
+		found = 0;
 		std::cout << buffer << std::endl;
+		while (true)
+		{
+			found = buffer.find((std::string)argv[2], found);
+			std::cout << "text founded in psition " << found << std::endl;
+			if (found == std::string::npos)
+				break;
+			found++;
+		}
 	}
 }
