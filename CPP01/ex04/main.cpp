@@ -25,7 +25,15 @@ int	main(int argc, char *argv[])
 	if(!infile)
 	{
 		std::cout << "Error: " << argv[1] << " not found" << std::endl;
-		exit (2);
+		exit(2);
+	}
+	buffer = argv[1];
+	buffer = buffer.append(".replace");
+	std::ofstream	outfile(buffer);
+	if (!outfile)
+	{
+		std::cout << "Error: unable to create " << buffer << std::endl;
+		exit(3);
 	}
 	while (std::getline(infile, buffer))
 	{
@@ -40,4 +48,5 @@ int	main(int argc, char *argv[])
 			found++;
 		}
 	}
+	outfile.close();
 }
