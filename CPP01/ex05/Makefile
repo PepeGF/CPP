@@ -7,7 +7,7 @@ CIAN	= '\033[36m'
 WHITE	= '\033[37m'
 NONE	= '\033[0m'
 
-NAME = zombie
+NAME = harl
 
 BIN_PATH = bin/
 

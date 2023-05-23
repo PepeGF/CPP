@@ -10,6 +10,15 @@ private:
 	void	info(void);
 	void	warning(void);
 	void	error(void);
+	void	other(void);
+
+	typedef struct	s_level_function
+	{
+		std::string	level;
+		void (Harl::*function)();
+	}				t_level_function;
+
+	t_level_function level_funct[4];
 
 public:
 	Harl(/* args */);
