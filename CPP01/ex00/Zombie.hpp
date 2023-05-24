@@ -6,7 +6,9 @@
 class Zombie
 {
 	private:
+	
 		std::string _name;
+
 		void	announce (void) const;
 
 	public:
