@@ -61,10 +61,13 @@ void Harl::complain(std::string level)
 	{
 		case 0:
 			Harl::debug();
+			__attribute__((fallthrough));
 		case 1:
 			Harl::info();
+			__attribute__((fallthrough));
 		case 2:
 			Harl::warning();
+			__attribute__((fallthrough));
 		case 3:
 			Harl::error();
 			break;
