@@ -59,17 +59,16 @@ void Harl::complain(std::string level)
 	}
 	switch (i)
 	{
-	case 0:
-		Harl::debug();
-	case 1:
-		Harl::info();
-	case 2:
-		Harl::warning();
-	case 3:
-		Harl::error();
-		break;
-	default:
-		Harl::other();
+		case 0:
+			Harl::debug();
+		case 1:
+			Harl::info();
+		case 2:
+			Harl::warning();
+		case 3:
+			Harl::error();
+			break;
+		default:
+			Harl::other();
 	}
-
 }
