@@ -13,7 +13,9 @@ public:
 	Fixed(const Fixed& source);
 	~Fixed();
 
-	int		Fixed::getRawBits(void) const;
-	void	Fixed::setRawBits(int const raw);
+	Fixed& operator=(const Fixed &other);
+
+	int		getRawBits(void) const;
+	void	setRawBits(int const raw);
 
 };
