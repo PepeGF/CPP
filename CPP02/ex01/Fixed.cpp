@@ -9,7 +9,7 @@ Fixed::Fixed(int const integer)
 Fixed::Fixed(float const decimal)
 {
 	std::cout << "Float constructor called" << std::endl;
-	this->_value = int((decimal * (1 << this->_bits)));
+	this->_value = int(roundf(decimal * (1 << this->_bits)));
 	std::cout << this->_value << std::endl;
 }
 
@@ -45,4 +45,20 @@ int	Fixed::getRawBits() const
 void	Fixed::setRawBits(int const raw)
 {
 	this->_value = raw;
+}
+
+int	Fixed::toInt() const
+{
+	return (this->_value >> this->_bits);
+}
+
+float	Fixed::toFloat() const
+{
+	return ((float)((float)(this->_value) / (float)(1 << this->_bits)));
+}
+
+std::ostream &operator<<(std::ostream &os, Fixed &fix)
+{
+	os << fix.toFloat();
+	return (os);
 }
