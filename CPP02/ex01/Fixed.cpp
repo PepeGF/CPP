@@ -1,9 +1,16 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed(int integer)
+Fixed::Fixed(int const integer)
 {
-	this->_value = integer;
-	this->_value << this->_bits;
+	std::cout << "Int constructor called" << std::endl;
+	this->_value = integer << this->_bits;
+}
+
+Fixed::Fixed(float const decimal)
+{
+	std::cout << "Float constructor called" << std::endl;
+	this->_value = int((decimal * (1 << this->_bits)));
+	std::cout << this->_value << std::endl;
 }
 
 Fixed::Fixed(const Fixed &source) : _value(source._value)
