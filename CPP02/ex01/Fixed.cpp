@@ -57,8 +57,10 @@ float	Fixed::toFloat() const
 	return ((float)((float)(this->_value) / (float)(1 << this->_bits)));
 }
 
-std::ostream &operator<<(std::ostream &os, Fixed &fix)
+std::ostream &operator<<(std::ostream &os, Fixed const &fix)
 {
 	os << fix.toFloat();
 	return (os);
 }
+
+// http://orga.blog.unq.edu.ar/wp-content/uploads/sites/5/2018/05/orga_clase6_apuntePtoFijo.pdf

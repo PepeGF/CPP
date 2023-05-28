@@ -17,6 +17,7 @@ public:
 	~Fixed();
 
 	Fixed& operator=(const Fixed &other);
+	std::ostream &operator<<(std::ostream &os, Fixed &fix);
 
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
