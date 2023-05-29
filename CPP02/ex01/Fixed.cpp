@@ -10,7 +10,7 @@ Fixed::Fixed(float const decimal)
 {
 	std::cout << "Float constructor called" << std::endl;
 	this->_value = int(roundf(decimal * (1 << this->_bits)));
-	std::cout << this->_value << std::endl;
+	// std::cout << this->_value << std::endl;
 }
 
 Fixed::Fixed(const Fixed &source) : _value(source._value)
@@ -57,7 +57,7 @@ float	Fixed::toFloat() const
 	return ((float)((float)(this->_value) / (float)(1 << this->_bits)));
 }
 
-std::ostream &operator<<(std::ostream &os, Fixed const &fix)
+std::ostream& operator<<(std::ostream &os, Fixed const &fix)
 {
 	os << fix.toFloat();
 	return (os);

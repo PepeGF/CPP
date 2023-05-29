@@ -16,8 +16,7 @@ public:
 	Fixed(float const decimal);
 	~Fixed();
 
-	Fixed& operator=(const Fixed &other);
-	std::ostream &operator<<(std::ostream &os, Fixed &fix);
+	Fixed& operator=(Fixed const &other);
 
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
@@ -25,3 +24,5 @@ public:
 	float	toFloat(void) const;
 
 };
+
+std::ostream& operator<<(std::ostream &os, Fixed const &fix);
