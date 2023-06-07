@@ -18,7 +18,7 @@ SRCS =	main.cpp \
 OBJS = $(SRCS:%.cpp=bin/%.o)
 
 CC = c++
-CFLAGS = -std=c++98 -Wall -Werror -Wextra -g -O0
+CFLAGS = -std=c++98 -Wall -Werror -Wextra -g -O0 #-fsanitize=address
 RM = rm -f
 
 ###	--- RULES --- ###
@@ -32,7 +32,7 @@ bin/%.o: %.cpp
 	
 $(NAME): $(OBJS)
 	echo $(PURPLE)"[Creating $(NAME)]"$(NONE)
-	$(CC) -o $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 	echo $(GREEN)"$(NAME): ready to be executed"$(NONE)
 
 clean:
