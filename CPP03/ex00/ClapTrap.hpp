@@ -24,4 +24,6 @@ public:
 	std::string	getName();
 	int			getAttackDamage();
 	void		setAttackDamage(unsigned int amount);
+	int			getEnergyPoints();
+	int			getHitpoints();
 };
