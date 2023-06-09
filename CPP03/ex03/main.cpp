@@ -1,11 +1,11 @@
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main()
 {
-	FragTrap voldemort;
-	FragTrap onesiforo("Onesiforo");
-	FragTrap *lupinicio = new FragTrap("Lupinicio");
-	FragTrap *filogonio = new FragTrap(*lupinicio);
+	DiamondTrap voldemort;
+	DiamondTrap onesiforo("Onesiforo");
+	DiamondTrap *lupinicio = new DiamondTrap("Lupinicio");
+	DiamondTrap *filogonio = new DiamondTrap(*lupinicio);
 
 	std::cout << std::endl;
 
