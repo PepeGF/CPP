@@ -15,12 +15,12 @@ Fixed::Fixed(float const decimal)
 {
 	std::cout << "Float constructor called" << std::endl;
 	this->_value = int(roundf(decimal * (1 << this->_bits)));
-	// std::cout << this->_value << std::endl;
 }
 
 Fixed::Fixed(Fixed const &source) : _value(source._value)
 {
 	std::cout << "Copy constructor called" << std::endl;
+std::cout << this->_value << std::endl;
 }
 
 Fixed::~Fixed()
@@ -53,6 +53,7 @@ Fixed& Fixed::operator-(Fixed const &fix)
 Fixed& Fixed::operator*(Fixed const &fix)
 {
 	this->_value *= fix._value;
+//	std::cout << this->_value << std::endl;
 	this->_value = this->_value >> this->_bits;
 	return (*this);
 }
@@ -145,11 +146,6 @@ Fixed& Fixed::min(Fixed &fix1, Fixed &fix2)
 {
 	return (fix1 < fix2) ? fix1 : fix2;
 }
-
-
-
-
-
 
 int	Fixed::getRawBits() const
 {

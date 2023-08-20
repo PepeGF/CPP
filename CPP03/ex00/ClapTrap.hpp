@@ -5,8 +5,8 @@ class ClapTrap
 private:
 
 	std::string	_name;
-	int			_hitpoints;
-	int			_energy_points;
+	int			_hitpoints; //health
+	int			_energy_points; //stamina
 	int			_attack_damage;
 
 public:

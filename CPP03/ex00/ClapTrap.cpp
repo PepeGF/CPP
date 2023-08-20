@@ -1,5 +1,7 @@
 #include "ClapTrap.hpp"
 
+/* ---------- Constructors & Destructor ----------- */
+
 ClapTrap::ClapTrap()
 {
 	this->_name = "He who must not be named";
@@ -34,6 +36,8 @@ ClapTrap::~ClapTrap()
 	std::cout << "Destructor called" << std::endl;
 }
 
+/* -------- Operator Overloads --------- */
+
 ClapTrap &ClapTrap::operator=(ClapTrap const &rhs)
 {
 	if (this != &rhs)
@@ -46,6 +50,8 @@ ClapTrap &ClapTrap::operator=(ClapTrap const &rhs)
 	std::cout << "Assignation operator called" << std::endl;
 	return (*this);
 }
+
+/* ------------- Methods ---------------- */
 
 void	ClapTrap::attack(const std::string &target)
 {
@@ -63,6 +69,7 @@ void	ClapTrap::attack(const std::string &target)
 			<< target << " causing " << this->getAttackDamage()
 			<< " points of damage" << std::endl;
 	this->_energy_points--;
+	std::cout << this->getName() << " remaining energy points: " << this->getEnergyPoints() << std::endl;
 	return;
 }
 
@@ -70,13 +77,13 @@ void	ClapTrap::takeDamage(unsigned int amount)
 {
 	if (this->_hitpoints <= 0)
 	{
-		std::cout << this->_name << " no damage received, I'm dead!!!" << std::endl;
+		std::cout << this->_name << " no damage received, I'm dead!!!" << std::endl << std::endl;
 		return;
 	}
 	this->_hitpoints -= amount;
 	if (this->_hitpoints < 0)
 		this->_hitpoints = 0;
-	std::cout << "Uhg! That hurts!" << std::endl;
+	std::cout << "Uhg! That hurts!" << std::endl << std::endl;
 	std::cout << "Remaining energy points: " << this->_energy_points << std::endl;
 }
 

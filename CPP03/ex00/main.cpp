@@ -7,17 +7,17 @@ int main()
 	ClapTrap *lupinicio = new ClapTrap("Lupinicio");
 	ClapTrap *filogonio = new ClapTrap(*lupinicio);
 
-	std::cout << std::endl;
+	std::cout << std::endl << " ----- First part -----" << std::endl;
 
 	for (int i = 0; i <= 10; i++)
 	{
-		onesiforo.attack("lupinicio");
+		onesiforo.attack("Lupinicio");
 		lupinicio->takeDamage(onesiforo.getAttackDamage());
 		if (i >= 3)
-			onesiforo.setAttackDamage(i+1);
+			onesiforo.setAttackDamage(i + 1);
 	}
 
-	std::cout << std::endl;
+	std::cout << std::endl << "----- Second part -----" << std::endl;
 
 	std::cout << voldemort.getName() << ": ";
 	voldemort.beRepaired(1000000);
@@ -30,6 +30,7 @@ int main()
 	onesiforo.beRepaired(100);
 	std::cout << std::endl;
 
+	std::cout << std::endl << "----- Last part -----" << std::endl;
 	filogonio->attack("Onesiforo");
 
 	std::cout << std::endl;
