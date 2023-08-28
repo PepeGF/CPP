@@ -3,7 +3,7 @@
 DiamondTrap::DiamondTrap()
 {
 	this->_name = "He who shall not be named"; //probar a jugar con esto
-	this->ClapTrap::_name = this->_name + "_clap_name";
+	this->ClapTrap::_name = this->_name.append("_clap_name");
 	this->_hitpoints = FragTrap::_hitpoints;
 	this->_energy_points = ScavTrap::_energy_points;
 	this->_attack_damage = FragTrap::_attack_damage;
@@ -13,8 +13,8 @@ DiamondTrap::DiamondTrap()
 
 DiamondTrap::DiamondTrap(std::string name)
 {
+	this->ClapTrap::_name = this->_name.append("_clap_name");
 	this->_name = name;
-	this->ClapTrap::_name = this->_name + "_clap_name";
 	this->_hitpoints = FragTrap::_hitpoints;
 	this->_energy_points = ScavTrap::_energy_points;
 	this->_attack_damage = FragTrap::_attack_damage;
@@ -24,11 +24,7 @@ DiamondTrap::DiamondTrap(std::string name)
 
 DiamondTrap::DiamondTrap(const DiamondTrap &other)
 {
-	this->_name = other._name;
-	this->ClapTrap::_name = other._name + "_clap_name";
-	this->_attack_damage = other._attack_damage;
-	this->_hitpoints = other._hitpoints;
-	this->_energy_points = other._energy_points;
+	*this = other;
 
 	std::cout << "DiamondTrap copy constructor called" << std::endl;
 }
@@ -40,8 +36,8 @@ DiamondTrap::~DiamondTrap()
 
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &rhs)
 {
+	this->ClapTrap::_name = rhs.ClapTrap::_name;
 	this->_name = rhs._name;
-	this->ClapTrap::_name = rhs._name + "_clap_name";
 	this->_attack_damage = rhs._attack_damage;
 	this->_hitpoints = rhs._hitpoints;
 	this->_energy_points = rhs._energy_points;
