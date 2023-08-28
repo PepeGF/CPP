@@ -23,10 +23,7 @@ ClapTrap::ClapTrap(std::string name) : _name(name)
 
 ClapTrap::ClapTrap(ClapTrap &other)
 {
-	this->_name = other._name;
-	this->_attack_damage = other._attack_damage;
-	this->_energy_points = other._energy_points;
-	this->_hitpoints = other._hitpoints;
+	*this = other;
 
 	std::cout << "Copy constructor called" << std::endl;
 }
@@ -77,7 +74,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 {
 	if (this->_hitpoints <= 0)
 	{
-		std::cout << this->_name << " no damage received, I'm dead!!!" << std::endl << std::endl;
+		std::cout << this->getName() << " no damage received, I'm dead!!!" << std::endl << std::endl;
 		return;
 	}
 	this->_hitpoints -= amount;
@@ -91,12 +88,12 @@ void	ClapTrap::beRepaired(unsigned int amount)
 {
 	if (this->_hitpoints <= 0)
 	{
-		std::cout << this->_name << " unable to heal, I'm dead!!" << std::endl;
+		std::cout << this->getName() << " unable to heal, I'm dead!!" << std::endl;
 		return;
 	}
 	if (this->_energy_points <= 0)
 	{
-		std::cout << this->_name << " unable to heal, no energy points available" << std::endl;
+		std::cout << this->getName() << " unable to heal, no energy points available" << std::endl;
 		return;
 	}
 	this->_hitpoints += amount;

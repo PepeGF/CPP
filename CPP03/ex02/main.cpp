@@ -42,6 +42,6 @@ int main()
 	delete(lupinicio);
 	delete(filogonio);
 
-	// system("leaks a.out");
+	system("leaks a.out");
 	return (0);
 }

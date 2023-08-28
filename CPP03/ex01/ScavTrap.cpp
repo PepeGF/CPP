@@ -1,6 +1,6 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap()
+ScavTrap::ScavTrap()
 {
 	this->_name = "He who must not be named";
 	this->_attack_damage = 20;
@@ -10,7 +10,7 @@ ScavTrap::ScavTrap() : ClapTrap()
 	std::cout << "ScavTrap default constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
+ScavTrap::ScavTrap(std::string name)
 {
 	this->_name = name;
 	this->_attack_damage = 20;
@@ -20,12 +20,9 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	std::cout << "ScavTrap parameterized constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
+ScavTrap::ScavTrap(const ScavTrap &other)
 {
-	this->_name = other._name;
-	this->_attack_damage = other._attack_damage;
-	this->_energy_points = other._energy_points;
-	this->_hitpoints = other._hitpoints;
+	*this = other;
 
 	std::cout << "ScavTrap copy constructor called" << std::endl;
 }
