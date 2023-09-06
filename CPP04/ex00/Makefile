@@ -12,7 +12,10 @@ NAME = a.out
 BIN_PATH = bin/
 
 SRCS =	main.cpp \
-		Animal.cpp
+		Animal.cpp \
+		Dog.cpp \
+		Cat.cpp \
+		WrongAnimal.cpp
 
 
 OBJS = $(SRCS:%.cpp=bin/%.o)
