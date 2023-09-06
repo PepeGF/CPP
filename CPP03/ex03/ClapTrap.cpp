@@ -19,7 +19,7 @@ ClapTrap::ClapTrap(std::string name) : _name(name)
 	std::cout << "ClapTrap Parameterized constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(ClapTrap &other)
+ClapTrap::ClapTrap(const ClapTrap &other)
 {
 	*this = other;
 

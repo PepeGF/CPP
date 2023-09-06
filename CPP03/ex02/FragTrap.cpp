@@ -20,7 +20,7 @@ FragTrap::FragTrap(std::string name)
 	std::cout << "FragTrap Parameterized constructor called" << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap &other)
+FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other)
 {
 	*this = other;
 	std::cout << "FragTrap Copy constructor called" << std::endl;

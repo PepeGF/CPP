@@ -38,10 +38,8 @@ int main()
 
 	std::cout << std::endl;
 
-
 	delete(lupinicio);
 	delete(filogonio);
 
-	system("leaks a.out");
 	return (0);
 }

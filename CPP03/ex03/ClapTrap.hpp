@@ -14,8 +14,8 @@ class ClapTrap
 	public:
 		ClapTrap();
 		ClapTrap(std::string name);
-		ClapTrap(ClapTrap &other);
-		~ClapTrap();
+		ClapTrap(const ClapTrap &other);
+		virtual ~ClapTrap();
 
 		ClapTrap &operator=(ClapTrap const &rhs);
 

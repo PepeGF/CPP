@@ -22,7 +22,7 @@ DiamondTrap::DiamondTrap(std::string name)
 	std::cout << "DiamondTrap constructor called" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap &other)
+DiamondTrap::DiamondTrap(const DiamondTrap &other) : ClapTrap(other), ScavTrap(other), FragTrap(other)
 {
 	*this = other;
 
