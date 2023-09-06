@@ -11,6 +11,7 @@ int main()
 
 	for (int i = 1; i <= 5; i++)
 	{
+		// aquí hay un espacio entre el nombre y el tipo
 		onesiforo.attack("lupinicio");
 		lupinicio->takeDamage(onesiforo.getAttackDamage());
 	}
