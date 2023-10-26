@@ -6,7 +6,7 @@
 /*   By: josgarci <josgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:19:28 by josgarci          #+#    #+#             */
-/*   Updated: 2023/09/06 18:19:29 by josgarci         ###   ########.fr       */
+/*   Updated: 2023/10/26 21:36:48 by josgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 
 int main()
 {
-	DiamondTrap voldemort;
+	DiamondTrap voldemort("Voldemort");
+
+	std::cout << "Name: " << voldemort.getName() << "\n"
+		<< "Energy: " << voldemort.getEnergyPoints() << "\n"
+		<< "Hitpoints: " << voldemort.getHitpoints() << "\n"
+		<< "Attack: " << voldemort.getAttackDamage() << std::endl; 
+	
 	DiamondTrap onesiforo("Onesiforo");
 	DiamondTrap *lupinicio = new DiamondTrap("Lupinicio");
 	DiamondTrap *filogonio = new DiamondTrap(*lupinicio);
@@ -53,7 +59,8 @@ int main()
 
 
 	delete(lupinicio);
-	delete(filogonio);
+	delete(filogonio); 
+	
 
 	// system("leaks a.out");
 	return (0);

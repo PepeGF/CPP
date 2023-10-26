@@ -6,7 +6,7 @@
 /*   By: josgarci <josgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:19:04 by josgarci          #+#    #+#             */
-/*   Updated: 2023/09/06 18:19:05 by josgarci         ###   ########.fr       */
+/*   Updated: 2023/10/26 21:30:26 by josgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ DiamondTrap::DiamondTrap()
 {
 	this->_name = "He who shall not be named"; //probar a jugar con esto
 	this->ClapTrap::_name = this->_name.append("_clap_name");
-	this->_hitpoints = FragTrap::_hitpoints;
-	this->_energy_points = ScavTrap::_energy_points;
-	this->_attack_damage = FragTrap::_attack_damage;
+	this->_hitpoints = FragTrap::_hit;
+	this->_energy_points = ScavTrap::_energy;
+	this->_attack_damage = FragTrap::_damage;
 
 	std::cout << "DiamondTrap default constructor called" << std::endl;
 }
@@ -27,9 +27,9 @@ DiamondTrap::DiamondTrap(std::string name)
 {
 	this->ClapTrap::_name = this->_name.append("_clap_name");
 	this->_name = name;
-	this->_hitpoints = FragTrap::_hitpoints;
-	this->_energy_points = ScavTrap::_energy_points;
-	this->_attack_damage = FragTrap::_attack_damage;
+	this->_hitpoints = FragTrap::_hit;
+	this->_energy_points = ScavTrap::_energy;
+	this->_attack_damage = FragTrap::_damage;
 
 	std::cout << "DiamondTrap constructor called" << std::endl;
 }

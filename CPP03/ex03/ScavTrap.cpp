@@ -6,13 +6,13 @@
 /*   By: josgarci <josgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:19:31 by josgarci          #+#    #+#             */
-/*   Updated: 2023/09/06 18:19:32 by josgarci         ###   ########.fr       */
+/*   Updated: 2023/10/24 20:27:24 by josgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap()
+ScavTrap::ScavTrap(void) : ClapTrap()
 {
 	this->_name = "He who must not be named";
 	this->_attack_damage = 20;
@@ -69,7 +69,7 @@ void ScavTrap::attack(const std::string &target)
 	this->_energy_points -= 1;
 }
 
-void ScavTrap::guardGate()
+void ScavTrap::guardGate(void)
 {
 	if (this->_hitpoints <= 0)
 	{

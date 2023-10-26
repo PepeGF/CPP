@@ -6,7 +6,7 @@
 /*   By: josgarci <josgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:18:56 by josgarci          #+#    #+#             */
-/*   Updated: 2023/09/06 18:18:57 by josgarci         ###   ########.fr       */
+/*   Updated: 2023/10/26 21:13:34 by josgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,12 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	std::cout << "That's nice!" << std::endl;
 }
 
-std::string ClapTrap::getName()
+std::string ClapTrap::getName() const
 {
 	return(this->_name);
 }
 
-int	ClapTrap::getAttackDamage()
+int	ClapTrap::getAttackDamage() const
 {
 	return(this->_attack_damage);
 }
@@ -121,12 +121,12 @@ void ClapTrap::setAttackDamage(unsigned int amount)
 	this->_attack_damage = amount;
 }
 
-int	ClapTrap::getEnergyPoints()
+int	ClapTrap::getEnergyPoints() const
 {
 	return(this->_energy_points);
 }
 
-int	ClapTrap::getHitpoints()
+int	ClapTrap::getHitpoints() const
 {
 	return(this->_hitpoints);
 }
