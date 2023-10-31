@@ -6,7 +6,7 @@
 /*   By: josgarci <josgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:16:53 by josgarci          #+#    #+#             */
-/*   Updated: 2023/10/31 18:53:55 by josgarci         ###   ########.fr       */
+/*   Updated: 2023/10/31 21:07:52 by josgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,20 @@
 ClapTrap::ClapTrap()
 {
 	this->_name = "He who must not be named";
-	this->_attack_damage = 0;
-	this->_energy_points = 10;
-	this->_hit_points = 10;
+	this->_attack_damage = 20;
+	this->_energy_points = 50;
+	this->_hit_points = 100;
 
 	std::cout << "Default constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name) : _name(name)
+ClapTrap::ClapTrap(std::string name)
 {
-	this->_attack_damage = 0;
-	this->_energy_points = 10;
-	this->_hit_points = 10;
-
+	this->_name = name;
+	this->_attack_damage = 20;
+	this->_energy_points = 50;
+	this->_hit_points = 100;
+	
 	std::cout << "Parameterized constructor called" << std::endl;
 }
 
