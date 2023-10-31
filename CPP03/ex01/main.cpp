@@ -6,7 +6,7 @@
 /*   By: josgarci <josgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:17:29 by josgarci          #+#    #+#             */
-/*   Updated: 2023/09/06 18:17:49 by josgarci         ###   ########.fr       */
+/*   Updated: 2023/10/31 18:46:24 by josgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int main()
 	std::cout 	
 		<< voldemort.getName() << " has " 
 		<< voldemort.getEnergyPoints() 
-		<< " energy points and " << voldemort.getHitpoints() 
+		<< " energy points and " << voldemort.getHitPoints() 
 		<< " hitpoints" << std::endl;
 	lupinicio->beRepaired(100);
 	onesiforo.beRepaired(100);
