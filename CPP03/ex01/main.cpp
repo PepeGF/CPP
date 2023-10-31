@@ -6,7 +6,7 @@
 /*   By: josgarci <josgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:17:29 by josgarci          #+#    #+#             */
-/*   Updated: 2023/10/31 18:46:24 by josgarci         ###   ########.fr       */
+/*   Updated: 2023/10/31 19:13:58 by josgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ int main()
 	ScavTrap *lupinicio = new ScavTrap("Lupinicio");
 	ScavTrap *filogonio = new ScavTrap(*lupinicio);
 
-	std::cout << std::endl;
+	std::cout << "\n" << onesiforo.getName() << ":\n"
+		<< "Attack: " << onesiforo.getAttackDamage() << "\n" 
+		<< "Energy: " << onesiforo.getEnergyPoints() << "\n"
+		<< "Hit: " << onesiforo.getHitPoints() << "\n" << std::endl;
 
 	for (int i = 1; i <= 7; i++)
 	{
