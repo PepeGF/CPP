@@ -6,7 +6,7 @@
 /*   By: josgarci <josgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:17:32 by josgarci          #+#    #+#             */
-/*   Updated: 2023/10/31 19:59:08 by josgarci         ###   ########.fr       */
+/*   Updated: 2023/10/31 21:44:10 by josgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 ScavTrap::ScavTrap() : ClapTrap()
 {
 	this->_name = "He who must not be named";
-	this->_attack_damage = ClapTrap::_attack_damage;
-	this->_energy_points = ClapTrap::_energy_points;
+	this->_attack_damage = 20;
+	this->_energy_points = 50;
 	this->_hit_points = ClapTrap::_hit_points;
 
 	std::cout << "ScavTrap default constructor called" << std::endl;
@@ -25,8 +25,8 @@ ScavTrap::ScavTrap() : ClapTrap()
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
 	this->_name = name;
-	this->_attack_damage = ClapTrap::_attack_damage;
-	this->_energy_points = ClapTrap::_energy_points;
+	this->_attack_damage = 20;
+	this->_energy_points = 50;
 	this->_hit_points = ClapTrap::_hit_points;
 
 	std::cout << "ScavTrap parameterized constructor called" << std::endl;

@@ -6,28 +6,28 @@
 /*   By: josgarci <josgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:18:09 by josgarci          #+#    #+#             */
-/*   Updated: 2023/10/31 17:48:22 by josgarci         ###   ########.fr       */
+/*   Updated: 2023/10/31 21:30:03 by josgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap()
+FragTrap::FragTrap() : ClapTrap()
 {
 	this->_name = "He who must not be named";
 	this->_attack_damage = 30;
 	this->_energy_points = 100;
-	this->_hit_points = 100;
+	this->_hit_points = ClapTrap::_hit_points;
 
 	std::cout << "FragTrap Default constructor called" << std::endl;
 }
 
-FragTrap::FragTrap(std::string name)
+FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
 	this->_name = name;
 	this->_attack_damage = 30;
 	this->_energy_points = 100;
-	this->_hit_points = 100;
+	this->_hit_points = ClapTrap::_hit_points;
 
 	std::cout << "FragTrap Parameterized constructor called" << std::endl;
 }

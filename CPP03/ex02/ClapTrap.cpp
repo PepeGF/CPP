@@ -6,7 +6,7 @@
 /*   By: josgarci <josgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:18:01 by josgarci          #+#    #+#             */
-/*   Updated: 2023/10/31 19:37:13 by josgarci         ###   ########.fr       */
+/*   Updated: 2023/10/31 21:45:40 by josgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,17 @@ ClapTrap::ClapTrap()
 	this->_name = "He who must not be named";
 	this->_attack_damage = 0;
 	this->_energy_points = 10;
-	this->_hit_points = 10;
+	this->_hit_points = 100;
 
 	std::cout << "ClapTrap Default constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name) : _name(name)
+ClapTrap::ClapTrap(std::string name)
 {
+	this->_name = name;
 	this->_attack_damage = 0;
 	this->_energy_points = 10;
-	this->_hit_points = 10;
+	this->_hit_points = 100;
 
 	std::cout << "ClapTrap Parameterized constructor called" << std::endl;
 }
@@ -106,12 +107,12 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	std::cout << "That's nice!" << std::endl;
 }
 
-std::string ClapTrap::getName()
+std::string ClapTrap::getName(void) const
 {
 	return(this->_name);
 }
 
-int	ClapTrap::getAttackDamage()
+int	ClapTrap::getAttackDamage(void) const
 {
 	return(this->_attack_damage);
 }
@@ -121,12 +122,12 @@ void ClapTrap::setAttackDamage(unsigned int amount)
 	this->_attack_damage = amount;
 }
 
-int	ClapTrap::getEnergyPoints()
+int	ClapTrap::getEnergyPoints(void) const
 {
 	return(this->_energy_points);
 }
 
-int	ClapTrap::getHitpoints()
+int	ClapTrap::getHitPoints(void) const
 {
 	return(this->_hit_points);
 }

@@ -6,7 +6,7 @@
 /*   By: josgarci <josgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:18:17 by josgarci          #+#    #+#             */
-/*   Updated: 2023/09/06 18:18:18 by josgarci         ###   ########.fr       */
+/*   Updated: 2023/10/31 21:38:38 by josgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int main()
 	FragTrap onesiforo("Onesiforo");
 	FragTrap *lupinicio = new FragTrap("Lupinicio");
 	FragTrap *filogonio = new FragTrap(*lupinicio);
+
+	std::cout << "\n" << onesiforo.getName() << ":\n"
+		<< "Attack: " << onesiforo.getAttackDamage() << "\n" 
+		<< "Energy: " << onesiforo.getEnergyPoints() << "\n"
+		<< "Hit: " << onesiforo.getHitPoints() << "\n" << std::endl;
 
 	std::cout << std::endl;
 
@@ -34,7 +39,7 @@ int main()
 	std::cout 	
 		<< voldemort.getName() << " has " 
 		<< voldemort.getEnergyPoints() 
-		<< " energy points and " << voldemort.getHitpoints() 
+		<< " energy points and " << voldemort.getHitPoints() 
 		<< " hitpoints" << std::endl;
 	lupinicio->beRepaired(100);
 	onesiforo.beRepaired(100);
