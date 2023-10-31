@@ -6,7 +6,7 @@
 /*   By: josgarci <josgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:17:02 by josgarci          #+#    #+#             */
-/*   Updated: 2023/10/31 18:01:10 by josgarci         ###   ########.fr       */
+/*   Updated: 2023/10/31 18:52:18 by josgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ private:
 public:
 	ClapTrap();
 	ClapTrap(std::string name);
-	ClapTrap(ClapTrap &other);
+	ClapTrap(const ClapTrap &other);
 	~ClapTrap();
 
 	ClapTrap &operator=(ClapTrap const &rhs);
