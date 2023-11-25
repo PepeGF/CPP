@@ -6,7 +6,7 @@
 /*   By: josgarci <josgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:19:04 by josgarci          #+#    #+#             */
-/*   Updated: 2023/11/25 17:31:41 by josgarci         ###   ########.fr       */
+/*   Updated: 2023/11/25 18:02:03 by josgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 DiamondTrap::DiamondTrap()
 {
 	//this->_name = "He who shall not be named"; //probar a jugar con esto
-	this->ClapTrap::_name = this->_name.append("_clap_name");
+	// this->ClapTrap::_name = this->_name.append("_clap_name");
 	this->_hit_points = FragTrap::_hit;
 	this->_energy_points = ScavTrap::_energy;
 	this->_attack_damage = FragTrap::_damage;

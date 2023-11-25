@@ -6,7 +6,7 @@
 /*   By: josgarci <josgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:19:28 by josgarci          #+#    #+#             */
-/*   Updated: 2023/10/31 17:38:06 by josgarci         ###   ########.fr       */
+/*   Updated: 2023/11/25 18:04:16 by josgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 int main()
 {
-/* 	DiamondTrap voldemort("Voldemort");
+	DiamondTrap voldemort("Voldemort");
 	DiamondTrap onesiforo("Onesiforo");
 	DiamondTrap *lupinicio = new DiamondTrap("Lupinicio");
 	DiamondTrap *filogonio = new DiamondTrap(*lupinicio);
 
+	std::cout << std::endl;
+
 	std::cout << "Name: " << voldemort.getName() << "\n"
 		<< "Energy: " << voldemort.getEnergyPoints() << "\n"
-		<< "Hitpoints: " << voldemort.getHitpoints() << "\n"
+		<< "Hitpoints: " << voldemort.getHitPoints() << "\n"
 		<< "Attack: " << voldemort.getAttackDamage() << std::endl; 
 	std::cout << std::endl;
 
@@ -39,7 +41,7 @@ int main()
 	std::cout 	
 		<< voldemort.getName() << " has " 
 		<< voldemort.getEnergyPoints() 
-		<< " energy points and " << voldemort.getHitpoints() 
+		<< " energy points and " << voldemort.getHitPoints() 
 		<< " hitpoints" << std::endl;
 	lupinicio->beRepaired(100);
 	onesiforo.beRepaired(100);
@@ -55,34 +57,14 @@ int main()
 
 	std::cout << std::endl;
 
+	onesiforo.whoAmI();
+	
+	std::cout << std::endl;
 
 	delete(lupinicio);
 	delete(filogonio); 
- */	
-	ClapTrap pavon("Peivon");
-	std::cout << "···············" << std::endl;
-	ScavTrap jalvarad("Joso");
-	std::cout << "···············" << std::endl;
-	FragTrap nachito("Zipi");
-	std::cout << "···············" << std::endl;
-	DiamondTrap crisi("Crisi");
-	std::cout << "···············" << std::endl;
-
-	std::cout << "Diamond name: " << crisi.getName() << std::endl;
-	std::cout << "Diamond hitpoints: " << crisi.getHitPoints() << std::endl;
-	std::cout << "Diamond energy points: " << crisi.getEnergyPoints() << std::endl;
-	std::cout << "Diamond attack damage: " << crisi.getAttackDamage() << std::endl;
-	std::cout << "···············" << std::endl;
-
-	crisi.whoAmI();
-	std::cout << "···············" << std::endl;
-	jalvarad.guardGate();
-	nachito.highFivesGuys();
-	pavon.attack("Zipi");
-	nachito.takeDamage(0);
-	nachito.attack("Peivon");
-	pavon.takeDamage(30);
-	std::cout << "···············" << std::endl;
+	
+	
 	// system("leaks a.out");
 	return (0);
 }
