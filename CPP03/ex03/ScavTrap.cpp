@@ -6,7 +6,7 @@
 /*   By: josgarci <josgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:19:31 by josgarci          #+#    #+#             */
-/*   Updated: 2023/10/31 17:48:22 by josgarci         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:52:06 by josgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ ScavTrap::ScavTrap(void) : ClapTrap()
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-	this->_name = name;
 	this->_attack_damage = 20;
 	this->_energy_points = 50;
 	this->_hit_points = 100;

@@ -6,18 +6,16 @@
 /*   By: josgarci <josgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:19:00 by josgarci          #+#    #+#             */
-/*   Updated: 2023/10/31 17:47:47 by josgarci         ###   ########.fr       */
+/*   Updated: 2023/11/25 16:43:43 by josgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-
 #include <iostream>
 
 class ClapTrap
 {
 	protected:
-
 		std::string	_name;
 		int			_hit_points;
 		int			_energy_points;
