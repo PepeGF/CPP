@@ -6,7 +6,7 @@
 /*   By: josgarci <josgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:19:28 by josgarci          #+#    #+#             */
-/*   Updated: 2023/11/25 18:04:16 by josgarci         ###   ########.fr       */
+/*   Updated: 2023/11/25 18:17:10 by josgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int main()
 	onesiforo.highFivesGuys();
 	lupinicio->highFivesGuys();
 	voldemort.highFivesGuys();
-
+	onesiforo.guardGate();
 	std::cout << std::endl;
 
 	onesiforo.whoAmI();
