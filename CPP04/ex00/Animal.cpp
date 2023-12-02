@@ -1,4 +1,4 @@
-# include "animal.hpp"
+# include "Animal.hpp"
 
 Animal::Animal()
 {
@@ -13,7 +13,8 @@ Animal::Animal(std::string type)
 
 Animal::Animal(const Animal& copy)
 {
-	*this = copy;
+	if (this != &copy)
+		*this = copy;
 	std::cout << "Animal copy constructor called" << std::endl;
 }
 
@@ -35,5 +36,5 @@ std::string Animal::getType() const
 
 void Animal::makeSound() const
 {
-	std::cout << "Animal sound" << std::endl;
+	std::cout << "Hakuna Matata!!!" << std::endl;
 }

@@ -7,10 +7,11 @@ class Dog : public Animal
 {
 	public:
 		Dog();
+		Dog(std::string const type);
 		Dog(const Dog& copy);
 		virtual ~Dog();
 
 		Dog& operator=(const Dog& obj);
 
-		virtual void makeSound() const;
-}
+		void makeSound() const;
+};
