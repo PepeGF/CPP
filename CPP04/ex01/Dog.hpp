@@ -1,10 +1,12 @@
 # pragma once
 
-# include <iostream>
 # include "Animal.hpp"
+# include "Brain.hpp"
 
 class Dog : public Animal
 {
+	private:
+		Brain* _brain;
 	public:
 		Dog();
 		Dog(std::string const type);
@@ -13,5 +15,6 @@ class Dog : public Animal
 
 		Dog& operator=(const Dog& obj);
 
-		void makeSound() const;
+		void makeSound(void) const;
+		Brain* getBrain(void) const;
 };
