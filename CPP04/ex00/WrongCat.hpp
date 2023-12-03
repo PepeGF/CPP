@@ -9,7 +9,7 @@ class WrongCat : public WrongAnimal
 		WrongCat();
 		WrongCat(std::string const type);
 		WrongCat(const WrongCat& copy);
-		virtual ~WrongCat();
+		~WrongCat();
 
 		WrongCat& operator=(const WrongCat& obj);
 
