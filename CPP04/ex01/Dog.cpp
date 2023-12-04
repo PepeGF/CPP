@@ -4,6 +4,7 @@ Dog::Dog()
 {
     this->type = "Dog";
     this->_brain = new Brain();
+
     std::cout << "Dog default constructor called" << std::endl;
 }
 
@@ -22,6 +23,7 @@ Dog::Dog(const Dog& copy) : Animal(copy)
 		this->type = copy.type;
 		this->_brain = new Brain(*(copy._brain));
 	}
+
     std::cout << "Dog copy constructor called" << std::endl;
 }
 

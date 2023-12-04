@@ -8,10 +8,10 @@ private:
 public:
     Brain();
     Brain(std::string* ideas);
-    Brain(Brain const &copy);
+    Brain(const Brain &copy);
     virtual ~Brain();
 
-    Brain& operator=(Brain const &rhs);
+    Brain& operator=(const Brain &rhs);
 
     void setIdeas(std::string idea);
     std::string getIdea(const int i);

@@ -14,7 +14,7 @@ Brain::Brain(std::string* ideas)
     std::cout << "Brain parametrized constructor called" << std::endl;
 }
 
-Brain::Brain(Brain const &copy)
+Brain::Brain(const Brain &copy)
 {
     if (this != &copy)
     {
@@ -24,7 +24,7 @@ Brain::Brain(Brain const &copy)
     std::cout << "Brain copy constructor called" << std::endl;
 }
 
-Brain& Brain::operator=(Brain const &rhs)
+Brain& Brain::operator=(const Brain &rhs)
 {
     for(int i = 0; i < 100; i++)
     {
