@@ -10,7 +10,8 @@ int	main()
 	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
-	const WrongAnimal* doraemon = new WrongCat();
+	const WrongAnimal* pikachu = new WrongCat();
+	const WrongCat* doraemon = new WrongCat();
 
 	std::cout << std::endl;
 
@@ -23,6 +24,7 @@ int	main()
 
 	std::cout << std::endl;
 
+	pikachu->makeSound();
 	doraemon->makeSound();
 	
 	std::cout << std::endl;
@@ -30,14 +32,7 @@ int	main()
 	delete meta;
 	delete j;
 	delete i;
+	delete pikachu;
 	delete doraemon;
 	return 0;
-
-
-/* 
-	Animal bicho;
-	Animal perro("perro");
-	Animal lobo(perro);
-	
-	return (0); */
 }
