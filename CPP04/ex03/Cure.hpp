@@ -9,4 +9,7 @@ public:
 	~Cure();
 
 	Cure& operator=(const Cure& rhs);
+
+	Cure* clone() const;
+	virtual void use(ICharacter & target);
 };
