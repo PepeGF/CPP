@@ -14,21 +14,28 @@ Character::Character(std::string name) : _name(name)
 	std::cout << "Character parametrized constructor called" << std::endl;
 }
 
-Character::Character(Character& const copy) : _name(copy._name)
+Character::Character(Character& const copy) //: _name(copy._name)
 {
 	if (this != &copy)
 	{
-		for (int i = 0; i < 4; i++)
+		*this = copy;
+		/* for (int i = 0; i < 4; i++)
 		{
-			if (copy._materia[i] != nullptr)
-				*(this->_materia[i]) = *(copy._materia[i]);
-		}
+			this->_materia[i] = copy._materia[i];
+		} 
+		quitar el comentario si usar el operador de asignación funciona bien
+		*/
 	}
 	std::cout << "Character copy constructor called" << std::endl;
 }
 
 Character::~Character()
 {
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->_materia[i])
+			delete this->_materia[i];
+	}
 	std::cout << "Character destructor called" << std::endl;
 }
 
@@ -37,8 +44,7 @@ Character& Character::operator=(Character const & copy)
 	this->_name = copy._name;
 	for (int i = 0; i < 4; i++)
 	{
-		if (copy._materia[i] != nullptr)
-			this->_materia[i] = copy._materia[i];
+		this->_materia[i] = copy._materia[i];
 	}
 	return *this;
 }
@@ -59,7 +65,14 @@ void Character::equip(AMateria* m)
 
 void Character::unequip(int idx)
 {
-	
+	if (idx >= 0 && idx < 4 && this->_materia[idx] != nullptr)
+		this->_materia[idx] = nullptr;
 	return ;
 }
-void use(int idx, ICharacter& target);
+
+void Character::use(int idx, ICharacter& target)
+{
+	if (idx >= 0 && idx < 4 && this->_materia[idx] != nullptr)
+		this->_materia[idx]->use(target);
+	return ;
+}
