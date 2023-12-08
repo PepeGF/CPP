@@ -4,15 +4,14 @@
 class MateriaSource : public IMateriaSource
 {
 private:
-    std::string _type;
+	AMateria *_materia[4];
 public:
-    MateriaSource();
-    MateriaSource();
-    MateriaSource();
-    ~MateriaSource();
+	MateriaSource();
+	MateriaSource(const MateriaSource& copy);
+	~MateriaSource();
 
-    MateriaSource& operator=(MateriaSource & const rhs);
+	MateriaSource& operator=(MateriaSource const & rhs);
 
-    void learnMateria(AMateria*);
-    AMateria* createMateria(std::string & const type);
+	void learnMateria(AMateria*);
+	AMateria* createMateria(const std::string & type);
 };

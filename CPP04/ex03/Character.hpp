@@ -12,10 +12,10 @@ class Character
 	public:
 		Character();
 		Character(std::string name);
-		Character(Character & const copy);
+		Character(const Character &  copy);
 		virtual ~Character();
 
-		Character& operator=(Character const & copy);
+		Character& operator=(const Character & copy);
 		
 		std::string const & getName() const;
 		void equip(AMateria* m);

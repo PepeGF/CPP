@@ -27,8 +27,10 @@ Cure::~Cure()
 Cure& Cure::operator=(const Cure& copy)
 {
 	this->_type = copy.getType();
-	
+
 	std::cout << "Cure assignation operator called" << std::endl;
+
+	return (*this);
 }
 
 Cure* Cure::clone() const

@@ -3,18 +3,18 @@
 Character::Character() : _name("He who must not be named")
 {
 	for (int i = 0; i < 4; i++)
-		this->_materia[i] = nullptr;
+		this->_materia[i] = NULL;
 	std::cout << "Character default constructor called" << std::endl;
 }
 
 Character::Character(std::string name) : _name(name)
 {
 	for (int i = 0; i < 4; i++)
-		this->_materia[i] = nullptr;
+		this->_materia[i] = NULL;
 	std::cout << "Character parametrized constructor called" << std::endl;
 }
 
-Character::Character(Character& const copy) //: _name(copy._name)
+Character::Character(const Character& copy) //: _name(copy._name)
 {
 	if (this != &copy)
 	{
@@ -58,21 +58,21 @@ void Character::equip(AMateria* m)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		if (this->_materia[i] == nullptr)
+		if (this->_materia[i] == NULL)
 			this->_materia[i] = m;
 	}
 }
 
 void Character::unequip(int idx)
 {
-	if (idx >= 0 && idx < 4 && this->_materia[idx] != nullptr)
-		this->_materia[idx] = nullptr;
+	if (idx >= 0 && idx < 4 && this->_materia[idx] != NULL)
+		this->_materia[idx] = NULL;
 	return ;
 }
 
 void Character::use(int idx, ICharacter& target)
 {
-	if (idx >= 0 && idx < 4 && this->_materia[idx] != nullptr)
+	if (idx >= 0 && idx < 4 && this->_materia[idx] != NULL)
 		this->_materia[idx]->use(target);
 	return ;
 }

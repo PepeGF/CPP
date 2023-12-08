@@ -24,21 +24,23 @@ Ice::~Ice()
 	std::cout << "Ice destructor called" << std::endl;
 }
 
-Ice& Ice::operator=(const Ice& copy)
+Ice& Ice::operator=(const Ice& rhs)
 {
-	this->_type = copy.getType();
+	this->_type = rhs.getType();
 	
 	std::cout << "Ice assignation operator called" << std::endl;
+	
+	return (*this);
 }
 
 Ice* Ice::clone() const
 {
-	Ice* Ice = new Ice(*this);
-	return Ice;
+	Ice* ice = new Ice(*this);
+	return ice;
 }
 
 void Ice::use(ICharacter & target)
 {
-	std::cout << "* heals " << target.getName() << " wounds *" << std::endl;
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 	//potencialmente mejorable
 }

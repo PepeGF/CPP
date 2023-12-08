@@ -3,6 +3,8 @@
 # include "ICharacter.hpp"
 # include "IMateriaSource.hpp"
 
+class ICharacter;
+
 class AMateria
 {
 protected:
