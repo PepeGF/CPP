@@ -33,7 +33,10 @@ MateriaSource::~MateriaSource()
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->_materia[i])
+		{
 			delete this->_materia[i];
+			std::cout << "materia " << i << " deleted" << std::endl;
+		}
 	}
 	std::cout << "MateriaSource destructor called" << std::endl;
 

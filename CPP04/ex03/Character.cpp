@@ -14,17 +14,14 @@ Character::Character(std::string name) : _name(name)
 	std::cout << "Character parametrized constructor called" << std::endl;
 }
 
-Character::Character(const Character& copy) //: _name(copy._name)
+Character::Character(const Character& copy) : _name(copy._name)
 {
-	if (this != &copy)
+	for (int i = 0; i < 4; i++)
 	{
-		*this = copy;
-		/* for (int i = 0; i < 4; i++)
+		if(copy._materia[i] != NULL)
 		{
-			this->_materia[i] = copy._materia[i];
-		} 
-		quitar el comentario si usar el operador de asignación funciona bien
-		*/
+			this->_materia[i] = copy._materia[i]->clone();
+		}
 	}
 	std::cout << "Character copy constructor called" << std::endl;
 }
@@ -34,17 +31,23 @@ Character::~Character()
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->_materia[i])
+		{
 			delete this->_materia[i];
+			this->_materia[i] = NULL;
+		}
 	}
 	std::cout << "Character destructor called" << std::endl;
 }
 
 Character& Character::operator=(Character const & copy)
 {
-	this->_name = copy._name;
-	for (int i = 0; i < 4; i++)
+	if (this != &copy)
 	{
-		this->_materia[i] = copy._materia[i];
+		this->_name = copy._name;
+		for (int i = 0; i < 4; i++)
+		{
+			this->_materia[i] = copy._materia[i];
+		}
 	}
 	return *this;
 }
@@ -60,6 +63,7 @@ void Character::equip(AMateria* m)
 	{
 		if (this->_materia[i] == NULL)
 			this->_materia[i] = m;
+		return;
 	}
 }
 

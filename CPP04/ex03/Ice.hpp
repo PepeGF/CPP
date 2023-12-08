@@ -11,5 +11,5 @@ public:
 	Ice& operator=(const Ice& rhs);
 
 	Ice* clone() const;
-	virtual void use(ICharacter & target);
+	void use(ICharacter & target);
 };
