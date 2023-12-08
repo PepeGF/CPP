@@ -28,14 +28,17 @@ int main()
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);
+	std::cout << "---------------------------------------" << std::endl;
 
-	// me->unequip(2);
-	// me->unequip(0);
+	me->unequip(2);
+	me->unequip(1);
+
+	delete tmp;
 	delete bob;
 	delete me;
 	delete src;
-	std::cout << "---------------------------------------" << std::endl;
 
+	/* 
 	std::cout << std::endl;
 	IMateriaSource* src2 = new MateriaSource();
 	src2->learnMateria(new Ice());
@@ -68,7 +71,8 @@ int main()
 
 	delete src2;
 	delete pepe;
-	// delete juan;
+	// delete juan; 
+	*/
 
 	return 0;
 }
