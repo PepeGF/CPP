@@ -1,8 +1,7 @@
 # include "AMateria.hpp"
 
-AMateria::AMateria()
+AMateria::AMateria() : _type("Generic materia")
 {
-	this->_type = "Generic materia";
 	std::cout << "AMateria default constructor called" << std::endl;
 }
 
@@ -13,10 +12,7 @@ AMateria::AMateria(std::string const & type) : _type(type)
 
 AMateria::AMateria(AMateria const & copy)
 {
-	if (this != &copy)
-	{
-		this->_type = copy._type;
-	}
+	this->_type = copy._type;
 	std::cout << "AMateria copy constructor called" << std::endl;
 }
 
@@ -38,8 +34,5 @@ std::string const &AMateria::getType() const
 }
 
 void AMateria::use(ICharacter & target)
-{
-	std::cout << this->getType() << " materia is used on " 
-				<< target.getName() << std::endl;
-}
+{}
 

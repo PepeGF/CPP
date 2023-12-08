@@ -1,7 +1,6 @@
-#pragma once
+# pragma once
 # include <iostream>
 # include "ICharacter.hpp"
-# include "IMateriaSource.hpp"
 
 class ICharacter;
 
