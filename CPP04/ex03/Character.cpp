@@ -80,3 +80,14 @@ void Character::use(int idx, ICharacter& target)
 		this->_materia[idx]->use(target);
 	return ;
 }
+
+void Character::getinventary() const
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->_materia[i] == NULL)
+			std::cout << "Slot " << i << ": empty" << std::endl;
+		else
+			std::cout << "Slot " << i << ": " << this->_materia[i]->getType() << std::endl;
+	}
+}
