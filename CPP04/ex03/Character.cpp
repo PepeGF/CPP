@@ -62,8 +62,10 @@ void Character::equip(AMateria* m)
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->_materia[i] == NULL)
+		{
 			this->_materia[i] = m;
-		return;
+			return;
+		}
 	}
 }
 
@@ -81,6 +83,7 @@ void Character::use(int idx, ICharacter& target)
 	return ;
 }
 
+/* 
 void Character::getinventary() const
 {
 	for (int i = 0; i < 4; i++)
@@ -91,3 +94,4 @@ void Character::getinventary() const
 			std::cout << "Slot " << i << ": " << this->_materia[i]->getType() << std::endl;
 	}
 }
+ */
