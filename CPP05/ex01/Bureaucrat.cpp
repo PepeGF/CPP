@@ -29,14 +29,14 @@ Bureaucrat::~Bureaucrat()
 
 Bureaucrat& Bureaucrat::operator=(Bureaucrat const & rhs)
 {
-	std::cout << "Bureaucrat assignation operator called" << std::endl;
-	
 	if (rhs._grade < 1)
 		throw Bureaucrat::GradeTooHighException();
 	if (rhs._grade > 150)
 		throw Bureaucrat::GradeTooLowException();
 	if (this != &rhs)
 		this->_grade = rhs._grade;
+	
+	std::cout << "Bureaucrat assignation operator called" << std::endl;
 	return *this;
 }
 
@@ -70,6 +70,11 @@ void Bureaucrat::decrementGrade(void)
 	if (aux > 150)
 		throw Bureaucrat::GradeTooLowException();
 	this->_grade = this->_grade + 1;
+}
+
+void Bureaucrat::signForm(Form & form)
+{
+	form.beSigned(*this);
 }
 
 const char* Bureaucrat::GradeTooHighException::what(void) const throw ()

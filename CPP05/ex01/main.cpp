@@ -1,70 +1,53 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
+# include "Form.hpp"
 
 int main()
 {
 	try
 	{
-		Bureaucrat voldemort;
-		Bureaucrat onesiforo("Onesiforo", 70);
-		Bureaucrat filogonio(onesiforo);
-		Bureaucrat hermenegilda("Hermenegilda", 150);
-		hermenegilda = onesiforo;
+		Bureaucrat onesiforo("Onesiforo", 30);
+		Form form("Destroy Earth", 50, 40);
 
-		for (int i = 0; i < 42; i++)
-			filogonio.decrementGrade();
+		std::cout << std::endl;
+		std::cout << form << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	std::cout << "--------------------------------------------------" << std::endl;
+	try
+	{
+		Bureaucrat onesiforo("Onesiforo", 30);
+		Form form("Destroy Earth", 50, 40);
 
-		for (int i = 0; i < 5; i++)
-			hermenegilda.incrementGrade();
+		std::cout << std::endl;
+		std::cout << form << std::endl;
+		onesiforo.signForm(form);
+		std::cout << form << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	std::cout << "--------------------------------------------------" << std::endl;
+	Bureaucrat* onesiforo = new Bureaucrat("Onesiforo", 130);
+	Form* form = new Form("Destroy Earth", 50, 40);
+	try
+	{
 
-		std::cout << voldemort << std::endl;
-		std::cout << onesiforo << std::endl;
-		std::cout << filogonio << std::endl;
-		std::cout << hermenegilda << std::endl;
+		std::cout << std::endl;
+		std::cout << *form << std::endl;
+		onesiforo->signForm(*form);
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << e.what() << '\n';
 	}
-	std::cout << "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-" << std::endl;
-	try
-	{
-		Bureaucrat onesiforo("Onesiforo", 0);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	std::cout << "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-" << std::endl;
-	try
-	{
-		Bureaucrat onesiforo("Onesiforo", 1903);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	std::cout << "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-" << std::endl;
-	try
-	{
-		Bureaucrat onesiforo_boss("Onesiforo", 10);
-		for (int i = 0; i < 20; i++)
-			onesiforo_boss.incrementGrade();
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	std::cout << "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-" << std::endl;
-	try
-	{
-		Bureaucrat onesiforo_low("Onesiforo", 100);
-		for (int i = 0; i < 60; i++)
-			onesiforo_low.decrementGrade();
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
+	delete form;
+	delete onesiforo;
+	std::cout << "--------------------------------------------------" << std::endl;
+
 	return 0;
 }

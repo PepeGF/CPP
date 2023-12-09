@@ -1,6 +1,9 @@
+#pragma once
 # include <iostream>
 # include <exception>
 # include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form
 {
@@ -12,7 +15,7 @@ private:
 
 public:
 	Form();
-	Form(std::string name, int grade);
+	Form(std::string name, int sign_grade, int exec_grade);
 	Form(Form const & copy);
 	~Form();
 
@@ -22,7 +25,8 @@ public:
 	bool			getSigned() const;
 	int				getSignGrade() const;
 	int				getExecGrade() const;
-	void			beSigned(B)
+	void			beSigned(Bureaucrat& vogon);
+
 	class GradeTooHighException : virtual public std::exception
 	{
 		public:
