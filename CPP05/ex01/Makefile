@@ -12,7 +12,8 @@ NAME = a.out
 BIN_PATH = bin/
 
 SRCS =	main.cpp \
-		Bureaucrat.cpp
+		Bureaucrat.cpp \
+		Form.cpp
 
 
 OBJS = $(SRCS:%.cpp=bin/%.o)

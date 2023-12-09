@@ -5,17 +5,17 @@ class Bureaucrat
 {
 private:
 	std::string const	_name;
-	int					_range;
+	int					_grade;
 
 public:
 	Bureaucrat();
-	Bureaucrat(std::string name, int range);
+	Bureaucrat(std::string name, int grade);
 	Bureaucrat(Bureaucrat const & copy);
 	~Bureaucrat();
 
 	Bureaucrat& operator=(Bureaucrat const & rhs);
 
-	std::string getName(void) const;
+	std::string const getName(void) const;
 	int			getGrade(void) const;
 	void		incrementGrade(void);
 	void		decrementGrade(void);
