@@ -10,7 +10,7 @@ private:
 public:
 	Bureaucrat();
 	Bureaucrat(std::string name, int range);
-	Bureaucrat(const Bureaucrat& copy);
+	Bureaucrat(Bureaucrat const & copy);
 	~Bureaucrat();
 
 	Bureaucrat& operator=(Bureaucrat const & rhs);

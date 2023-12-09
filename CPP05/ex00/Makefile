@@ -50,9 +50,9 @@ re: fclean
 	$(MAKE)
 
 run:
-	$(MAKE)
-	./$(NAME)
+	@$(MAKE)
+	@./$(NAME)
 
 .PHONY: all clean fclean re run
 
-.SILENT:
+.SILENT: $(NAME) $(OBJS) clean fclean re run
