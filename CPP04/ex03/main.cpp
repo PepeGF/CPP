@@ -1,5 +1,5 @@
 #include <iostream>
-// #include "AMateria.hpp"
+#include "AMateria.hpp"
 #include "Cure.hpp"
 #include "Ice.hpp"
 #include "ICharacter.hpp"
@@ -9,8 +9,6 @@
 
 int main()
 {
-	Ice ice();
-	
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());

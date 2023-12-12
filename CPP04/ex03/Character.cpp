@@ -73,8 +73,13 @@ void Character::unequip(int idx)
 {
 	if (idx >= 0 && idx < 4 && this->_materia[idx] != NULL)
 	{
+<<<<<<< HEAD
 		Character::floor = new Floor(_materia[idx]);
 		floor->insert(_materia[idx]);
+=======
+		Floor* floor = new Floor();
+		floor->insert(this->_materia[idx]);
+>>>>>>> 714603cd136417b6f83be8e93f3501a95ebe5f90
 		this->_materia[idx] = NULL;
 	}
 	return ;
