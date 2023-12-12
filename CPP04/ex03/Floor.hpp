@@ -13,5 +13,5 @@ class Floor
 		virtual ~Floor();
 
 		Floor& operator=(const Floor& rhs);
-		void insert(const AMateria& materia);
+		void insert(AMateria* materia);
 };

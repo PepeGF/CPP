@@ -72,7 +72,10 @@ void Character::equip(AMateria* m)
 void Character::unequip(int idx)
 {
 	if (idx >= 0 && idx < 4 && this->_materia[idx] != NULL)
+	{
+		floor.insert(this->_materia[idx]);
 		this->_materia[idx] = NULL;
+	}
 	return ;
 }
 

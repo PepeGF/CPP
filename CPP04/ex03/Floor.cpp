@@ -34,7 +34,6 @@ Floor::~Floor()
 	}
 }
 
-void Floor::insert(const AMateria& materia)
+void Floor::insert(AMateria* materia)
 {
-
 }

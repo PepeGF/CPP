@@ -2,6 +2,7 @@
 #include <iostream>
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
+#include "Floor.hpp"
 
 
 class Character : public ICharacter
@@ -9,6 +10,7 @@ class Character : public ICharacter
 	private:
 		std::string _name;
 		AMateria* _materia[4];
+		static Floor floor;
 
 	public:
 		Character();
