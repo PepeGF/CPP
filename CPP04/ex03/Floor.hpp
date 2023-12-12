@@ -9,7 +9,7 @@ class Floor
 	public:
 		Floor();
 		Floor(AMateria* materia);
-		Floor(Floor & const copy);
+		Floor(const Floor & copy);
 		virtual ~Floor();
 
 		Floor& operator=(const Floor& rhs);

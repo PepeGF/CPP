@@ -1,10 +1,7 @@
 # include "Floor.hpp"
 
-Floor::Floor()
-{
-	this->removed = NULL;
-	this->next = NULL;
-}
+Floor::Floor() : removed(NULL), next(NULL)
+{}
 
 Floor::Floor(AMateria* materia)
 {
@@ -12,16 +9,11 @@ Floor::Floor(AMateria* materia)
 	this->next = NULL;
 }
 
-Floor::Floor(Floor & const copy)
+Floor::Floor(const Floor & copy)
 {
-	Floor* tmp = &copy;
-
-	while (tmp != NULL)
-	{
-		this->removed = tmp->removed;
-		this->next = tmp->next;
-		tmp = tmp->next;
-	}
+	this->removed = copy.removed;
+	this->next = copy.next;
+		
 }
 
 Floor::~Floor()
@@ -36,4 +28,10 @@ Floor::~Floor()
 
 void Floor::insert(AMateria* materia)
 {
+	if (materia)
+	{
+		Floor* newFloor = new Floor(materia);
+		newFloor->next = this->next;
+		this->next = newFloor;
+	}
 }
