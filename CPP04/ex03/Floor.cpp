@@ -34,6 +34,7 @@ Floor::~Floor()
 	}
 }
 
-void Floor::insert(AMateria* materia)
+void Floor::insert(Floor* newFloor)
 {
+	this->next = newFloor;
 }

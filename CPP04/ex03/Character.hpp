@@ -10,7 +10,7 @@ class Character : public ICharacter
 	private:
 		std::string _name;
 		AMateria* _materia[4];
-		static Floor floor;
+		static Floor* floor;
 
 	public:
 		Character();
