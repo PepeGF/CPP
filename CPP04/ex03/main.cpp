@@ -36,6 +36,8 @@ int main()
 	delete me;
 	delete src;
 
+	return 0;
+}
 	/* 
 	std::cout << std::endl;
 	IMateriaSource* src2 = new MateriaSource();
@@ -72,5 +74,3 @@ int main()
 	// delete juan; 
 	*/
 
-	return 0;
-}

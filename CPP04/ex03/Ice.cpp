@@ -11,10 +11,10 @@ Ice::Ice(std::string type) : AMateria("ice")
 	std::cout << "Ice parametrized constructor called" << std::endl;
 }
 
-Ice::Ice(const Ice& copy) : AMateria()
+Ice::Ice(const Ice& copy) : AMateria(copy)
 {
-	if(this != &copy)
-		this->_type = copy._type;
+	// if(this != &copy)
+	// 	this->_type = copy._type;
 
 	std::cout << "Ice copy constructor called" << std::endl;
 }
