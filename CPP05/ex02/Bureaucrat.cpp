@@ -77,6 +77,21 @@ void Bureaucrat::signForm(AForm & form)
 	form.beSigned(*this);
 }
 
+void Bureaucrat::executeForm(AForm const & form)
+{
+	try
+	{
+		form.execute(*this);
+
+	}
+	catch
+	{
+		//   *****   SEGUIR AQUI +++++   //
+
+	}
+}
+
+
 const char* Bureaucrat::GradeTooHighException::what(void) const throw ()
 {
 	return ("Error: Grade assigned to bureaucrat is too high.");
