@@ -1,9 +1,11 @@
-#include <iostream>
-#include "Bureaucrat.hpp"
+# include <iostream>
+# include "Bureaucrat.hpp"
 # include "AForm.hpp"
+# include "ShrubberyCreationForm.hpp"
 
 int main()
 {
+	/* 
 	try
 	{
 		Bureaucrat onesiforo("Onesiforo", 30);
@@ -48,6 +50,12 @@ int main()
 	delete form;
 	delete onesiforo;
 	std::cout << "--------------------------------------------------" << std::endl;
+ */
+
+	Bureaucrat onesiforo("onesiforo", 1);
+	ShrubberyCreationForm bush("arbusto");
+
+	bush.execute(onesiforo);
 
 	return 0;
 }

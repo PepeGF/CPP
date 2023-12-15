@@ -14,6 +14,7 @@ public:
 
 	ShrubberyCreationForm& operator=(ShrubberyCreationForm const & rhs);
 
+	std::string getTarget() const;
 	void execute(Bureaucrat const & executor) const;
 
 };
