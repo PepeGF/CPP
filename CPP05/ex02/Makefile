@@ -13,7 +13,7 @@ BIN_PATH = bin/
 
 SRCS =	main.cpp \
 		Bureaucrat.cpp \
-		Form.cpp
+		AForm.cpp
 
 
 OBJS = $(SRCS:%.cpp=bin/%.o)

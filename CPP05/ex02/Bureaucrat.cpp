@@ -72,7 +72,7 @@ void Bureaucrat::decrementGrade(void)
 	this->_grade = this->_grade + 1;
 }
 
-void Bureaucrat::signForm(Form & form)
+void Bureaucrat::signForm(AForm & form)
 {
 	form.beSigned(*this);
 }
