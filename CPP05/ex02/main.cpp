@@ -2,9 +2,32 @@
 # include "Bureaucrat.hpp"
 # include "AForm.hpp"
 # include "ShrubberyCreationForm.hpp"
+# include "RobotomyRequestForm.hpp"
+# include "PresidentialPardonForm.hpp"
 
 int main()
 {
+	try
+	{
+		Bureaucrat onesiforo("Onesiforo", 30);
+		ShrubberyCreationForm bush("George");
+		RobotomyRequestForm robotomy("Clinton");
+		PresidentialPardonForm presidential("Trump");
+
+		onesiforo.signForm(bush);
+		onesiforo.executeForm(bush);
+
+		onesiforo.signForm(robotomy);
+		onesiforo.executeForm(robotomy);
+
+		onesiforo.signForm(presidential);
+		onesiforo.executeForm(presidential);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	
 	/* 
 	try
 	{
@@ -52,10 +75,6 @@ int main()
 	std::cout << "--------------------------------------------------" << std::endl;
  */
 
-	Bureaucrat onesiforo("onesiforo", 1);
-	ShrubberyCreationForm bush("arbusto");
-
-	bush.execute(onesiforo);
 
 	return 0;
 }

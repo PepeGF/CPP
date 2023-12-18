@@ -1,6 +1,7 @@
 *.pdf
 .DS_Store
 .vscode/
+CPP05/ex02/*_shrubbery
 
 # Prerequisites
 *.d

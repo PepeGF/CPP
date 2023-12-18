@@ -3,7 +3,7 @@
 Bureaucrat::Bureaucrat() : 
 	_name("Unknown bureaucrat"), _grade(150)
 {
-	std::cout << "Unknown bureaucrat created with minimum grade" << std::endl;
+	// std::cout << "Unknown bureaucrat created with minimum grade" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) :
@@ -13,18 +13,18 @@ Bureaucrat::Bureaucrat(std::string name, int grade) :
 		throw Bureaucrat::GradeTooHighException();
 	if (grade > 150)
 		throw Bureaucrat::GradeTooLowException();
-	std::cout << "Bureaucrat parametrized constructor called" << std::endl;
+	// std::cout << "Bureaucrat parametrized constructor called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const & copy) : 
 	_name(copy._name), _grade(copy._grade)
 {
-	std::cout << "Bureaucrat copy constructor called" << std::endl;
+	// std::cout << "Bureaucrat copy constructor called" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Bureaucrat destructor called" << std::endl;
+	// std::cout << "Bureaucrat destructor called" << std::endl;
 }
 
 Bureaucrat& Bureaucrat::operator=(Bureaucrat const & rhs)
@@ -82,11 +82,11 @@ void Bureaucrat::executeForm(AForm const & form)
 	try
 	{
 		form.execute(*this);
-
+		std::cout << this->getName() << " executed " << form.getName() << std::endl;
 	}
-	catch
+	catch (const std::exception& e)
 	{
-		//   *****   SEGUIR AQUI +++++   //
+		std::cerr << e.what() << std::endl;
 
 	}
 }

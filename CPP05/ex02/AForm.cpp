@@ -6,7 +6,7 @@ AForm::AForm() : _name("Very special AForm"), _signed(false), _sign_grade(10), _
 		throw AForm::GradeTooHighException();
 	if (_sign_grade > 150)
 		throw AForm::GradeTooLowException();
-	std::cout << "AForm default constructor called" << std::endl;
+	// std::cout << "AForm default constructor called" << std::endl;
 }
 
 AForm::AForm(std::string name, int sign_grade, int exec_grade) :
@@ -16,7 +16,7 @@ AForm::AForm(std::string name, int sign_grade, int exec_grade) :
 		throw AForm::GradeTooHighException();
 	if (_sign_grade > 150)
 		throw AForm::GradeTooLowException();
-	std::cout << "AForm parametrized constructor called" << std::endl;
+	// std::cout << "AForm parametrized constructor called" << std::endl;
 }
 
 AForm::AForm(AForm const & copy) :
@@ -26,12 +26,12 @@ AForm::AForm(AForm const & copy) :
 		throw AForm::GradeTooHighException();
 	if (_sign_grade > 150)
 		throw AForm::GradeTooLowException();
-	std::cout << "AForm copy constructor called" << std::endl;
+	// std::cout << "AForm copy constructor called" << std::endl;
 }
 
 AForm::~AForm()
 {
-	std::cout << "AForm destructor called" << std::endl;
+	// std::cout << "AForm destructor called" << std::endl;
 }
 
 AForm& AForm::operator=(AForm const & rhs)

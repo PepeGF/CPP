@@ -1,5 +1,6 @@
 # include "RobotomyRequestForm.hpp"
 # include <cstdlib>
+# include <ctime>
 
 RobotomyRequestForm::RobotomyRequestForm()
 {}
@@ -37,6 +38,8 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 		throw AForm::GradeTooLowException();
 
 	std::cout << "BrrRrRrrrrrrr... brRRrrrRRr..." << std::endl;
+	std::srand(std::time(NULL));
+	std::cout << std::rand() << std::endl;
 	int success = std::rand() % 2;
 	if (success == 1)
 	{
