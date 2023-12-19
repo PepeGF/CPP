@@ -4,9 +4,18 @@
 # include "ShrubberyCreationForm.hpp"
 # include "RobotomyRequestForm.hpp"
 # include "PresidentialPardonForm.hpp"
+# include "Intern.hpp"
 
 int main()
 {
+	Intern lupinicio;
+	AForm* random;
+	(void) random;
+	(void) lupinicio;
+
+	lupinicio.makeForm("Shrubbery Form", "wololo");
+
+/* 
 	try
 	{
 		Bureaucrat onesiforo("Onesiforo", 30);
@@ -26,7 +35,7 @@ int main()
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
-	}
+	} */
 	
 	/* 
 	try

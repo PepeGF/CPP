@@ -9,11 +9,11 @@
 class Intern
 {
 private:
+	int forms_made;
 
 public:
 	Intern();
 	Intern(Intern const & copy);
-	Intern();
 	~Intern();
 
 	Intern& operator=(Intern const & rhs);
