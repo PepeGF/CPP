@@ -4,7 +4,7 @@ PresidentialPardonForm::PresidentialPardonForm()
 {}
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target) : 
-	AForm("Presidental Pardon Form", 25, 5), _target(target)
+	AForm("Presidential Pardon Form", 25, 5), _target(target)
 {}
 
 PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const & copy) :
@@ -31,7 +31,7 @@ std::string PresidentialPardonForm::getTarget() const
 void PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
 	if (this->getSigned() == false)
-		throw AForm::GradeTooLowException();
+		throw AForm::UnsignedForm();
 	if (executor.getGrade() > this->getExecGrade())
 		throw AForm::GradeTooLowException();
 

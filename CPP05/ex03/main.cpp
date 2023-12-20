@@ -8,12 +8,56 @@
 
 int main()
 {
-	Intern lupinicio;
-	AForm* random;
-	(void) random;
-	(void) lupinicio;
+	{
+		Bureaucrat president("Zaphod Beeblebrox", 1);
+		Bureaucrat secretary("Zaphod Beeblebrox", 1);
+		Intern bob;
+		AForm* form1;
 
-	lupinicio.makeForm("Shrubbery Form", "wololo");
+		form1 = bob.makeForm("Presidential Pardon Form", "Homer Simpson");
+		president.executeForm(*form1);
+		delete form1;
+	}
+	std::cout << "----------------------------------------------" << std::endl;
+	{
+		Bureaucrat president("Zaphod Beeblebrox", 1);
+		Bureaucrat secretary("Zaphod Beeblebrox", 1);
+		Intern bob;
+		AForm* form1;
+
+		form1 = bob.makeForm("Presidential Pardon Form", "Homer Simpson");
+		form1->beSigned(secretary);
+		president.executeForm(*form1);
+		delete form1;
+	}
+	std::cout << "----------------------------------------------" << std::endl;
+	{
+		Bureaucrat president("Zaphod Beeblebrox", 1);
+		Bureaucrat secretary("Major Quimby", 15);
+		Intern bob;
+		AForm* form1;
+
+		form1 = bob.makeForm("Presidential Pardon Form", "Homer Simpson");
+		form1->beSigned(secretary);
+		president.executeForm(*form1);
+		delete form1;
+	}
+	std::cout << "----------------------------------------------" << std::endl;
+	{
+		Bureaucrat president("Milei", 1);
+		Bureaucrat secretary("K", 15);
+		Intern bob;
+		AForm* form1;
+
+		form1 = bob.makeForm("Wololo Form", "Homer Simpson");
+		if (form1 != NULL)
+		{
+			form1->beSigned(secretary);
+			president.executeForm(*form1);
+			delete form1;
+		}
+	}
+
 
 /* 
 	try

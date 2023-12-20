@@ -25,23 +25,20 @@ Intern& Intern::operator=(Intern const & rhs)
 
 AForm* Intern::makeForm(std::string form_name, std::string target)
 {
-	std::string forms[3] = {"nombre 1", "n 2", "n 3"};
+	std::string forms[3] = {"Shrubbery Form", "Robotomy Form", "Presidential Pardon Form"};
 	for (int i = 0; i < 3; i++)
 	{
 		if (form_name == forms[i])
 		{
-			//mensaje creación
+			std::cout << "Intern creates " << form_name << std::endl;
 			switch (i)
 			{
 			case 0:
-				/* code new shrubbery*/
-				break;
+				return (new ShrubberyCreationForm(target));
 			case 1:
-				//new robotomy
-				break;
+				return (new RobotomyRequestForm(target));
 			case 2:
-				//new presidential
-				break;
+				return (new PresidentialPardonForm(target));
 			}
 		}
 	}

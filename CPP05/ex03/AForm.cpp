@@ -66,6 +66,8 @@ int				AForm::getExecGrade() const
 
 void			AForm::beSigned(Bureaucrat& vogon)
 {
+	// if (this == 0)
+	// 	return ;
 	if (vogon.getGrade() > this->_sign_grade)
 		{
 		std::cout << vogon.getName() << " couldn't sign "
@@ -83,6 +85,11 @@ const char* AForm::GradeTooLowException::what() const throw ()
 const char* AForm::GradeTooHighException::what() const throw ()
 {
 	return ("Grade too high");
+}
+
+const char* AForm::UnsignedForm::what() const throw ()
+{
+	return ("Form unsigned");
 }
 
 std::ostream& operator<<(std::ostream& os, AForm const & AForm)

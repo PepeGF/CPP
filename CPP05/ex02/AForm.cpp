@@ -85,6 +85,11 @@ const char* AForm::GradeTooHighException::what() const throw ()
 	return ("Grade too high");
 }
 
+const char* AForm::UnsignedForm::what() const throw ()
+{
+	return ("Form unsigned");
+}
+
 std::ostream& operator<<(std::ostream& os, AForm const & AForm)
 {
 	os << "AForm name:\t" << AForm.getName() << "\n"

@@ -33,7 +33,7 @@ std::string RobotomyRequestForm::getTarget() const
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
 	if (this->getSigned() == false)
-		throw AForm::GradeTooLowException();
+		throw AForm::UnsignedForm();
 	if (executor.getGrade() > this->getExecGrade())
 		throw AForm::GradeTooLowException();
 
