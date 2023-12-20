@@ -9,7 +9,6 @@
 class Intern
 {
 private:
-	int forms_made;
 
 public:
 	Intern();

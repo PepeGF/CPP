@@ -1,15 +1,12 @@
 # include "Intern.hpp"
 
-Intern::Intern() : forms_made(0)
+Intern::Intern()
 {}
 
 Intern::Intern(Intern const & copy)
 {
 	*this = copy;
 }
-
-/* Intern::Intern()
-{} */
 
 Intern::~Intern()
 {}
