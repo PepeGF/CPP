@@ -57,7 +57,43 @@ int main()
 			delete form1;
 		}
 	}
+	std::cout << "----------------------------------------------" << std::endl;
+	{
+		Bureaucrat president("Milei", 120);
+		Bureaucrat secretary("Cristina K", 130);
+		Intern bob;
+		AForm* form1;
 
+		form1 = bob.makeForm("Shrubbery Form", "Homer Simpson");
+		if (form1 != NULL)
+		{
+			form1->beSigned(secretary);
+			president.executeForm(*form1);
+			delete form1;
+		}
+	}
+	std::cout << "----------------------------------------------" << std::endl;
+	{
+		Bureaucrat president("Milei", 120);
+		Bureaucrat secretary("Cristina K", 130);
+		Intern bob;
+		AForm* form1;
+
+		form1 = bob.makeForm("Robotomy Form", "Homer Simpson");
+		if (form1 != NULL)
+		{
+			try
+			{
+				form1->beSigned(secretary);
+				president.executeForm(*form1);
+			}
+			catch(const std::exception& e)
+			{
+				std::cerr << e.what() << '\n';
+			}
+			delete form1;
+		}
+	}
 
 /* 
 	try
