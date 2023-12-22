@@ -9,7 +9,7 @@ private:
 	~ScalarConverter();
 	
 public:
-	static void convert(std::string& literal);
+	static void convert(const std::string& literal);
 };
 
 
