@@ -7,11 +7,12 @@ CIAN	= '\033[36m'
 WHITE	= '\033[37m'
 NONE	= '\033[0m'
 
-NAME = a.out
+NAME = convert
 
 BIN_PATH = bin/
 
-SRCS =	main.cpp
+SRCS =	main.cpp \
+		ScalarConverter.cpp
 
 
 OBJS = $(SRCS:%.cpp=bin/%.o)
