@@ -1,11 +1,11 @@
 #include "Character.hpp"
 
-Floor* Character::floor = new Floor();
-
 Character::Character() : _name("He who must not be named")
 {
 	for (int i = 0; i < 4; i++)
 		this->_materia[i] = NULL;
+	for (int j = 0; j < MAX_MATERIA; j++)
+		this->_unequipedmateria[j] = NULL;
 	std::cout << "Character default constructor called" << std::endl;
 }
 
@@ -13,6 +13,8 @@ Character::Character(std::string name) : _name(name)
 {
 	for (int i = 0; i < 4; i++)
 		this->_materia[i] = NULL;
+	for (int j = 0; j < MAX_MATERIA; j++)
+		this->_unequipedmateria[j] = NULL;
 	std::cout << "Character parametrized constructor called" << std::endl;
 }
 
@@ -23,6 +25,13 @@ Character::Character(const Character& copy) : _name(copy._name)
 		if(copy._materia[i] != NULL)
 		{
 			this->_materia[i] = copy._materia[i]->clone();
+		}
+	}
+	for (int j = 0; j < MAX_MATERIA; j++)
+	{
+		if(copy._unequipedmateria[j] != NULL)
+		{
+			this->_unequipedmateria[j] = copy._unequipedmateria[j]->clone();
 		}
 	}
 	std::cout << "Character copy constructor called" << std::endl;
@@ -38,6 +47,16 @@ Character::~Character()
 			this->_materia[i] = NULL;
 		}
 	}
+	for (int j = 0; j < MAX_MATERIA; j++)
+	{
+		if (this->_unequipedmateria[j])
+		{
+			delete this->_unequipedmateria[j];
+			this->_unequipedmateria[j] = NULL;
+		}
+	}
+	// delete[] this->_materia;
+	// delete[] this->_unequipedmateria;
 	std::cout << "Character destructor called" << std::endl;
 }
 
@@ -49,6 +68,10 @@ Character& Character::operator=(Character const & copy)
 		for (int i = 0; i < 4; i++)
 		{
 			this->_materia[i] = copy._materia[i];
+		}
+		for (int j = 0; j < MAX_MATERIA; j++)
+		{
+			this->_unequipedmateria[j] = copy._unequipedmateria[j];
 		}
 	}
 	return *this;
@@ -75,7 +98,19 @@ void Character::unequip(int idx)
 {
 	if (idx >= 0 && idx < 4 && this->_materia[idx] != NULL)
 	{
-		floor->insert(this->_materia[idx]);
+		for (int i = 0; i < MAX_MATERIA; i++)
+		{
+			if (this->_unequipedmateria[MAX_MATERIA - 1] != NULL)
+			{
+				std::cout << "Unable to unequip materia, no space available" << std::endl;
+				return;
+			}
+			if (this->_unequipedmateria[i] == NULL)
+				{
+					this->_unequipedmateria[i] = this->_materia[idx];
+					break ;
+				}
+		}
 		this->_materia[idx] = NULL;
 	}
 	return ;

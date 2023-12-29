@@ -4,8 +4,9 @@
 class Floor
 {
 	private:
+		// AMateria* removed[50];
 		AMateria* removed;
-		Floor* next;
+		
 	public:
 		Floor();
 		Floor(AMateria* materia);
@@ -14,4 +15,5 @@ class Floor
 
 		Floor& operator=(const Floor& rhs);
 		void insert(AMateria* materia);
+		void print() const;
 };

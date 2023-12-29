@@ -34,8 +34,8 @@ MateriaSource::~MateriaSource()
 	{
 		if (this->_materia[i])
 		{
+			std::cout << "Materia " << this->_materia[i]->getType() << " deleted" << std::endl;
 			delete this->_materia[i];
-			std::cout << "materia " << i << " deleted" << std::endl;
 		}
 	}
 	std::cout << "MateriaSource destructor called" << std::endl;

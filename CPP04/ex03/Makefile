@@ -16,8 +16,7 @@ SRCS =	main.cpp \
 		Cure.cpp \
 		Ice.cpp \
 		Character.cpp \
-		MateriaSource.cpp \
-		Floor.cpp
+		MateriaSource.cpp
 
 
 OBJS = $(SRCS:%.cpp=bin/%.o)
