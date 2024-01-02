@@ -7,6 +7,7 @@ private:
 	ScalarConverter();
 	ScalarConverter(const ScalarConverter& copy);
 	ScalarConverter& operator=(const ScalarConverter& rhs);
+	static bool check_special(std::string literal);
 	
 public:
 	~ScalarConverter();
