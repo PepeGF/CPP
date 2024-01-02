@@ -1,7 +1,11 @@
 #include "Character.hpp"
 
+int Character::_charactercount = 0;
+AMateria* Character::_unequipedmateria[MAX_MATERIA] = {NULL};
+
 Character::Character() : _name("He who must not be named")
 {
+	Character::_charactercount++;
 	for (int i = 0; i < 4; i++)
 		this->_materia[i] = NULL;
 	for (int j = 0; j < MAX_MATERIA; j++)
@@ -11,6 +15,7 @@ Character::Character() : _name("He who must not be named")
 
 Character::Character(std::string name) : _name(name)
 {
+	_charactercount++;
 	for (int i = 0; i < 4; i++)
 		this->_materia[i] = NULL;
 	for (int j = 0; j < MAX_MATERIA; j++)
@@ -20,6 +25,7 @@ Character::Character(std::string name) : _name(name)
 
 Character::Character(const Character& copy) : _name(copy._name)
 {
+	Character::_charactercount++;
 	for (int i = 0; i < 4; i++)
 	{
 		if(copy._materia[i] != NULL)
@@ -39,6 +45,7 @@ Character::Character(const Character& copy) : _name(copy._name)
 
 Character::~Character()
 {
+	Character::_charactercount--;
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->_materia[i])
@@ -47,12 +54,15 @@ Character::~Character()
 			this->_materia[i] = NULL;
 		}
 	}
-	for (int j = 0; j < MAX_MATERIA; j++)
+	if (Character::_charactercount == 0)
 	{
-		if (this->_unequipedmateria[j])
+		for (int j = 0; j < MAX_MATERIA; j++)
 		{
-			delete this->_unequipedmateria[j];
-			this->_unequipedmateria[j] = NULL;
+			if (Character::_unequipedmateria[j])
+			{
+				delete Character::_unequipedmateria[j];
+				Character::_unequipedmateria[j] = NULL;
+			}
 		}
 	}
 	// delete[] this->_materia;
@@ -100,14 +110,14 @@ void Character::unequip(int idx)
 	{
 		for (int i = 0; i < MAX_MATERIA; i++)
 		{
-			if (this->_unequipedmateria[MAX_MATERIA - 1] != NULL)
+			if (Character::_unequipedmateria[MAX_MATERIA - 1] != NULL)
 			{
 				std::cout << "Unable to unequip materia, no space available" << std::endl;
 				return;
 			}
-			if (this->_unequipedmateria[i] == NULL)
+			if (Character::_unequipedmateria[i] == NULL)
 				{
-					this->_unequipedmateria[i] = this->_materia[idx];
+					Character::_unequipedmateria[i] = this->_materia[idx];
 					break ;
 				}
 		}

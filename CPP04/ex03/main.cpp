@@ -31,6 +31,9 @@ int main()
 	me->unequip(1);
 	me->unequip(0);
 
+	bob->equip(tmp);
+	bob->unequip(0);
+
 	delete bob;
 	delete me;
 	delete src;

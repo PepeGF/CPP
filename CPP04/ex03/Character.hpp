@@ -12,7 +12,8 @@ class Character : public ICharacter
 	private:
 		std::string _name;
 		AMateria* _materia[4];
-		AMateria* _unequipedmateria[MAX_MATERIA];
+		static AMateria* _unequipedmateria[MAX_MATERIA];
+		static int _charactercount;
 		
 	public:
 		Character();
