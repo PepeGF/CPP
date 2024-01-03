@@ -50,7 +50,8 @@ void ScalarConverter::convert(const std::string& literal)
 		return ;
 
 	//primero hay que pasarlo a número y de ahí se castea a lo q corresponda
-	
+	std::cout << "Float: " << sizeof(float) << "\nDouble: " << sizeof(double) <<
+	"\nInt: " << sizeof(int) <<  std::endl;
 	// char cases
 	std::cout << "Longitud: " << literal.length() << std::endl;
 	if (literal.length() == 1 && isprint(literal[0]) && isdigit(literal[0]) == false)
