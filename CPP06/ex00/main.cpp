@@ -4,6 +4,15 @@
 
 int main(int argc, char **argv)
 {
+	double d;
+	std::istringstream wololo(argv[1]);
+	std::string kk;
+
+	std::cout << "conversión: " << !(wololo >> d).fail() << std::endl;
+	std::cout << "d: " << d << std::endl;
+	std::getline(wololo, kk);
+	std::cout << "kk: " << kk << std::endl;
+	return (0);
 	/* int num = 42;
 	(void)num;
 	// float fl = static_cast<float>(num);
