@@ -1,6 +1,8 @@
-#include <iostream>
+#pragma once
+# include <iostream>
 # include <cstdlib>
 # include <sstream>
+# include <cmath>
 
 class ScalarConverter
 {

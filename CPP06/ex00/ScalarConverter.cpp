@@ -51,7 +51,7 @@ void ScalarConverter::convert(const std::string& literal)
 
 
 	// char cases
-	if (literal.length() == 1 && isprint(literal[0]) && isdigit(literal[0]) == false)
+	/* if (literal.length() == 1 && isprint(literal[0]) && isdigit(literal[0]) == false)
 	{
 		std::cout << "char: " << literal[0] << std::endl;
 		std::cout << "int: " << static_cast<int>(literal[0]) << std::endl;
@@ -59,7 +59,7 @@ void ScalarConverter::convert(const std::string& literal)
 		std::cout << "double: " << static_cast<double>(literal[0]) << std::endl;
 		return ;	
 	}
-	if (literal.length() == 1 && isprint(literal[0]) == false /* && isdigit(literal[0]) == true */)
+	if (literal.length() == 1 && isprint(literal[0]) == false ( && isdigit(literal[0]) == true ))
 	{
 		std::cout << "char: Non displayable" << std::endl;
 		std::cout << "int: " << static_cast<int>(literal[0]) << std::endl;
@@ -67,14 +67,15 @@ void ScalarConverter::convert(const std::string& literal)
 		std::cout << "double: " << static_cast<double>(literal[0]) << std::endl;
 		return ;
 	}
-	if (literal.length() <= 1 /* && isprint(literal[0]) == false */)
+	if (literal.length() <= 1 ( && isprint(literal[0]) == false) )
 	{
 		std::cout << "char: Non displayableeeeee" << std::endl;
 		std::cout << "int: " << static_cast<int>(literal[0]) << std::endl;
 		std::cout << "float: " << static_cast<float>(literal[0]) << std::endl;
 		std::cout << "double: " << static_cast<double>(literal[0]) << std::endl;
 		return ;
-	}
+	} 
+	*/
 	// std::cout << "Longitud: " << literal.length() << std::endl;
 
 	int literal_size = literal.length();
@@ -84,48 +85,82 @@ void ScalarConverter::convert(const std::string& literal)
 	else
 		str_base = literal;
 
-	double doublee;
-	std::istringstream str_to_double(str_base); // un comentario.
-	if (!(str_to_double >> doublee).fail())
+	if (literal.length() == 1 && std::isprint(literal[0]) && !std::isdigit(literal[0]))
+		std::cout << "char: " << literal[0] << std::endl;
+	else
 	{
-		if (doublee >= 32 && doublee <= 126)
+		double doublee;
+		std::istringstream check_char(str_base);
+		if (!(check_char >> doublee).fail()) //empieza por algo q puede ser double
 		{
-			std::cout << "char: '" << static_cast<char>(doublee) << "'" << std::endl;
+			std::string buff;
+			std::getline(check_char, buff);
+			if (buff.empty()) //solo el double
+			{
+				int aux = static_cast<int>(doublee);
+				if (aux >= 32 && aux <= 126)
+					std::cout << "char: '" << static_cast<char>(aux) << "'" << std::endl;
+				else
+					std::cout << "char: Non displayable" << std::endl; 
+			}
+			else  //numeros y algo más
+				std::cout << "char: impossible" << std::endl;
+		}
+		else //no es numero ni de coña
+			std::cout << "char: impossible" << std::endl;
+	}
+
+	std::istringstream check_int(str_base);
+	int integer;
+	if (!(check_int >> integer).fail()) // puede ser un int si no hay nada más
+	{
+		std::string buff;
+		std::getline(check_int, buff);
+		if (buff.empty())
+			std::cout << "int: " << integer << std::endl;
+		else
+			std::cout << "int: impossible" << std::endl;
+	}
+	else
+		std::cout << "int: impossible" << std::endl;
+
+	std::istringstream check_float(str_base);
+	float floatt;
+	if (!(check_float >> floatt).fail())
+	{
+		std::string buff;
+		std::getline(check_int, buff);
+		if (buff.empty())
+		{
+			if (std::floor(floatt) == floatt)
+				std::cout  << "float: " << floatt << ".0f" << std::endl;
+			else
+				std::cout  << std::fixed << "float: " << floatt << "f" << std::endl;
 		}
 		else
+			std::cout << "float: impossible" << std::endl;
+	}
+	else
+		std::cout << "float: impossible" << std::endl;
+
+	std::istringstream check_double(str_base);
+	double doublee;
+	if (!(check_double >> doublee).fail())
+	{
+		std::string buff;
+		std::getline(check_double, buff);
+		if (buff.empty())
 		{
-			std::cout << "char: non displayable" << std::endl;
+			if (std::floor(doublee) == doublee)
+				std::cout << "double: " << doublee << ".0" << std::endl;
+			else
+				std::cout << std::fixed << "double: " << doublee << std::endl;
 		}
+		else
+			std::cout << "double: impossible" << std::endl;
 	}
-
-	std::cout << "String base: " << str_base << std::endl;
-/* 
-	//primero hay que pasarlo a número y de ahí se castea a lo q corresponda
-	std::cout << "Float: " << sizeof(float) << "\nDouble: " << sizeof(double) <<
-	"\nInt: " << sizeof(int) <<  std::endl;
-	// float number
-	// int number = 42;
-	int number = std::atoi(literal.c_str());
-	std::cout << number << std::endl;
-	// float num = 42.f;
-	int num = std::atof(literal.c_str());
-	std::cout << num << std::endl;
-	if (literal != "0" && literal !="0.0f" && literal != "0.f" && 
-		literal != "-0" && literal != "+0" && num == 0)
-	{
-
-		std::cerr << "Literal " << literal << " is not convertible" << std::endl;
-		// std::cout << literal[literal.size() - 1] << std::endl;
-		return ;
-	}
-	if (literal[literal.size() - 1] == 'f')
-	{
-		std::cout << "termina en f" << std::endl;
-	}
-	// int
-	// float
-	// double
- */
+	else
+		std::cout << "double: impossible" << std::endl;
 
 	return ;
 }
