@@ -11,7 +11,8 @@ NAME = a.out
 
 BIN_PATH = bin/
 
-SRCS =	main.cpp
+SRCS =	main.cpp 
+
 
 OBJS = $(SRCS:%.cpp=bin/%.o)
 
