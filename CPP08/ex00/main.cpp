@@ -2,9 +2,30 @@
 # include <iostream>
 # include <vector>
 # include <algorithm>
+# include "Wololo.hpp"
 
 int main()
 {
+
+	Wololo uno(2, "hola");
+	Wololo otro(uno);
+
+	uno.print();
+	std::cout << "-------------------" << std::endl;
+	otro.print();
+	std::cout << std::endl << "-x-x-x-x-x-x-x-x-x-" << std::endl << std::endl;
+
+	uno.patata[2] = 424242;
+	uno.print();
+	std::cout << "-------------------" << std::endl;
+	otro.print();
+
+	return 0;
+
+
+
+
+
 	std::vector<int> v;
 
 	// v.push_back(42);
