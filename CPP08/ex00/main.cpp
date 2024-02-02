@@ -10,13 +10,24 @@ int main()
 		std::cout << v[i] << " ";
 	}
 	std::cout << "\n---------------------------------------------" << std::endl;
-	std::cout << easyfind(v, 0)[0] << std::endl;
-	std::cout << easyfind(v, 360)[0] << std::endl;
-	try
-	{
+	try	{
+		std::cout << easyfind(v, 0)[0] << std::endl;
+	}
+	catch(const std::runtime_error& e)	{
+		std::cout << e.what() << std::endl;
+	}
+	try	{
+		std::cout << easyfind(v, 360)[0] << std::endl;
+	}
+	catch(const std::runtime_error& e)	{
+		std::cout << e.what() << std::endl;
+	}
+	try	{
 		std::cout << easyfind(v, 360000)[0] << std::endl;
 	}
-	catch(const std::runtime_error& e){}
+	catch(const std::runtime_error& e)	{
+		std::cout << e.what() << std::endl;
+	}
 
 	/* std::cout << easyfind(v, 0) << std::endl;
 	std::cout << easyfind(v, 360) << std::endl;
