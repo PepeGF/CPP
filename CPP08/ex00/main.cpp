@@ -7,22 +7,6 @@
 int main()
 {
 
-	Wololo uno(2, "hola");
-	Wololo otro(uno);
-
-	uno.print();
-	std::cout << "-------------------" << std::endl;
-	otro.print();
-	std::cout << std::endl << "-x-x-x-x-x-x-x-x-x-" << std::endl << std::endl;
-
-	uno.patata[2] = 424242;
-	uno.print();
-	std::cout << "-------------------" << std::endl;
-	otro.print();
-
-	return 0;
-
-
 
 
 
@@ -58,4 +42,20 @@ int main()
 	std::cout << "---------" << std::endl;
 	std::cout << v.size() << std::endl;
 	return 0;
+/* 
+	Wololo uno(2, "hola");
+	Wololo otro(uno);
+
+	uno.print();
+	std::cout << "-------------------" << std::endl;
+	otro.print();
+	std::cout << std::endl << "-x-x-x-x-x-x-x-x-x-" << std::endl << std::endl;
+
+	uno.patata[2] = 424242;
+	uno.print();
+	std::cout << "-------------------" << std::endl;
+	otro.print();
+
+	return 0; */
+
 }
