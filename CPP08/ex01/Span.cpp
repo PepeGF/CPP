@@ -79,6 +79,27 @@ int Span::longestSpan()
 	return (*max_it - *min_it);
 }
 
+void Span::fillRange(std::vector<int>::const_iterator it_begin,
+					std::vector<int>::const_iterator it_end)
+{
+	for (std::vector<int>::const_iterator it = it_begin; it != it_end; ++it)
+	{
+		this->_arr.push_back(*it);
+	}
+	if (this->_arr.size() > this->_maxLen)
+		throw Span::maxSizeReachedException();
+}
+
+void Span::printSpan()
+{
+	size_t size = this->_arr.size();
+	for (size_t i = 0; i < size - 1; i++)
+	{
+		std::cout << this->_arr[i] << ", ";
+	}
+	std::cout << this->_arr[size - 1] << std::endl;
+}
+
 const char* Span::maxSizeReachedException::what(void) const throw()
 {
 	return ("Unable to add more elements");
@@ -87,4 +108,9 @@ const char* Span::maxSizeReachedException::what(void) const throw()
 const char* Span::insufficientSizeException::what(void) const throw()
 {
 	return ("Operation not permitted, not enought elements");
+}
+
+int randomNumber()
+{
+	return (std::rand() % 1000000);
 }
