@@ -9,7 +9,6 @@ MateriaSource::MateriaSource()
 	{
 		this->_materia[i] = NULL;
 	}
-	std::cout << "MateriaSource default constructor called" << std::endl;
 }
 
 MateriaSource::MateriaSource(MateriaSource const & copy) : IMateriaSource()
@@ -24,8 +23,6 @@ MateriaSource::MateriaSource(MateriaSource const & copy) : IMateriaSource()
 				this->_materia[i] = new Ice();
 		}
 	}
-
-	std::cout << "MateriaSource copy constructor called" << std::endl;
 }
 
 MateriaSource::~MateriaSource()
@@ -34,12 +31,9 @@ MateriaSource::~MateriaSource()
 	{
 		if (this->_materia[i])
 		{
-			std::cout << "Materia " << this->_materia[i]->getType() << " deleted" << std::endl;
 			delete this->_materia[i];
 		}
 	}
-	std::cout << "MateriaSource destructor called" << std::endl;
-
 }
 
 MateriaSource& MateriaSource::operator=(const MateriaSource& rhs)
@@ -49,7 +43,6 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& rhs)
 		for (int i = 0; i < 4; i++)
 			this->_materia[i] = rhs._materia[i];
 	}
-	std::cout << "MateriaSource assignation operator called" << std::endl;
 	return (*this);
 }
 

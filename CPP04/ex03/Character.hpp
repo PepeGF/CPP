@@ -2,9 +2,8 @@
 #include <iostream>
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
-#include "Floor.hpp"
 
-# define MAX_MATERIA 42
+# define MAX_MATERIA 142
 
 
 class Character : public ICharacter

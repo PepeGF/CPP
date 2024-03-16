@@ -10,7 +10,6 @@ Character::Character() : _name("He who must not be named")
 		this->_materia[i] = NULL;
 	for (int j = 0; j < MAX_MATERIA; j++)
 		this->_unequipedmateria[j] = NULL;
-	std::cout << "Character default constructor called" << std::endl;
 }
 
 Character::Character(std::string name) : _name(name)
@@ -20,7 +19,6 @@ Character::Character(std::string name) : _name(name)
 		this->_materia[i] = NULL;
 	for (int j = 0; j < MAX_MATERIA; j++)
 		this->_unequipedmateria[j] = NULL;
-	std::cout << "Character parametrized constructor called" << std::endl;
 }
 
 Character::Character(const Character& copy) : _name(copy._name)
@@ -40,7 +38,6 @@ Character::Character(const Character& copy) : _name(copy._name)
 			this->_unequipedmateria[j] = copy._unequipedmateria[j]->clone();
 		}
 	}
-	std::cout << "Character copy constructor called" << std::endl;
 }
 
 Character::~Character()
@@ -65,9 +62,6 @@ Character::~Character()
 			}
 		}
 	}
-	// delete[] this->_materia;
-	// delete[] this->_unequipedmateria;
-	std::cout << "Character destructor called" << std::endl;
 }
 
 Character& Character::operator=(Character const & copy)
@@ -132,16 +126,3 @@ void Character::use(int idx, ICharacter& target)
 		this->_materia[idx]->use(target);
 	return ;
 }
-
-/* 
-void Character::getinventary() const
-{
-	for (int i = 0; i < 4; i++)
-	{
-		if (this->_materia[i] == NULL)
-			std::cout << "Slot " << i << ": empty" << std::endl;
-		else
-			std::cout << "Slot " << i << ": " << this->_materia[i]->getType() << std::endl;
-	}
-}
- */

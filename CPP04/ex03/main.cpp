@@ -22,15 +22,15 @@ int main()
 	me->equip(tmp);
 
 	ICharacter* bob = new Character("bob");
-	std::cout << "---------------------------------------\n" << std::endl;
+
 	me->use(0, *bob);
 	me->use(1, *bob);
-	std::cout << "\n---------------------------------------" << std::endl;
 
 	me->unequip(2);
 	me->unequip(1);
 	me->unequip(0);
 
+	tmp = src->createMateria("cure");
 	bob->equip(tmp);
 	bob->unequip(0);
 
