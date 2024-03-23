@@ -3,22 +3,14 @@
 int Character::_charactercount = 0;
 AMateria* Character::_unequipedmateria[MAX_MATERIA] = {NULL};
 
-Character::Character() : _name("He who must not be named")
-{
-	Character::_charactercount++;
-	for (int i = 0; i < 4; i++)
-		this->_materia[i] = NULL;
-	for (int j = 0; j < MAX_MATERIA; j++)
-		this->_unequipedmateria[j] = NULL;
-}
+Character::Character()
+{}
 
-Character::Character(std::string name) : _name(name)
+Character::Character(const std::string name) : _name(name)
 {
 	_charactercount++;
 	for (int i = 0; i < 4; i++)
 		this->_materia[i] = NULL;
-	for (int j = 0; j < MAX_MATERIA; j++)
-		this->_unequipedmateria[j] = NULL;
 }
 
 Character::Character(const Character& copy) : _name(copy._name)

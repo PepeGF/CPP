@@ -13,10 +13,10 @@ class Character : public ICharacter
 		AMateria* _materia[4];
 		static AMateria* _unequipedmateria[MAX_MATERIA];
 		static int _charactercount;
+		Character();
 		
 	public:
-		Character();
-		Character(std::string name);
+		Character(const std::string name);
 		Character(const Character &  copy);
 		virtual ~Character();
 

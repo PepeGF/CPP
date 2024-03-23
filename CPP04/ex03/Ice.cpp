@@ -22,9 +22,9 @@ Ice& Ice::operator=(const Ice& rhs)
 	return (*this);
 }
 
-Ice* Ice::clone() const
+AMateria* Ice::clone() const
 {
-	Ice* ice = new Ice(*this);
+	AMateria* ice = new Ice(*this);
 	return ice;
 }
 
