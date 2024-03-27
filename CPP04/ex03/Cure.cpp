@@ -5,7 +5,8 @@ Cure::Cure() : AMateria("cure")
 
 Cure::Cure(std::string type) : AMateria("cure")
 {
-	this->_type = type;}
+	this->_type = type;
+}
 
 Cure::Cure(const Cure& copy) : AMateria()
 {
@@ -22,9 +23,9 @@ Cure& Cure::operator=(const Cure& copy)
 	return (*this);
 }
 
-Cure* Cure::clone() const
+AMateria* Cure::clone() const
 {
-	Cure* cure = new Cure(*this);
+	AMateria* cure = new Cure(*this);
 	return cure;
 }
 
