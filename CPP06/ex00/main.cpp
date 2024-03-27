@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     std::cout << "double: -inf = " << negInfDouble << std::endl;
     std::cout << "double: nan = " << nanDouble << std::endl;
 	 */
-	if (argc < 2)
+	if (argc != 2)
 	{
 		std::cout << "error: wrong arguments. \nUsage: ./convert <argument>" << std::endl;
 		return (1);

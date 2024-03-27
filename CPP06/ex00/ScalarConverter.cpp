@@ -43,8 +43,19 @@ bool ScalarConverter::check_special(std::string literal)
 	return false;
 }
 
+int	ScalarConverter::get_type(const std::string& literal)
+{
+	Automata* a = new (Automata);
+	(void)a;
+	(void)literal;
+	return(0);
+}
+
 void ScalarConverter::convert(const std::string& literal)
 {
+	int	type;
+(void)type;
+	type = get_type(literal);
 	// special cases
 	if (check_special(literal) == true)
 		return ;
