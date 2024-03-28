@@ -17,7 +17,7 @@ int Automata::set_state(int i, int j)
 
 void	Automata::automata_init()
 {
-	const std::string alphabet_strings[] = {"0123456789", 
+	std::string alphabet_strings[] = {"0123456789", 
 											".", 
 											"f", 
 											"-"
@@ -25,21 +25,20 @@ void	Automata::automata_init()
 
 	// init alphabet								
 	this->alphabet_size = sizeof(alphabet_strings) / sizeof(std::string);
-	std::cout << "Tamaño del array (4): " << this->alphabet_size << std::endl;
-	std::cout << sizeof(alphabet_strings) << std::endl;
-	std::cout << sizeof(std::string *) << std::endl;
-	std::cout << sizeof(std::string) << std::endl;
-	this->alphabet = new std::string*[alphabet_size];
+	this->alphabet = new std::string[alphabet_size];
+	for (int i = 0; i < alphabet_size; i++)
+	{
+		this->alphabet[i] = alphabet_strings[i];
+	}
 
 	//init errors
 	const std::string errors_strings[] = {};
 	int errors_size = sizeof(errors_strings) / sizeof(std::string);
-	std::cout << "Tamaño del array (4): " << errors_size << std::endl;
-	std::cout << sizeof(errors_strings) << std::endl;
-	std::cout << sizeof(std::string *) << std::endl;
-	std::cout << sizeof(std::string) << std::endl;
-	this->errors = new std::string*[errors_size];
-	std::cout << "Direccion de errors si no hay nada: " << this->errors << std::endl;
+	this->errors = new std::string[errors_size];
+	for (int i = 0; i < errors_size; i++)
+	{
+		this->errors[i] = errors_strings[i];
+	}
 
 	//evaluate
 	this->state_function = &Automata::set_state;
@@ -76,14 +75,14 @@ int Automata::evaluate()
 	return (this->i); //no lo tengo del todo claro...
 }
 
-int Automata::idx(std::string **alphabet, char c)
+int Automata::idx(std::string *alphabet, char c)
 {
 	int i;
 
 	i = 0;
-	while(alphabet[i])
+	while(i < this->alphabet_size)
 	{
-		if (alphabet[i]->find(c) != std::string::npos)
+		if (alphabet[i].find(c) != std::string::npos)
 			return (i);
 		i++;
 	}

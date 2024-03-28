@@ -19,7 +19,7 @@ SRCS =	main.cpp \
 OBJS = $(SRCS:%.cpp=bin/%.o)
 
 CC = c++
-CFLAGS = -std=c++98 -Wall -Werror -Wextra -g -O0 #-fsanitize=address
+CFLAGS = -std=c++98 -Wall -Werror -Wextra -g3 -O0 #-fsanitize=address
 RM = rm -f
 
 ###	--- RULES --- ###

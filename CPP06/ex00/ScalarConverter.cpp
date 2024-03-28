@@ -48,8 +48,9 @@ void ScalarConverter::convert(const std::string& literal)
 {
 	int type;
 	Automata* a = new (Automata);
-	
+(void)type;
 	type = get_type(literal, a);
+	a->print_state();
 	// special cases
 	if (check_special(literal) == true)
 		return ;
@@ -173,6 +174,5 @@ void ScalarConverter::convert(const std::string& literal)
 int	get_type(const std::string& literal, Automata *a)
 {
 	a->set_string(literal);
-	a->print_state();
 	return a->get_state();
 }
