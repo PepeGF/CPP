@@ -12,7 +12,8 @@ NAME = convert
 BIN_PATH = bin/
 
 SRCS =	main.cpp \
-		ScalarConverter.cpp
+		ScalarConverter.cpp \
+		Automata.cpp
 
 
 OBJS = $(SRCS:%.cpp=bin/%.o)

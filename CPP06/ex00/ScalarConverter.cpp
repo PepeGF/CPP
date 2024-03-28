@@ -1,4 +1,5 @@
 # include "ScalarConverter.hpp"
+# include "Automata.hpp"
 
 ScalarConverter::ScalarConverter()
 {}
@@ -43,19 +44,12 @@ bool ScalarConverter::check_special(std::string literal)
 	return false;
 }
 
-int	ScalarConverter::get_type(const std::string& literal)
-{
-	Automata* a = new (Automata);
-	(void)a;
-	(void)literal;
-	return(0);
-}
-
 void ScalarConverter::convert(const std::string& literal)
 {
-	int	type;
-(void)type;
-	type = get_type(literal);
+	int type;
+	Automata* a = new (Automata);
+	
+	type = get_type(literal, a);
 	// special cases
 	if (check_special(literal) == true)
 		return ;
@@ -174,4 +168,11 @@ void ScalarConverter::convert(const std::string& literal)
 		std::cout << "double: impossible" << std::endl;
 
 	return ;
+}
+
+int	get_type(const std::string& literal, Automata *a)
+{
+	a->set_string(literal);
+	a->print_state();
+	return a->get_state();
 }
