@@ -18,10 +18,10 @@ int Automata::set_state(int i, int j)
 void	Automata::automata_init()
 {
 	std::string alphabet_strings[] = {"0123456789", 
-											".", 
-											"f", 
-											"-"
-											};	//añadir aquí las strings necesarias en el futuro
+									  ".", 
+									  "f", 
+									  "-"
+									  };	//añadir aquí las strings necesarias en el futuro
 
 	// init alphabet								
 	this->alphabet_size = sizeof(alphabet_strings) / sizeof(std::string);
@@ -44,12 +44,12 @@ void	Automata::automata_init()
 	this->state_function = &Automata::set_state;
 }
 
-Automata::Automata(void *data) : data(data)
+Automata::Automata(void *data) : data(data), state(0)
 {
 	automata_init();
 }
 
-Automata::Automata()
+Automata::Automata() : state(0)
 {
 	automata_init();
 }
@@ -57,7 +57,9 @@ Automata::Automata()
 Automata::~Automata()
 {
 	delete[] this->alphabet;
+	// delete this->alphabet;
 	delete[] this->errors; //potencial error si no hay nada en el array de errores
+	
 }
 
 int	Automata::get_state()

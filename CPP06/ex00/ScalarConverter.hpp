@@ -4,6 +4,13 @@
 # include <sstream>
 # include <cmath>
 
+# define MINUS 1
+# define INT 2
+# define CHAR 3
+# define DOUBLE 4
+# define FLOAT 5
+# define STRING 6
+
 class ScalarConverter
 {
 private:
