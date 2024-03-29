@@ -5,7 +5,7 @@ class Automata
 	{
 	private:
 		// Attributes
-		// void		*data;
+		void		*data;
 		int			alphabet_size;
 		std::string	*alphabet;
 		std::string	*errors;
@@ -24,6 +24,7 @@ class Automata
 
 	public:
 		Automata();
+		Automata(void *data);
 		~Automata();
 		int		get_state();
 		void	set_string(const std::string& str);

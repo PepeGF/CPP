@@ -44,6 +44,11 @@ void	Automata::automata_init()
 	this->state_function = &Automata::set_state;
 }
 
+Automata::Automata(void *data) : data(data)
+{
+	automata_init();
+}
+
 Automata::Automata()
 {
 	automata_init();
@@ -72,7 +77,7 @@ int Automata::evaluate()
 		this->state = this->set_state(this->state, idx(this->alphabet, this->str[this->i]));
 		++(this->i);
 	}
-	return (this->i); //no lo tengo del todo claro...
+	return (this->state); //no lo tengo del todo claro...
 }
 
 int Automata::idx(std::string *alphabet, char c)
