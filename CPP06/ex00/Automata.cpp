@@ -105,3 +105,4 @@ void Automata::print_state()
 {
 	std::cout << "Estado: " << this->state << std::endl;
 }
+
