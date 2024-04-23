@@ -7,6 +7,8 @@ CPP06/ex00/convert
 CPP06/ex01/serializer
 CPP06/ex02/identifier
 */bin/*
+__pycache__/
+
 # Prerequisites
 *.d
 
