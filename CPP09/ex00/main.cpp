@@ -10,9 +10,9 @@ int main(int argc, char const *argv[])
 	}
 	else
 	{
-		std::map<std::string, double> database;
+		std::map<std::string, float> database;
 
-		database = create_database();
+		create_database(database);
 		print_exchange(argv[1]);
 	}
 	return (EXIT_SUCCESS);
