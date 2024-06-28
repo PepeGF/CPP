@@ -38,12 +38,116 @@ void    print_exchange(std::string input_file)
 	return ;
 }
 
-void check_and_print_input_line(std::string line)
+void check_and_print_input_line(std::string &line)
 {
 	(void)line;
-
+	validate_date(line);
+	validate_separator(line);
+	validate_value(line);
 	return ;
 }
+
+void validate_value(std::string &line)
+{
+	// float			value;
+	std::string aux;
+
+	if (line.length() >= VALUE_INI_INDEX)
+	{
+		aux = line.substr(VALUE_INI_INDEX);
+		if (aux.length() > 4)
+		{
+			std::cerr << "Error: too large a number.";
+			return ;
+		}
+		//SEGUIR AQUI, CONVETIR A FLOAT COMPROBAR NO MAYOR DE 1000 NI NEGATIVOS
+		std::cout << aux << std::endl;
+	}
+}
+
+void validate_separator(std::string &line)
+{
+	std::string separator;
+	std::string right_separator = " | ";
+
+	separator = line.substr(SEPARATOR_INI_INDEX, SEPARATOR_LEN);
+	if (separator != right_separator)
+	{
+		std::cerr << "Error: wrong separator" << std::endl;
+	}
+}
+
+void validate_date(std::string &line)
+{
+	std::string date;
+	int			year;
+	int			month;
+	int			day;
+	(void)year;
+
+
+	date = line.substr(INDEX_INI, LEN_DATE_STRING);
+	if (date[FIRST_MINUS_INDEX] != '-' || date[SECOND_MINUS_INDEX] != '-')
+	{
+		std::cerr << "Error: bad input => " << date << std::endl;
+		return ;
+	}
+	for (int i = INDEX_INI; i < YEAR_LEN; i++)
+	{
+		if (isdigit(date[i]) == false)
+		{
+			std::cerr << "Error: bad input => " << date << std::endl;
+			return;
+		}
+	}
+	year = atoi(line.substr(YEAR_INI_INDEX, YEAR_LEN).c_str());
+	for (int i = MONTH_INI_INDEX; i < MONTH_INI_INDEX + MONTH_LEN; i++)
+	{
+		if (isdigit(date[i]) == false)
+		{
+			std::cerr << "Error: bad input => " << date << std::endl;
+			return;
+		}
+	}
+	month = atoi(line.substr(MONTH_INI_INDEX, MONTH_LEN).c_str());
+	if (month > 12)
+	{
+		std::cout << "Error: bad input => " << date << std::endl;
+		return;
+	}
+	for (int i = DAY_INI_INDEX; i < DAY_INI_INDEX + DAY_LEN; i++)
+	{
+		if (isdigit(date[i]) == false)
+		{
+			std::cout << "Error: bad input => " << date << std::endl;
+			return;
+		}
+		// std::cout << date[i];
+	}
+	day = atoi(line.substr(DAY_INI_INDEX, DAY_LEN).c_str());
+	if (day > 31 || day < 1)
+	{
+		std::cerr << "Error: bad input => " << date << std::endl;
+		return;
+	}
+	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+	{
+		std::cerr << "Error: bad input => " << date << std::endl;
+		return;
+	}
+	if (month == 2 && day > 28)
+	{
+		std::cerr << "Error: bad input => " << date << std::endl;
+		return;
+	}
+	// std::cout << date << std::endl;
+	
+
+	// year = (int)(string_to_float(line.substr(0, 4)));
+	
+
+}
+
 
 void create_database(std::map<std::string, float> &database)
 {
@@ -51,7 +155,7 @@ void create_database(std::map<std::string, float> &database)
 	std::string line;
 	open_file(file);
 	fill_database(database, file);
-	print_database(database);
+	// print_database(database);
 }
 
 void open_file(std::ifstream &file)

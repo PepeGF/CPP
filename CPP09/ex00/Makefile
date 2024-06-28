@@ -12,7 +12,8 @@ NAME = btc
 BIN_PATH = bin/
 
 SRCS =	main.cpp \
-		BitcoinExchange.cpp
+		BitcoinExchange.cpp \
+		Automata.cpp
 
 OBJS = $(SRCS:%.cpp=bin/%.o)
 
