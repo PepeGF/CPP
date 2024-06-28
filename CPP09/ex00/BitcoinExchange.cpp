@@ -2,13 +2,14 @@
 
 void    print_exchange(std::string input_file)
 {
-	std::ifstream	input;
+	std::ifstream	input(input_file.c_str());
 	std::string		line;
 	
 	std::getline(input, line);
 	std::getline(input, line);
 	while (line.empty() == false)
 	{
+		check_and_print_input_line(line);
 		// checkear fecha
 			// año
 			// mes
@@ -34,7 +35,12 @@ void    print_exchange(std::string input_file)
 		//si fecha no contenida en map, añadir con valor 0, obtener índice, restar 1, eliminar valor recién añadido
 		std::getline(input, line);
 	}
+	return ;
+}
 
+void check_and_print_input_line(std::string line)
+{
+	(void)line;
 
 	return ;
 }
