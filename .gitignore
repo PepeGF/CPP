@@ -8,6 +8,8 @@ CPP06/ex01/serializer
 CPP06/ex02/identifier
 */bin/*
 __pycache__/
+**/*/btc
+**/*/bin/
 
 # Prerequisites
 *.d
