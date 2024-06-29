@@ -41,3 +41,5 @@ int     validate_year(std::string date);
 int     validate_month(std::string date, std::string line);
 int     validate_day(std::string date);
 int     validate_real_day(std::string line, std::string date);
+
+void    print_output(std::string date, float input_value, float database_value);

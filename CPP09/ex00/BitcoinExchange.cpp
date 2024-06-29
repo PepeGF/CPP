@@ -5,11 +5,10 @@ void    print_exchange(std::string input_file, std::map<std::string, float> &dat
 	std::ifstream	input(input_file.c_str());
 	std::string		line;
 	std::string		date;
-	std::map<std::string, float>::iterator it;
-	std::pair<std::map<std::string, float>::iterator, bool> inserted;
-	// float			conversion;
 	float			input_value;
-	std::getline(input, line);
+	std::map<std::string, float>::iterator it;
+
+	std::getline(input, line); //ignorar primera línea de encabezados
 	std::getline(input, line);
 	while (line.empty() == false)
 	{
@@ -18,40 +17,33 @@ void    print_exchange(std::string input_file, std::map<std::string, float> &dat
 			input_value = atof(line.substr(VALUE_INI_INDEX).c_str());
 			date = line.substr(INDEX_INI, LEN_DATE_STRING);
 			it = database.find(date);
-			if (it != database.end())
+			if (it != database.end()) // fecha en base de datos
+				print_output(date, input_value, database[date]);
+			else // fecha no en base dataos
 			{
-				// valor en base de datos
-				std::cout << date << " => " 
-					<< input_value << " = "
-					<< database[date] * input_value
-					<< std::endl;
-			}
-			else
-			{
-				inserted = database.insert(std::pair<std::string, float>(date, 0));
+				database.insert(std::pair<std::string, float>(date, 0));
 				it = database.find(date);
 				if (it != database.begin())
 				{
 					--it;
-					std::cout << date << " => " 
-						<< input_value << " = " 
-						<< it->second * input_value 
-						<< std::endl;
+					print_output(date, input_value, it->second);
 					database.erase(++it);
 				}
 				else
-				{
-					std::cout << date << " => " 
-						<< input_value << " = "
-						<< it->second * input_value 
-						<< std::endl;
-					
-				}
+					print_output(date, input_value, it->second);
 			}
 		}
 		std::getline(input, line);
 	}
 	return ;
+}
+
+void print_output(std::string date, float input_value, float database_value)
+{
+	std::cout << date << " => " 
+		<< input_value << " = "
+		<< database_value * input_value
+		<< std::endl;
 }
 
 int check_and_print_input_line(std::string &line)
