@@ -1,71 +1,114 @@
 # include "BitcoinExchange.hpp"
 
-void    print_exchange(std::string input_file)
+void    print_exchange(std::string input_file, std::map<std::string, float> &database)
 {
 	std::ifstream	input(input_file.c_str());
 	std::string		line;
-	
+	std::string		date;
+	std::map<std::string, float>::iterator it;
+	std::pair<std::map<std::string, float>::iterator, bool> inserted;
+	// float			conversion;
+	float			input_value;
 	std::getline(input, line);
 	std::getline(input, line);
 	while (line.empty() == false)
 	{
-		check_and_print_input_line(line);
-		// checkear fecha
-			// año
-			// mes
-			// dia
-		//checkear valor
-			// positivo
-			// existe
-			// no mayor a 1000
-		//checkear separador???
-
-
-		// imprimir
-			// buscar fecha en database
-				//si fecha no contenida en map, 
-					//añadir con valor 0,
-					//obtener índice, 
-					//restar 1 al índice,
-					//eliminar valor recién añadido
-					//calcular con value de fecha indice-1
-			// fecha => valor input = value map * valor input con precisión
-			// Error: tipo error
-
-		//si fecha no contenida en map, añadir con valor 0, obtener índice, restar 1, eliminar valor recién añadido
+		if (check_and_print_input_line(line) == LINE_OK)
+		{
+			input_value = atof(line.substr(VALUE_INI_INDEX).c_str());
+			date = line.substr(INDEX_INI, LEN_DATE_STRING);
+			it = database.find(date);
+			if (it != database.end())
+			{
+				// valor en base de datos
+				std::cout << date << " => " 
+					<< input_value << " = "
+					<< database[date] * input_value
+					<< std::endl;
+			}
+			else
+			{
+				inserted = database.insert(std::pair<std::string, float>(date, 0));
+				it = database.find(date);
+				if (it != database.begin())
+				{
+					--it;
+					std::cout << date << " => " 
+					<< input_value << " = " 
+ 
+					<< it->second * input_value 
+					<< std::endl;
+					database.erase(++it);
+				}
+				else
+				{
+					std::cout << date << " => " 
+					<< input_value << " = "
+					<< it->second * input_value 
+					<< std::endl;
+					
+				}
+				//key no encontrada en base de datos
+			}
+		}
 		std::getline(input, line);
 	}
 	return ;
 }
 
-void check_and_print_input_line(std::string &line)
+int check_and_print_input_line(std::string &line)
 {
-	(void)line;
-	validate_date(line);
-	validate_separator(line);
-	validate_value(line);
-	return ;
+	if (validate_date(line) == INVALID_LINE)
+		return INVALID_LINE;
+	if (validate_separator(line) == INVALID_LINE)
+		return INVALID_LINE;
+	if (validate_value(line) == INVALID_LINE)
+		return INVALID_LINE;
+	return LINE_OK;
 }
 
-void validate_value(std::string &line)
+int validate_value(std::string &line)
 {
-	// float			value;
-	std::string aux;
+	float			value;
+	std::string		aux;
+	int				dots_counter = 0;
 
 	if (line.length() >= VALUE_INI_INDEX)
 	{
 		aux = line.substr(VALUE_INI_INDEX);
-		if (aux.length() > 4)
+		for (unsigned long i = 0; i < aux.length(); i++)
 		{
-			std::cerr << "Error: too large a number.";
-			return ;
+			if (isdigit(aux[i]) == false && aux[i] != '.')
+			{
+				std::cerr << "Error: invalid input." << std::endl;
+				return INVALID_LINE;
+			}
+			if (aux[i] == '.')
+			{
+				dots_counter++;
+				if (dots_counter > 1)
+				{
+					std::cerr << "Error: invalid input." << std::endl;
+					return INVALID_LINE;
+				}
+			}
 		}
-		//SEGUIR AQUI, CONVETIR A FLOAT COMPROBAR NO MAYOR DE 1000 NI NEGATIVOS
-		std::cout << aux << std::endl;
+		value = atof(aux.c_str());
+		if (value < 0)
+		{
+			std::cerr << "Error: not a positive number." << std::endl;
+			return INVALID_LINE;
+		}
+		if (value > 1000)
+		{
+			std::cerr << "Error: too large a number." << std::endl;
+			return INVALID_LINE;
+		}
 	}
+	return LINE_OK;
 }
 
-void validate_separator(std::string &line)
+int validate_separator(std::string &line)
 {
 	std::string separator;
 	std::string right_separator = " | ";
@@ -74,10 +117,12 @@ void validate_separator(std::string &line)
 	if (separator != right_separator)
 	{
 		std::cerr << "Error: wrong separator" << std::endl;
+		return INVALID_LINE;
 	}
+	return LINE_OK;
 }
 
-void validate_date(std::string &line)
+int validate_date(std::string &line)
 {
 	std::string date;
 	int			year;
@@ -90,14 +135,14 @@ void validate_date(std::string &line)
 	if (date[FIRST_MINUS_INDEX] != '-' || date[SECOND_MINUS_INDEX] != '-')
 	{
 		std::cerr << "Error: bad input => " << date << std::endl;
-		return ;
+		return INVALID_LINE;
 	}
 	for (int i = INDEX_INI; i < YEAR_LEN; i++)
 	{
 		if (isdigit(date[i]) == false)
 		{
 			std::cerr << "Error: bad input => " << date << std::endl;
-			return;
+			return INVALID_LINE;
 		}
 	}
 	year = atoi(line.substr(YEAR_INI_INDEX, YEAR_LEN).c_str());
@@ -106,21 +151,21 @@ void validate_date(std::string &line)
 		if (isdigit(date[i]) == false)
 		{
 			std::cerr << "Error: bad input => " << date << std::endl;
-			return;
+			return INVALID_LINE;
 		}
 	}
 	month = atoi(line.substr(MONTH_INI_INDEX, MONTH_LEN).c_str());
 	if (month > 12)
 	{
 		std::cout << "Error: bad input => " << date << std::endl;
-		return;
+		return INVALID_LINE;
 	}
 	for (int i = DAY_INI_INDEX; i < DAY_INI_INDEX + DAY_LEN; i++)
 	{
 		if (isdigit(date[i]) == false)
 		{
 			std::cout << "Error: bad input => " << date << std::endl;
-			return;
+			return INVALID_LINE;
 		}
 		// std::cout << date[i];
 	}
@@ -128,24 +173,19 @@ void validate_date(std::string &line)
 	if (day > 31 || day < 1)
 	{
 		std::cerr << "Error: bad input => " << date << std::endl;
-		return;
+		return INVALID_LINE;
 	}
 	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
 	{
 		std::cerr << "Error: bad input => " << date << std::endl;
-		return;
+		return INVALID_LINE;
 	}
 	if (month == 2 && day > 28)
 	{
 		std::cerr << "Error: bad input => " << date << std::endl;
-		return;
+		return INVALID_LINE;
 	}
-	// std::cout << date << std::endl;
-	
-
-	// year = (int)(string_to_float(line.substr(0, 4)));
-	
-
+	return LINE_OK;
 }
 
 
@@ -155,7 +195,6 @@ void create_database(std::map<std::string, float> &database)
 	std::string line;
 	open_file(file);
 	fill_database(database, file);
-	// print_database(database);
 }
 
 void open_file(std::ifstream &file)
@@ -179,7 +218,7 @@ void fill_database(std::map<std::string, float> &database, std::ifstream &file)
 	while (line.empty() == false)
 	{
 		date = line.substr(0, 10);
-		value = string_to_float(line.substr(11, line.length()));
+		value = atof(line.substr(11, line.length()).c_str());
 		database[date] = value;
 		std::getline(file, line);
 	}

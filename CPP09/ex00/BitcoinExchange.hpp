@@ -21,15 +21,17 @@
 # define SEPARATOR_INI_INDEX 10
 # define SEPARATOR_LEN 3
 # define VALUE_INI_INDEX 13
+# define INVALID_LINE -1
+# define LINE_OK 0
 
-void	print_exchange(std::string input_file);
+void	print_exchange(std::string input_file, std::map<std::string, float> &database);
 void	create_database(std::map<std::string, float> &database);
 void	open_file(std::ifstream &file);
 void	fill_database(std::map<std::string, float> &database, std::ifstream &file);
 float	string_to_float(const std::string &str);
 void	print_database(std::map<std::string, float> &database);
 
-void    check_and_print_input_line(std::string &line);
-void    validate_date(std::string &line);
-void    validate_separator(std::string &line);
-void    validate_value(std::string &line);
+int    check_and_print_input_line(std::string &line);
+int     validate_date(std::string &line);
+int     validate_separator(std::string &line);
+int     validate_value(std::string &line);
