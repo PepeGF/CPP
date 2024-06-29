@@ -34,21 +34,19 @@ void    print_exchange(std::string input_file, std::map<std::string, float> &dat
 				{
 					--it;
 					std::cout << date << " => " 
-					<< input_value << " = " 
- 
-					<< it->second * input_value 
-					<< std::endl;
+						<< input_value << " = " 
+						<< it->second * input_value 
+						<< std::endl;
 					database.erase(++it);
 				}
 				else
 				{
 					std::cout << date << " => " 
-					<< input_value << " = "
-					<< it->second * input_value 
-					<< std::endl;
+						<< input_value << " = "
+						<< it->second * input_value 
+						<< std::endl;
 					
 				}
-				//key no encontrada en base de datos
 			}
 		}
 		std::getline(input, line);
@@ -79,31 +77,19 @@ int validate_value(std::string &line)
 		for (unsigned long i = 0; i < aux.length(); i++)
 		{
 			if (isdigit(aux[i]) == false && aux[i] != '.')
-			{
-				std::cerr << "Error: invalid input." << std::endl;
-				return INVALID_LINE;
-			}
+				return(print_invalid_line("Error: invalid input."));
 			if (aux[i] == '.')
 			{
 				dots_counter++;
 				if (dots_counter > 1)
-				{
-					std::cerr << "Error: invalid input." << std::endl;
-					return INVALID_LINE;
-				}
+				return(print_invalid_line("Error: invalid input."));
 			}
 		}
 		value = atof(aux.c_str());
 		if (value < 0)
-		{
-			std::cerr << "Error: not a positive number." << std::endl;
-			return INVALID_LINE;
-		}
+			return(print_invalid_line("Error: not a positive number."));
 		if (value > 1000)
-		{
-			std::cerr << "Error: too large a number." << std::endl;
-			return INVALID_LINE;
-		}
+			return(print_invalid_line("Error: too large a number."));
 	}
 	return LINE_OK;
 }
@@ -115,79 +101,84 @@ int validate_separator(std::string &line)
 
 	separator = line.substr(SEPARATOR_INI_INDEX, SEPARATOR_LEN);
 	if (separator != right_separator)
-	{
-		std::cerr << "Error: wrong separator" << std::endl;
-		return INVALID_LINE;
-	}
+		return(print_invalid_line("Error: wrong separator"));
 	return LINE_OK;
 }
 
 int validate_date(std::string &line)
 {
 	std::string date;
-	int			year;
-	int			month;
-	int			day;
-	(void)year;
-
 
 	date = line.substr(INDEX_INI, LEN_DATE_STRING);
-	if (date[FIRST_MINUS_INDEX] != '-' || date[SECOND_MINUS_INDEX] != '-')
-	{
-		std::cerr << "Error: bad input => " << date << std::endl;
+
+	if (validate_date_format(line) == INVALID_LINE)
 		return INVALID_LINE;
-	}
-	for (int i = INDEX_INI; i < YEAR_LEN; i++)
-	{
-		if (isdigit(date[i]) == false)
-		{
-			std::cerr << "Error: bad input => " << date << std::endl;
-			return INVALID_LINE;
-		}
-	}
-	year = atoi(line.substr(YEAR_INI_INDEX, YEAR_LEN).c_str());
-	for (int i = MONTH_INI_INDEX; i < MONTH_INI_INDEX + MONTH_LEN; i++)
-	{
-		if (isdigit(date[i]) == false)
-		{
-			std::cerr << "Error: bad input => " << date << std::endl;
-			return INVALID_LINE;
-		}
-	}
+	if (validate_month(date, line) == INVALID_LINE)
+		return INVALID_LINE;
+	if (validate_day(date) == INVALID_LINE)
+		return INVALID_LINE;
+	if (validate_real_day(line, date) == INVALID_LINE)
+		return INVALID_LINE;
+	return LINE_OK;
+}
+
+int validate_real_day(std::string line, std::string date)
+{
+	int day;
+	int month;
+
 	month = atoi(line.substr(MONTH_INI_INDEX, MONTH_LEN).c_str());
-	if (month > 12)
-	{
-		std::cout << "Error: bad input => " << date << std::endl;
-		return INVALID_LINE;
-	}
+	day = atoi(line.substr(DAY_INI_INDEX, DAY_LEN).c_str());
+	if (day > 31 || day < 1)
+		return print_invalid_date(date);
+	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+		return print_invalid_date(date);
+	if (month == 2 && day > 28)
+		return print_invalid_date(date);
+	return LINE_OK;
+}
+
+int validate_day(std::string date)
+{
 	for (int i = DAY_INI_INDEX; i < DAY_INI_INDEX + DAY_LEN; i++)
 	{
 		if (isdigit(date[i]) == false)
-		{
-			std::cout << "Error: bad input => " << date << std::endl;
-			return INVALID_LINE;
-		}
-		// std::cout << date[i];
-	}
-	day = atoi(line.substr(DAY_INI_INDEX, DAY_LEN).c_str());
-	if (day > 31 || day < 1)
-	{
-		std::cerr << "Error: bad input => " << date << std::endl;
-		return INVALID_LINE;
-	}
-	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
-	{
-		std::cerr << "Error: bad input => " << date << std::endl;
-		return INVALID_LINE;
-	}
-	if (month == 2 && day > 28)
-	{
-		std::cerr << "Error: bad input => " << date << std::endl;
-		return INVALID_LINE;
+			return print_invalid_date(date);
 	}
 	return LINE_OK;
 }
 
+int validate_month(std::string date, std::string line)
+{
+	int month;
+
+	for (int i = MONTH_INI_INDEX; i < MONTH_INI_INDEX + MONTH_LEN; i++)
+	{
+		if (isdigit(date[i]) == false)
+			return print_invalid_date(date);
+	}
+	month = atoi(line.substr(MONTH_INI_INDEX, MONTH_LEN).c_str());
+	if (month > 12)
+		return print_invalid_date(date);
+	return LINE_OK;
+}
+
+int validate_year(std::string date)
+{
+	for (int i = INDEX_INI; i < YEAR_LEN; i++)
+	{
+		if (isdigit(date[i]) == false)
+			return print_invalid_date(date);
+	}
+	return LINE_OK;
+}
+
+int validate_date_format(std::string date)
+{
+	if (date[FIRST_MINUS_INDEX] != '-' || date[SECOND_MINUS_INDEX] != '-')
+		return print_invalid_date(date);
+	return (LINE_OK);
+}
 
 void create_database(std::map<std::string, float> &database)
 {
@@ -224,15 +215,6 @@ void fill_database(std::map<std::string, float> &database, std::ifstream &file)
 	}
 }
 
-float string_to_float(const std::string &str)
-{
-	std::stringstream ss(str);
-	float value;
-
-	ss >> value;
-	return (value);
-}
-
 void print_database(std::map<std::string, float> &database)
 {
 	std::map<std::string, float>::iterator it;
@@ -244,6 +226,18 @@ void print_database(std::map<std::string, float> &database)
 			<< std::fixed << std::setprecision(2) << it->second
 			<< std::endl;
 	}
+}
+
+int print_invalid_line(std::string error)
+{
+	std::cerr << error << std::endl;
+	return INVALID_LINE;
+}
+
+int print_invalid_date(std::string date)
+{
+	std::cerr << "Error: bad input => " << date << std::endl;
+	return INVALID_LINE;
 }
 
 
