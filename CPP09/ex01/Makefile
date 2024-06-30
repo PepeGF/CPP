@@ -11,10 +11,7 @@ NAME = btc
 
 BIN_PATH = bin/
 
-SRCS =	main.cpp \
-		BitcoinExchange.cpp \
-		validation_functions.cpp \
-		print_functions.cpp
+SRCS =	main.cpp 
 
 OBJS = $(SRCS:%.cpp=bin/%.o)
 
