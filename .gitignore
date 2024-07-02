@@ -10,6 +10,7 @@ CPP06/ex02/identifier
 __pycache__/
 **/*/btc
 **/*/bin/
+**/*/RPN
 
 # Prerequisites
 *.d
