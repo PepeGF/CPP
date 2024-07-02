@@ -9,4 +9,8 @@
 
 void pmergeme(int argc, char const *argv[]);
 void validate_number(char const *argv);
+<<<<<<< HEAD
 void print_vector(std::vector< std::pair<int, int> > vect);
+=======
+void print_vector(std::vector<std::pair<int, int> > vect);
+>>>>>>> a9afc36903052948e00f12d6029b822403c7647d
