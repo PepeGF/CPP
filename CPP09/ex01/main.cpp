@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 
 void rpn(char *argv)
 {
-	std::stack<int> numbers;
+	std::stack<float> numbers;
 	int i = 0;
 
 	while (argv[i])
@@ -56,9 +56,9 @@ void rpn(char *argv)
 	std::cout << numbers.top() << std::endl;
 }
 
-void operation(std::stack<int> &numbers, char symbol)
+void operation(std::stack<float> &numbers, char symbol)
 {
-	int aux;
+	float aux;
 
 	if (numbers.size() <= 1)
 	{
