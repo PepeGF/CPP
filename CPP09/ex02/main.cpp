@@ -11,8 +11,27 @@ int main(int argc, char const *argv[])
 
 void pmergeme(int argc, char const *argv[])
 {
-	std::vector< std::pair<int, int> > original;
-	std::pair<int, int> temp;
+	VecPairInt original;
+	
+	original = create_fill_container(argc, argv);
+
+	wololo(original);
+
+}
+
+void wololo(VecPairInt &bigs)
+{
+	VecPairInt aux = bigs;
+	VecPairInt big;
+	VecPairInt small;
+
+	std::cout << &aux << " || " << &bigs << std::endl;
+}
+
+VecPairInt create_fill_container(int argc, char const *argv[])
+{
+	VecPairInt original;
+	PairInt temp;
 	// long int aux;
 	
 	for (int i = 1; i < argc; i++)
@@ -20,13 +39,9 @@ void pmergeme(int argc, char const *argv[])
 		validate_number(argv[i]);
 		temp.first = atoi(argv[i]);
 		temp.second = i;                //i - 1???
-		
 		original.push_back(temp);
-		// aux = argv[i]
-		// std::cout << argv[i] << std::endl;
 	}
-	print_vector(original);
-	std::cout << "De momento vale" << std::endl;
+	return original;
 }
 
 void validate_number(char const *argv)
@@ -50,10 +65,10 @@ void validate_number(char const *argv)
 	}
 }
 
-void print_vector(std::vector< std::pair<int, int> > vect)
+void print_vector(VecPairInt vect)
 {
-	// std::vector<std::pair<int, int> >::iterator it;
-	for (std::vector< std::pair<int, int> >::iterator it = vect.begin(); 
+	// std::vector<PairInt >::iterator it;
+	for (VectPairIntIter it = vect.begin(); 
 			it != vect.end(); 
 			it++)
 	{
