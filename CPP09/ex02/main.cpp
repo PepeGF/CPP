@@ -25,6 +25,23 @@ void wololo(VecPairInt &bigs)
 	VecPairInt big;
 	VecPairInt small;
 
+	for (size_t i = 0; i < bigs.size(); i++)
+	{
+		if (i == bigs.size() - 1)
+			std::cout << "--->>> " << bigs[i + 1].first << std::endl;
+		if (bigs[i] > bigs[i + 1])
+		{
+			big.push_back(bigs[i]);
+			small.push_back(bigs[i + 1]);
+		}
+		else
+		{
+			big.push_back(bigs[i]);
+			small.push_back(bigs[i + 1]);
+		}
+		if (i != bigs.size() - 1)
+			i++;
+	}
 	std::cout << &aux << " || " << &bigs << std::endl;
 }
 
