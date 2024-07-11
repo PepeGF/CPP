@@ -2,22 +2,72 @@
 
 int main(int argc, char const *argv[])
 {
+	VecPairInt original;
+
 	if (argc > 1)
 	{
-		pmergeme(argc, argv);
+		original = create_fill_container(argc, argv);
+		pmergeme(original);
 	}
 	return 0;
 }
 
-void pmergeme(int argc, char const *argv[])
+void pmergeme(VecPairInt &original) // ojo, quizas no sirva referencia
 {
-	VecPairInt original;
+	PairInt last;
+	VecPairInt bigger;
+	VecPairInt bigger_replica;
+	VecPairInt smaller;
+	VecPairInt smaller_replica;;
 	
-	original = create_fill_container(argc, argv);
-
-	wololo(original);
+	last = make_even(original); // soluciona el problema del último impar y 
+	// facilita la creación de los vectores grande y peq al poder avanzar de 2 en 2
+	create_vectors(original, bigger, bigger_replica, smaller, smaller_replica);
 
 }
+
+void create_vectors(VecPairInt &original,
+					VecPairInt &bigger,
+					VecPairInt &bigger_replica,
+					VecPairInt &smaller,
+					VecPairInt &smaller_replica)
+{
+	int j = 0;
+
+	for (size_t i = 0; i < original.size(); i++)
+	{
+		if (original[i] > original[i + 1])
+		{
+			bigger.push_back(std::make_pair(original[i].first, j));
+			bigger_replica.push_back(original[i]);
+			smaller.push_back(std::make_pair(original[i + 1].first, j));
+			smaller_replica.push_back(original[i + 1]);
+		}
+		else
+		{
+			smaller.push_back(std::make_pair(original[i].first, j));
+			smaller_replica.push_back(original[i]);
+			bigger.push_back(std::make_pair(original[i + 1].first, j));
+			bigger_replica.push_back(original[i + 1]);
+		}
+		if (i != original.size() - 1)
+			i++;
+		j++;
+	}
+}
+
+
+PairInt make_even(VecPairInt &original)
+{
+	PairInt last (-1, -1);
+	if (original.size() % 2 == 1)
+	{
+		last = original.back();
+		original.pop_back();
+	}
+	return last;
+}
+
 
 void wololo(VecPairInt &bigs)
 {
@@ -84,18 +134,17 @@ void validate_number(char const *argv)
 
 void print_vector(VecPairInt vect)
 {
-	// std::vector<PairInt >::iterator it;
 	for (VectPairIntIter it = vect.begin(); 
 			it != vect.end(); 
 			it++)
 	{
 		std::cout << (*it).first << " || " << (*it).second << "\n";
 	}
-
-	// for (size_t i = 0; i < vect.size(); i++)
-	// {
-	// 	std::cout << vect[i].first << " || " << vect[i].second << "\n"; 
-	// }
 	std::cout << std::endl;
+}
+
+void print_pair(PairInt pair)
+{
+	std::cout << pair.first << " || " << pair.second << std::endl;
 }
 
