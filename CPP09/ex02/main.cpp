@@ -1,4 +1,5 @@
 # include "PmergeMe.hpp"
+int pasos = 0;
 
 int main(int argc, char const *argv[])
 {
@@ -12,7 +13,7 @@ int main(int argc, char const *argv[])
 	return 0;
 }
 
-void pmergeme(VecPairInt &original) // ojo, quizas no sirva referencia
+VecPairInt pmergeme(VecPairInt &original) // ojo, quizas no sirva referencia
 {
 	PairInt last;
 	VecPairInt bigger;
@@ -23,7 +24,30 @@ void pmergeme(VecPairInt &original) // ojo, quizas no sirva referencia
 	last = make_even(original); // soluciona el problema del último impar y 
 	// facilita la creación de los vectores grande y peq al poder avanzar de 2 en 2
 	create_vectors(original, bigger, bigger_replica, smaller, smaller_replica);
+	add_last_to_smaller(last, smaller, smaller_replica);
+	std::cout << "Paso: " << pasos++ << std::endl;
+	print_vector(original);
+	original = recursivity(original, bigger);
+	std::cout << "->Paso: " << pasos++ << "<-" << std::endl;
+	print_vector(original);
+	return bigger_replica;
+}
 
+VecPairInt recursivity(VecPairInt &original, VecPairInt &bigger)
+{
+	if (bigger.size() != 1)
+		original = pmergeme(bigger);
+	return original;
+}
+
+
+void add_last_to_smaller(PairInt &last, VecPairInt &smaller, VecPairInt &smaller_replica)
+{
+	if (last.second != -1)
+	{
+		smaller.push_back(std::make_pair(last.first, smaller.size()));
+		smaller_replica.push_back(last);
+	}
 }
 
 void create_vectors(VecPairInt &original,

@@ -15,8 +15,8 @@ typedef std::vector<std::pair<int, int> >::iterator VectPairIntIter;
 
 
 
-void pmergeme(VecPairInt &vect);
-std::vector< std::pair<int, int> > create_fill_container(int argc, char const *argv[]);
+VecPairInt pmergeme(VecPairInt &vect);
+VecPairInt create_fill_container(int argc, char const *argv[]);
 void validate_number(char const *argv);
 PairInt make_even(VecPairInt &original);
 void create_vectors(VecPairInt &original,
@@ -24,6 +24,10 @@ void create_vectors(VecPairInt &original,
 					VecPairInt &bigger_replica,
 					VecPairInt &smaller,
 					VecPairInt &smaller_replica);
+void add_last_to_smaller(PairInt &last, 
+						VecPairInt &smaller, 
+						VecPairInt &smaller_replica);
+VecPairInt recursivity(VecPairInt &original, VecPairInt &bigger);
 
 void print_vector(std::vector< std::pair<int, int> > vect);
 void print_pair(PairInt pair);
