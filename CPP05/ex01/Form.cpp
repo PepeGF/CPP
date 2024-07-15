@@ -2,9 +2,9 @@
 
 Form::Form() : _name("Very special form"), _signed(false), _sign_grade(10), _exec_grade(1)
 {
-	if (_sign_grade < 1)
+	if (_sign_grade < 1 || _exec_grade < 1)
 		throw Form::GradeTooHighException();
-	if (_sign_grade > 150)
+	if (_sign_grade > 150 || _exec_grade > 150)
 		throw Form::GradeTooLowException();
 	std::cout << "Form default constructor called" << std::endl;
 }
@@ -12,9 +12,9 @@ Form::Form() : _name("Very special form"), _signed(false), _sign_grade(10), _exe
 Form::Form(std::string name, int sign_grade, int exec_grade) :
 	_name(name), _signed(false), _sign_grade(sign_grade), _exec_grade(exec_grade)
 {
-	if (_sign_grade < 1)
+	if (_sign_grade < 1 || _exec_grade < 1)
 		throw Form::GradeTooHighException();
-	if (_sign_grade > 150)
+	if (_sign_grade > 150 || _exec_grade > 150)
 		throw Form::GradeTooLowException();
 	std::cout << "Form parametrized constructor called" << std::endl;
 }
@@ -22,9 +22,9 @@ Form::Form(std::string name, int sign_grade, int exec_grade) :
 Form::Form(Form const & copy) :
 	_name(copy._name), _signed(copy._signed), _sign_grade(copy._sign_grade), _exec_grade(copy._exec_grade)
 {
-	if (_sign_grade < 1)
+	if (_sign_grade < 1 || _exec_grade < 1)
 		throw Form::GradeTooHighException();
-	if (_sign_grade > 150)
+	if (_sign_grade > 150 || _exec_grade > 150)
 		throw Form::GradeTooLowException();
 	std::cout << "Form copy constructor called" << std::endl;
 }
@@ -36,12 +36,14 @@ Form::~Form()
 
 Form& Form::operator=(Form const & rhs)
 {
-	if (_sign_grade < 1)
-		throw Form::GradeTooHighException();
-	if (_sign_grade > 150)
-		throw Form::GradeTooLowException();
-	this->_signed = rhs._signed;
-	// *this = rhs;
+	if (this != &rhs)
+	{
+		if (_sign_grade < 1 || _exec_grade < 1)
+			throw Form::GradeTooHighException();
+		if (_sign_grade > 150 || _exec_grade > 150)
+			throw Form::GradeTooLowException();
+		this->_signed = rhs._signed;
+	}
 	return *this;
 }
 
@@ -73,6 +75,7 @@ void			Form::beSigned(Bureaucrat& vogon)
 		throw Form::GradeTooLowException();
 		}
 	this->_signed = true;
+	std::cout << vogon.getName() << " signed " << this->_name << std::endl;
 }
 
 const char* Form::GradeTooLowException::what() const throw ()

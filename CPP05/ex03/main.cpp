@@ -9,6 +9,8 @@
 int main()
 {
 	{
+	try
+	{
 		Bureaucrat president("Zaphod Beeblebrox", 1);
 		Bureaucrat secretary("Zaphod Beeblebrox", 1);
 		Intern bob;
@@ -18,6 +20,13 @@ int main()
 		president.executeForm(*form1);
 		delete form1;
 	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	}{
+	try
+	{
 	std::cout << "----------------------------------------------" << std::endl;
 	{
 		Bureaucrat president("Zaphod Beeblebrox", 1);
@@ -30,6 +39,13 @@ int main()
 		president.executeForm(*form1);
 		delete form1;
 	}
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	}{
+	try{
 	std::cout << "----------------------------------------------" << std::endl;
 	{
 		Bureaucrat president("Zaphod Beeblebrox", 1);
@@ -42,6 +58,14 @@ int main()
 		president.executeForm(*form1);
 		delete form1;
 	}
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	}{
+	try
+	{
 	std::cout << "----------------------------------------------" << std::endl;
 	{
 		Bureaucrat president("Milei", 1);
@@ -57,6 +81,14 @@ int main()
 			delete form1;
 		}
 	}
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	}{
+	try
+	{
 	std::cout << "----------------------------------------------" << std::endl;
 	{
 		Bureaucrat president("Milei", 120);
@@ -71,7 +103,14 @@ int main()
 			president.executeForm(*form1);
 			delete form1;
 		}
+	}}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
 	}
+	}{
+		try
+	{
 	std::cout << "----------------------------------------------" << std::endl;
 	{
 		Bureaucrat president("Milei", 120);
@@ -93,6 +132,12 @@ int main()
 			}
 			delete form1;
 		}
+	}
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 	}
 
 /* 
