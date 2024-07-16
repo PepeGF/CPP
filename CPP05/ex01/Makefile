@@ -7,7 +7,7 @@ CIAN	= '\033[36m'
 WHITE	= '\033[37m'
 NONE	= '\033[0m'
 
-NAME = a.out
+NAME = bureaucrat
 
 BIN_PATH = bin/
 
@@ -19,7 +19,7 @@ SRCS =	main.cpp \
 OBJS = $(SRCS:%.cpp=bin/%.o)
 
 CC = c++
-CFLAGS = -std=c++98 -Wall -Werror -Wextra -g -O0 #-fsanitize=address
+CFLAGS = -std=c++98 -Wall -Werror -Wextra #-g -O0 #-fsanitize=address
 RM = rm -f
 
 ###	--- RULES --- ###

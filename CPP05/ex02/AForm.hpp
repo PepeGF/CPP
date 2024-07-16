@@ -17,7 +17,7 @@ public:
 	AForm();
 	AForm(std::string name, int sign_grade, int exec_grade);
 	AForm(AForm const & copy);
-	~AForm();
+	virtual ~AForm();
 
 	AForm& operator=(AForm const & rhs);
 
@@ -36,6 +36,12 @@ public:
 	};
 
 	class GradeTooLowException : virtual public std::exception
+	{
+		public:
+			const char* what() const throw ();
+	};
+
+	class AlreadySignedException : virtual public std::exception
 	{
 		public:
 			const char* what() const throw ();

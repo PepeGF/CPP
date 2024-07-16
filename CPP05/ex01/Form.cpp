@@ -51,31 +51,36 @@ std::string const Form::getName() const
 {
 	return (this->_name);
 }
-bool			Form::getSigned() const
+bool Form::getSigned() const
 {
 	return (this->_signed);
 }
 
-int				Form::getSignGrade() const
+int Form::getSignGrade() const
 {
 	return (this->_sign_grade);
 }
 
-int				Form::getExecGrade() const
+int Form::getExecGrade() const
 {
 	return (this->_exec_grade);
 }
 
-void			Form::beSigned(Bureaucrat& vogon)
+void Form::beSigned(Bureaucrat& vogon)
 {
 	if (vogon.getGrade() > this->_sign_grade)
-		{
+	{
 		std::cout << vogon.getName() << " couldn't sign "
 			<< this->_name << " because ";
 		throw Form::GradeTooLowException();
-		}
+	}
+	else if (this->_signed == true)
+	{
+		throw AlreadySignedException();
+	}
+	
 	this->_signed = true;
-	std::cout << vogon.getName() << " signed " << this->_name << std::endl;
+	std::cout << vogon.getName() << " signed " << this->_name << "\n" << std::endl;
 }
 
 const char* Form::GradeTooLowException::what() const throw ()
@@ -86,6 +91,11 @@ const char* Form::GradeTooLowException::what() const throw ()
 const char* Form::GradeTooHighException::what() const throw ()
 {
 	return ("Grade too high");
+}
+
+const char* Form::AlreadySignedException::what() const throw ()
+{
+	return ("Form is already signed");
 }
 
 std::ostream& operator<<(std::ostream& os, Form const & form)

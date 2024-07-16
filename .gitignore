@@ -1,8 +1,7 @@
 *.pdf
 .DS_Store
 .vscode/
-CPP05/ex02/*_shrubbery
-CPP05/ex03/*_shrubbery
+CPP05/*/*_shrubbery
 CPP06/ex00/convert
 CPP06/ex01/serializer
 CPP06/ex02/identifier
@@ -12,6 +11,7 @@ __pycache__/
 **/*/bin/
 **/*/RPN
 **/*/PmergeMe
+**/*/bureaucrat 
 
 # Prerequisites
 *.d

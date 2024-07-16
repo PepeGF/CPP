@@ -90,6 +90,11 @@ const char* AForm::UnsignedForm::what() const throw ()
 	return ("Form unsigned");
 }
 
+const char* AForm::AlreadySignedException::what() const throw ()
+{
+	return ("Form is already signed");
+}
+
 std::ostream& operator<<(std::ostream& os, AForm const & AForm)
 {
 	os << "AForm name:\t" << AForm.getName() << "\n"

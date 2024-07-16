@@ -17,10 +17,10 @@ int main()
 		for (int i = 0; i < 5; i++)
 			hermenegilda.incrementGrade();
 
-		std::cout << voldemort << std::endl;
+		std::cout << "\n" << voldemort << std::endl;
 		std::cout << onesiforo << std::endl;
 		std::cout << filogonio << std::endl;
-		std::cout << hermenegilda << std::endl;
+		std::cout << hermenegilda << "\n" << std::endl;
 	}
 	catch(const std::exception& e)
 	{
