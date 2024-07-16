@@ -9,12 +9,16 @@
 class Intern
 {
 private:
-
+	
 public:
 	Intern();
 	Intern(Intern const & copy);
 	~Intern();
 
 	Intern& operator=(Intern const & rhs);
+	
+	AForm* ShrubberyForm(std::string target);
+	AForm* RobotomyForm(std::string target);
+	AForm* PresidentialForm(std::string target);
 	AForm* makeForm(std::string form_name, std::string target);
 };

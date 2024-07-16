@@ -7,7 +7,7 @@ CIAN	= '\033[36m'
 WHITE	= '\033[37m'
 NONE	= '\033[0m'
 
-NAME = a.out
+NAME = bureaucrat
 
 BIN_PATH = bin/
 
@@ -44,6 +44,7 @@ clean:
 	$(RM) $(OBJS)
 	rm -rf bin/
 	echo $(RED)"[Object Files Deleted]"$(NONE)
+	rm *_shrubbery
 
 fclean: clean
 	$(RM) $(NAME)
