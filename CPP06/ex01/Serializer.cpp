@@ -13,7 +13,8 @@ Serializer::~Serializer()
 
 Serializer& Serializer::operator=(Serializer const & rhs)
 {
-	*this = rhs;
+	if (this != &rhs)
+		*this = rhs;
 	return *this;
 }
 

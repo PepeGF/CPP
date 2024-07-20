@@ -50,6 +50,7 @@ void identify(Base *p)
 		std::cout << "It's C type pointer" << std::endl;
 		return ;
 	}
+	std::cout << "It's neither A, B nor C pointer" << std::endl;
 }
 
 void identify(Base &p)

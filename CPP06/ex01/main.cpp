@@ -4,9 +4,7 @@ int main()
 {
 	Data data;
 	data.num = 42;
-	std::cout << "Data address: " << &data << std::endl;
-	std::cout << "Data content: " << data.num << std::endl;
-
+	std::cout << data << std::endl;
 	uintptr_t dir;
 
 	dir = Serializer::serialize(&data);

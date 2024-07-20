@@ -12,7 +12,8 @@ NAME = serializer
 BIN_PATH = bin/
 
 SRCS =	main.cpp \
-		Serializer.cpp
+		Serializer.cpp \
+		Data.cpp
 
 
 OBJS = $(SRCS:%.cpp=bin/%.o)
