@@ -7,9 +7,9 @@ int main()
 	MutantStack<int> mstack;
 	mstack.push(5);
 	mstack.push(17);
-	std::cout << "Last value: " << mstack.top() << std::endl;
+	std::cout << "Mutant stack last value: " << mstack.top() << std::endl;
 	mstack.pop();
-	std::cout << "Mutant stack sixe: " << mstack.size() << std::endl;
+	std::cout << "Mutant stack size: " << mstack.size() << std::endl;
 	mstack.push(3);
 	mstack.push(5);
 	mstack.push(737);
@@ -21,7 +21,7 @@ int main()
 	--it;
 	while (it != ite)
 	{
-		std::cout << "Iterator value: " << *it << std::endl;
+		std::cout << "Mutant stack Iterator value: " << *it << std::endl;
 		++it;
 	}
 	std::stack<int> s(mstack);
@@ -31,10 +31,10 @@ int main()
 	std::list<int> mstack;
 	mstack.push_back(5);
 	mstack.push_back(17);
-	std::cout << mstack.back() << std::endl;
+	std::cout << "Last value: " << mstack.back() << std::endl;
 	mstack.pop_back();
-	std::cout << mstack.back() << std::endl;
-	std::cout << mstack.size() << std::endl;
+	std::cout << "List size: " << mstack.size() << std::endl;
+	std::cout << "Last value: " << mstack.back() << std::endl;
 	mstack.push_back(3);
 	mstack.push_back(5);
 	mstack.push_back(737);
@@ -45,7 +45,7 @@ int main()
 	--it;
 	while (it != ite)
 	{
-		std::cout << *it << std::endl;
+		std::cout << "List iterator value: " << *it << std::endl;
 		++it;
 	}
 	}
