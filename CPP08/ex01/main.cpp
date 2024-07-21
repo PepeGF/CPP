@@ -55,8 +55,8 @@ int main()
 	std::generate(random.begin(), random.end(), randomNumber);
 	Span huge(size);
 	huge.fillRange(random.begin(), random.end());
-	std::cout << huge.shortestSpan() << std::endl;
-	std::cout << huge.longestSpan() << std::endl;
+	std::cout << "Shortest span: " << huge.shortestSpan() << std::endl;
+	std::cout << "Longest span: "  << huge.longestSpan() << std::endl;
 	// huge.printSpan();
 	return 0;
 }

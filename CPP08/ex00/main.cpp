@@ -1,4 +1,5 @@
 #include "easyfind.hpp"
+# include <vector>
 
 int main()
 {
@@ -11,59 +12,22 @@ int main()
 	}
 	std::cout << "\n---------------------------------------------" << std::endl;
 	try	{
-		std::cout << easyfind(v, 0)[0] << std::endl;
+		std::cout << easyfind(v, 0) << std::endl;
 	}
-	catch(const std::runtime_error& e)	{
-		std::cout << e.what() << std::endl;
-	}
-	try	{
-		std::cout << easyfind(v, 360)[0] << std::endl;
-	}
-	catch(const std::runtime_error& e)	{
-		std::cout << e.what() << std::endl;
+	catch(const std::exception& e)	{
+		std::cerr << "Value not found" << std::endl;
 	}
 	try	{
-		std::cout << easyfind(v, 360000)[0] << std::endl;
+		std::cout << easyfind(v, 360) << std::endl;
 	}
-	catch(const std::runtime_error& e)	{
-		std::cout << e.what() << std::endl;
+	catch(const std::exception& e)	{
+		std::cerr << "Value not found" << std::endl;
 	}
-
-	/* std::cout << easyfind(v, 0) << std::endl;
-	std::cout << easyfind(v, 360) << std::endl;
-	try
-	{
+	try	{
 		std::cout << easyfind(v, 360000) << std::endl;
 	}
-	catch(const std::runtime_error& e){} */
-
-
+	catch(const std::exception& e)	{
+		std::cerr << "Value not found" << std::endl;
+	}
 	return 0;
 }
-
-/* 	std::vector<int>::iterator it = std::find(v.begin(), v.end(), 160);
-
-	std::cout << "---------" << std::endl;
-
-	for (size_t i = 0; i < v.size(); i++)
-		std::cout << &v[i] << std::endl;
-
-	std::cout << "---------" << std::endl;
-
-	for (std::vector<int>::const_iterator it = v.cbegin(); it != v.cend(); it++)
-	{
-		std::cout << "-> " << *it << std::endl;
-	}
-	std::cout << "---------" << std::endl;
-
-	for (int &x : v)
-	{
-		std::cout << x << std::endl;
-	}
-	std::cout << "---------" << std::endl;
-	std::cout << *it << std::endl;
-	std::cout << &it << std::endl;
-	std::cout << &(*it) << std::endl;
-	std::cout << "---------" << std::endl;
-	std::cout << v.size() << std::endl;
- */

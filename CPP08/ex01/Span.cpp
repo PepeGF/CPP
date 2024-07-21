@@ -51,23 +51,6 @@ int Span::shortestSpan()
 	}
 	return diff;
 }
-/* 
-	int minimum = std::abs(this->_arr[0] - this->_arr[1]);
-	int aux;
-	size_t len = this->_arr.size();
-
-	for (size_t i = 0; i < len; i++)
-	{
-		for (size_t j = 0; j < len; j++)
-		{
-			if (i == j)
-				continue;
-			aux = std::abs(this->_arr[i] - this->_arr[j]);
-			if ( aux < minimum)
-				minimum = aux;
-		}
-	}
-	return minimum; */
 
 int Span::longestSpan()
 {
