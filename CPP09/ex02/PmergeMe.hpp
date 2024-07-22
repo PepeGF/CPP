@@ -3,6 +3,7 @@
 # include <iostream>
 # include <cstdlib>
 # include <vector>
+# include <iomanip>
 
 
 # define INT_MAX 2147483647
@@ -18,8 +19,8 @@ typedef std::vector<std::pair<int, int> >::iterator VectPairIntIter;
 VecPairInt pmergeme(VecPairInt &vect);
 VecPairInt create_fill_container(int argc, char const *argv[]);
 void validate_number(char const *argv);
-PairInt make_even(VecPairInt &original);
-void create_vectors(VecPairInt &original,
+PairInt make_even(VecPairInt &bigger_sort);
+void create_vectors(VecPairInt &bigger_sort,
 					VecPairInt &bigger,
 					VecPairInt &bigger_replica,
 					VecPairInt &smaller,
@@ -27,7 +28,19 @@ void create_vectors(VecPairInt &original,
 void add_last_to_smaller(PairInt &last, 
 						VecPairInt &smaller, 
 						VecPairInt &smaller_replica);
-VecPairInt recursivity(VecPairInt &original, VecPairInt &bigger);
+VecPairInt recursivity(VecPairInt &bigger_sort, VecPairInt &bigger);
+void sort_len_1(VecPairInt &bigger_replica, 
+				VecPairInt &smaller_replica, 
+				PairInt& last);
+void insert_last_into_bigger(VecPairInt &bigger_replica, 
+							VecPairInt &smaller_replica, 
+						PairInt& last);
+void replicate_changes(VecPairInt &bigger_sort, 
+					VecPairInt &bigger, 
+					VecPairInt &bigger_replica, 
+					VecPairInt &smaller, 
+					VecPairInt &smaller_replica, 
+					PairInt &last);
 
 void print_vector(std::vector< std::pair<int, int> > vect);
 void print_pair(PairInt pair);
