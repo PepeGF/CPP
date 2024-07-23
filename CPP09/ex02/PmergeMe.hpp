@@ -41,6 +41,19 @@ void replicate_changes(VecPairInt &bigger_sort,
 					VecPairInt &smaller, 
 					VecPairInt &smaller_replica, 
 					PairInt &last);
+VecPairInt insert_small_into_big(VecPairInt bigger_sort, 
+								VecPairInt smaller_sort);
+VecPairInt sort_with_insertion(VecPairInt &bigger_sort, 
+							VecPairInt &bigger_replica, 
+							VecPairInt &smaller, 
+							VecPairInt &smaller_replica, 
+							VecPairInt &smaller_sort, 
+							PairInt &last);
+void  binary_insertion(VecPairInt &bigger_sort, 
+						PairInt x, 
+						int idx_max, 
+						int idx_min);
+
 
 void print_vector(std::vector< std::pair<int, int> > vect);
 void print_pair(PairInt pair);

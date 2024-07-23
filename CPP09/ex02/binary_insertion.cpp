@@ -3,75 +3,50 @@
 # include <cstdlib>
 
 
-std::vector<int>  binary_insertion(std::vector<int> vect, int x)
-{
-	std::vector<int> aux = vect;
-	int i = 0;
-	int j = aux.size() - 1;
 
-	if (x < aux[0])
+void  binary_insertion(std::vector<int> &vect, int x, int idx_max, int idx_min)
+{
+	int mid = (idx_max + idx_min) / 2;
+
+	if (vect.size() == 0)
 	{
-		aux.insert(aux.begin(), x);
+		vect.insert(vect.begin(), x);
+		return;
 	}
-	else if (x > aux[aux.size() - 1])
+	if (idx_max <= idx_min)
 	{
-		aux.push_back(x);
+		if (x > vect[idx_min])
+			vect.insert(vect.begin() + idx_min + 1, x);
+		else
+			vect.insert(vect.begin() + idx_min, x);
+		return;
 	}
+	if (x > vect[mid])
+		binary_insertion(vect, x, idx_max, mid + 1);
 	else
-	{
-		while (i + 1 != j)
-		{
-			if (x < aux[(i + j) / 2])
-			{
-				j = (i + j) / 2;
-			}
-			else if (x > aux[(i + j) / 2])
-			{
-				i = (i + j) / 2;
-			}
-			else
-				std::exit(1);
-		}
-		aux.insert(aux.begin() + j, x);
-	}
-	return aux;
+		binary_insertion(vect, x, mid - 1, idx_min);
+}
+
+void print_vector(std::vector<int> vector)
+{
+	for (size_t i = 0; i < vector.size(); i++)
+		std::cout << vector[i] << " ";
+	std::cout << std::endl;
 }
 
 int main()
 {
-	//cambiar estos 2 valores para cambiar las listas generadas:
-	int long_lista = 9;
-	int num_delete = 4;
-	std::vector<int> vect;
-
-	// darle valores al vector
-	for (int i = 0; i < long_lista; i++)
-	{
-		vect.push_back(i + 1);
-	}
-	// 1, 2, 3, 4, 5, 6, 7, 8, 9
-	//eliminar el elemento de índice...
-	vect.erase(vect.begin() + num_delete - 1); 
-
-	//numero a insertar en la lista ordenada, el mismo que se ha borrado
-	int x = num_delete; 
-	// 1, 2, 3, -4-, 5, 6, 7, 8, 9
-
+	
+	std::vector<int> vect = {1, 3};
+	int x = 4; 
+	
 	std::cout << "Antes:" << std::endl;
-	for (size_t i = 0; i < vect.size(); i++)
-		std::cout << vect[i] << ", ";
-	std::cout << std::endl;
+	print_vector(vect);
 
-
-	std::vector<int> vect_nuevo = binary_insertion(vect, x);
-	
-	
+	binary_insertion(vect, x, vect.size() - 1, 0);
+		
 	std::cout << "Después:" << std::endl;
-	for (size_t i = 0; i < vect_nuevo.size(); i++)
-	{
-		std::cout << vect_nuevo[i] << ", ";
-	}
-	std::cout << std::endl;
+	print_vector(vect);
 	
 	return (0);
 }
