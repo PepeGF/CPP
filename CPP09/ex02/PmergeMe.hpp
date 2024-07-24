@@ -19,7 +19,7 @@ typedef std::vector<std::pair<int, int> >::iterator VectPairIntIter;
 VecPairInt pmergeme(VecPairInt &vect);
 VecPairInt create_fill_container(int argc, char const *argv[]);
 void validate_number(char const *argv);
-PairInt make_even(VecPairInt &bigger_sort);
+PairInt get_last_from_odd(VecPairInt &bigger_sort);
 void create_vectors(VecPairInt &bigger_sort,
 					VecPairInt &bigger,
 					VecPairInt &bigger_replica,

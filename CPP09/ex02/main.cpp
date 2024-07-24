@@ -22,13 +22,32 @@ VecPairInt pmergeme(VecPairInt &bigger_sort) // ojo, quizas no sirva referencia
 	VecPairInt smaller_replica;
 	VecPairInt smaller_sorted; 		(void)smaller_sorted;
 	
-	last = make_even(bigger_sort); // soluciona el problema del último impar y 
+	last = get_last_from_odd(bigger_sort); // soluciona el problema del último impar y 
 	// facilita la creación de los vectores grande y peq al poder avanzar de 2 en 2
 	create_vectors(bigger_sort, bigger, bigger_replica, smaller, smaller_replica);
 	add_last_to_smaller(last, smaller, smaller_replica);
+	std::cout << "------------ANTES DE LA RECURSIVIDAD-------------\n\n";
+	std::cout << "bigger: \n";
+	print_vector(bigger);
+	std::cout << "\nbigger_replica: \n";
+	print_vector(bigger_replica);
+	std::cout << "\nsmaller: \n";
+	print_vector(smaller);
+	std::cout << "\nsmaller_replica: \n";
+	print_vector(smaller_replica);
 	if (bigger.size() != 1)			//salida para la recursividad
 		bigger_sort = pmergeme(bigger);
-	
+	std::cout << "······    DESUPUÉS DE LA RECURSIVIDAD     ······\n\n";
+	std::cout << "bigger: \n";
+	print_vector(bigger);
+	std::cout << "\nbigger_replica: \n";
+	print_vector(bigger_replica);
+	std::cout << "\nsmaller: \n";
+	print_vector(smaller);
+	std::cout << "\nsmaller_replica: \n";
+	print_vector(smaller_replica);
+	// std::cout << "smaller_sorted: \n";
+	// print_vector(smaller_sorted);
 
 	// sort_len_1(bigger_replica, smaller_replica, last);
 	// sort_with_ insertion(bigger_sort, bigger_replica, smaller, smaller_replica, smaller_sorted, last);
@@ -205,7 +224,7 @@ void create_vectors(VecPairInt &bigger_sort,
 }
 
 
-PairInt make_even(VecPairInt &bigger_sort)
+PairInt get_last_from_odd(VecPairInt &bigger_sort)
 {
 	PairInt last (-1, -1);
 	if (bigger_sort.size() % 2 == 1)
@@ -257,13 +276,13 @@ void validate_number(char const *argv)
 void print_vector(VecPairInt vect)
 {
 	for (VectPairIntIter it = vect.begin(); it != vect.end(); it++)
-		std::cout << std::setfill(' ') << std::setw(3) << (*it).first << " ";
+		std::cout << std::setfill(' ') << std::setw(2) << (*it).first << " ";
 	std::cout << std::endl;
 	for (VectPairIntIter it = vect.begin(); it != vect.end(); it++)
-		std::cout <<  "--- ";
+		std::cout <<  "-- ";
 	std::cout << std::endl;
 	for (VectPairIntIter it = vect.begin(); it != vect.end(); it++)
-		std::cout << std::setfill(' ') << std::setw(3) << (*it).second << " ";
+		std::cout << std::setfill(' ') << std::setw(2) << (*it).second << " ";
 	std::cout << std::endl;
 }
 
