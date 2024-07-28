@@ -25,8 +25,34 @@ VecPairInt pmergeme(VecPairInt &bigger_sort) // ojo, quizas no sirva referencia
 	last = get_last_from_odd(bigger_sort); // soluciona el problema impar
 	create_vectors(bigger_sort, bigger, bigger_replica, smaller, smaller_replica);
 	add_last_to_smaller(last, smaller, smaller_replica);
+	std::cout << "------------ANTES DE LA RECURSIVIDAD-------------\n\n";
+	std::cout << "bigger parámetro (bigger_sort):\n";
+	print_vector(bigger_sort);
+	std::cout << "bigger: \n";
+	print_vector(bigger);
+	std::cout << "\nbigger_replica: \n";
+	print_vector(bigger_replica);
+	std::cout << "\nsmaller: \n";
+	print_vector(smaller);
+	std::cout << "\nsmaller_replica: \n";
+	print_vector(smaller_replica);
+	std::cout << "\nsmaller_sorted: \n";
+	print_vector(smaller_sorted); 
 	if (bigger.size() != 1)			//salida para la recursividad
 		bigger_sort = pmergeme(bigger);
+	std::cout << "······    DESUPUÉS DE LA RECURSIVIDAD     ······\n\n";
+	std::cout << "bigger parámetro (bigger_sort):\n";
+	print_vector(bigger_sort);
+	std::cout << "bigger: \n";
+	print_vector(bigger);
+	std::cout << "\nbigger_replica: \n";
+	print_vector(bigger_replica);
+	std::cout << "\nsmaller: \n";
+	print_vector(smaller);
+	std::cout << "\nsmaller_replica: \n";
+	print_vector(smaller_replica);
+	std::cout << "smaller_sorted: \n";
+	print_vector(smaller_sorted); 
 	//sorting
 	sort_with_insertion(bigger_sort, bigger_replica, smaller, smaller_replica, smaller_sorted, last);
 
@@ -50,6 +76,7 @@ VecPairInt sort_with_insertion(VecPairInt &bigger_sort, VecPairInt &bigger_repli
 	size_t bigger_sort_len;
 	std::vector<int> jacobsthal_serie;
 	std::vector<int> index_aux;
+	int insertion_index;
 	VecPairInt auxbig;
 	VecPairInt auxsmall;
 
@@ -61,7 +88,22 @@ VecPairInt sort_with_insertion(VecPairInt &bigger_sort, VecPairInt &bigger_repli
 		auxbig.push_back(bigger_replica[bigger_sort[i].second]);
 		auxsmall.push_back(smaller_replica[bigger_sort[i].second]);
 	}
-	
+	for (size_t i = 0; i < auxsmall.size(); i++)
+	{
+		insertion_index = binary_insertion(auxbig, auxsmall[i], index_aux[i], 0);
+		for (size_t j = insertion_index; j < smaller.size(); j++)
+		{
+			index_aux[j]++;
+		}
+		
+		//insert auxsmall[i] into auxbig
+		//update index_aux
+	}
+	// if (last.second != -1)
+	// 	binary_insertion(auxbig, last, auxbig.size() - 1, 0);
+	//bigger_srot = auxbig  ???
+	return auxbig;
+
 
 /* 	std::cout << "Long vector: " << bigger_sort.size() << std::endl;
 	for (size_t i = 0; i < jacobsthal_serie.size(); i++)
@@ -78,78 +120,33 @@ VecPairInt sort_with_insertion(VecPairInt &bigger_sort, VecPairInt &bigger_repli
 	return bigger_sort;
 }
 
-std::vector<int> jacobsthal(int const n)
-{
-	// esta función genera una lista de los n primeros números de la serie de Jacobsthal
-	// Jn = Jn-1 +2*Jn-2
 
-	int arr[] = {0, 1, 1};
-	std::vector<int> aux(arr, arr + sizeof(arr) / sizeof(arr[0]));
-	std::vector<int> jacob(arr, arr + sizeof(arr) / sizeof(arr[0]) - 1);
-	int i = aux.size();
-	int value;
-	while (n > aux.back())
-	{
-		value = aux[i - 1] + 2 * aux[i - 2];
-		aux.push_back(value);
-		jacob.push_back(value);
-		i++;
-	}
-	if (n == 0)
-	{
-		jacob.pop_back();
-		return jacob;
-	}
-	return jacob;
-}
-
-std::vector<int> create_serie(int n)
-{
-	int j = 0;
-	std::vector<int> serie;
-	std::vector<int> v;
-
-	v = jacobsthal(n);
-	if (n == 0 || n == 1)
-	{
-		return v;
-	}
-	serie.push_back(0);
-	for (size_t i = 1; i < v.size(); i++)
-	{
-		j = v[i];
-		while (j > v[i - 1])
-		{
-			if (j <= n)
-				serie.push_back(j);
-			j--;
-		}
-	}
-
-	return serie;
-}
-
-void  binary_insertion(VecPairInt &bigger_sort, PairInt x, int idx_max, int idx_min)
+int  binary_insertion(VecPairInt &bigger_sort, PairInt to_insert, int idx_max, int idx_min)
 {
 	int mid = (idx_max + idx_min) / 2;
 
 	if (bigger_sort.size() == 0)
 	{
-		bigger_sort.insert(bigger_sort.begin(), x);
-		return;
+		bigger_sort.insert(bigger_sort.begin(), to_insert);
+		return (0);
 	}
 	if (idx_max <= idx_min)
 	{
-		if (x > bigger_sort[idx_min])
-			bigger_sort.insert(bigger_sort.begin() + idx_min + 1, x);
+		if (to_insert > bigger_sort[idx_min])
+		{
+			bigger_sort.insert(bigger_sort.begin() + idx_min + 1, to_insert);
+			return (idx_min + 1);
+		}
 		else
-			bigger_sort.insert(bigger_sort.begin() + idx_min, x);
-		return;
+		{
+			bigger_sort.insert(bigger_sort.begin() + idx_min, to_insert);
+			return (idx_min);
+		}
 	}
-	if (x > bigger_sort[mid])
-		binary_insertion(bigger_sort, x, idx_max, mid + 1);
+	if (to_insert > bigger_sort[mid])
+		return binary_insertion(bigger_sort, to_insert, idx_max, mid + 1);
 	else
-		binary_insertion(bigger_sort, x, mid - 1, idx_min);
+		return binary_insertion(bigger_sort, to_insert, mid - 1, idx_min);
 }
 
 
@@ -259,46 +256,6 @@ VecPairInt create_fill_container(int argc, char const *argv[])
 		bigger_sort.push_back(temp);
 	}
 	return bigger_sort;
-}
-
-void validate_number(char const *argv)
-{
-	std::string aux = static_cast<std::string>(argv);
-
-	for (size_t i = 0; i < aux.length(); i++)
-	{
-		if (isdigit(argv[i]) == false)
-		{
-			std::cerr << "Error" << std::endl;
-			exit(EXIT_FAILURE);
-		}
-	}
-	double temp;
-	temp = atof(argv);
-	if (temp > INT_MAX || temp < INT_MIN)
-	{
-		std::cerr << "Error" << std::endl;
-		exit(EXIT_FAILURE);
-	}
-}
-
-void print_vector(VecPairInt vect)
-{
-	for (VectPairIntIter it = vect.begin(); it != vect.end(); it++)
-		std::cout << std::setfill(' ') << std::setw(2) << (*it).first << " ";
-	std::cout << std::endl;
-	for (VectPairIntIter it = vect.begin(); it != vect.end(); it++)
-		std::cout <<  "-- ";
-	std::cout << std::endl;
-	for (VectPairIntIter it = vect.begin(); it != vect.end(); it++)
-		std::cout << std::setfill(' ') << std::setw(2) << (*it).second << " ";
-	std::cout << std::endl;
-} 
-
-
-void print_pair(PairInt pair)
-{
-	std::cout << pair.first << " || " << pair.second << std::endl;
 }
 
 

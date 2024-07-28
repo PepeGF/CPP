@@ -2,59 +2,45 @@
 #include <vector>
 #include <algorithm>
 
-std::vector<int> jacobsthal(int const n) {
-    // esta función genera una lista de los n primeros números de la serie de Jacobsthal
-    // Jn = Jn-1 + 2 * Jn-2
+int  binary_insertion(std::vector<int> &bigger_sort, int to_insert, int idx_max, int idx_min)
+{
+	int mid = (idx_max + idx_min) / 2;
 
-    std::vector<int> jacob;
-    if (n >= 0) jacob.push_back(0); // J(0)
-    if (n >= 1) jacob.push_back(1); // J(1)
-    for (int i = 2; ; ++i) {
-        int next_value = jacob[i-1] + 2 * jacob[i-2];
-        if (next_value > n) break;
-        jacob.push_back(next_value);
-    }
-
-    return jacob;
-}
-
-std::vector<int> create_serie(const std::vector<int>& jacob, int n) {
-    std::vector<int> result;
-    std::vector<bool> included(n + 1, false);
-
-    // Marcar todos los números de Jacobsthal en el rango [0, n] como incluidos
-    for (std::vector<int>::const_iterator it = jacob.begin(); it != jacob.end(); ++it) {
-        int value = *it;
-        if (value <= n) {
-            result.push_back(value);
-            included[value] = true;
-        }
-    }
-
-    // Añadir los números restantes en el rango [0, n] que no están en la serie de Jacobsthal
-    for (int i = 0; i <= n; ++i) {
-        if (!included[i]) {
-            result.push_back(i);
-        }
-    }
-
-    return result;
+	if (bigger_sort.size() == 0)
+	{
+		bigger_sort.insert(bigger_sort.begin(), to_insert);
+		return (0);
+	}
+	if (idx_max <= idx_min)
+	{
+		if (to_insert > bigger_sort[idx_min])
+		{
+			bigger_sort.insert(bigger_sort.begin() + idx_min + 1, to_insert);
+			return (idx_min + 1);
+		}
+		else
+		{
+			bigger_sort.insert(bigger_sort.begin() + idx_min, to_insert);
+			return (idx_min);
+		}
+	}
+	if (to_insert > bigger_sort[mid])
+		return binary_insertion(bigger_sort, to_insert, idx_max, mid + 1);
+	else
+		return binary_insertion(bigger_sort, to_insert, mid - 1, idx_min);
 }
 
 int main() {
-    int n;
-    std::cout << "Enter the maximum value for the series: ";
-    std::cin >> n;
-
-    std::vector<int> jacob = jacobsthal(n);
-
-    std::vector<int> serie = create_serie(jacob, n);
-
-    std::cout << "Generated series: ";
-    for (std::vector<int>::iterator it = serie.begin(); it != serie.end(); ++it) {
-        std::cout << *it << " ";
+    std::vector<int> sq;
+    int check;
+    for (int i = 1; i < 3; i++)
+    {
+        sq.push_back(i*i);
     }
+    check = binary_insertion(sq, 20000, static_cast<int>(sq.size() - 1), 0);
+    std::cout << check << std::endl;
+    for (size_t i = 0; i < sq.size(); i++)
+    {std::cout << sq[i] << " ";}
     std::cout << std::endl;
-
     return 0;
 }

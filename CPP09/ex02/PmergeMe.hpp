@@ -49,8 +49,8 @@ VecPairInt sort_with_insertion(VecPairInt &bigger_sort,
 							VecPairInt &smaller_replica, 
 							VecPairInt &smaller_sort, 
 							PairInt &last);
-void  binary_insertion(VecPairInt &bigger_sort, 
-						PairInt x, 
+int  binary_insertion(VecPairInt &bigger_sort, 
+						PairInt to_insert, 
 						int idx_max, 
 						int idx_min);
 std::vector<int> jacobsthal(int const n);

@@ -11,11 +11,13 @@ NAME = PmergeMe
 
 BIN_PATH = bin/
 
-SRCS =	main.cpp 
+SRCS =	main.cpp \
+		print_functions.cpp \
+		Jacobsthal_numbers.cpp
 
 OBJS = $(SRCS:%.cpp=bin/%.o)
 
-CC = c++
+CC = g++
 CFLAGS = -std=c++98 -Wall -Werror -Wextra -g -O0
 RM = rm -f
 
