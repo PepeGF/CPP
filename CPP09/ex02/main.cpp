@@ -22,30 +22,14 @@ VecPairInt pmergeme(VecPairInt &bigger_sort) // ojo, quizas no sirva referencia
 	VecPairInt smaller_replica;
 	VecPairInt smaller_sorted; 		(void)smaller_sorted;
 	
-	last = get_last_from_odd(bigger_sort); // soluciona el problema del último impar y 
-	// facilita la creación de los vectores grande y peq al poder avanzar de 2 en 2
+	last = get_last_from_odd(bigger_sort); // soluciona el problema impar
 	create_vectors(bigger_sort, bigger, bigger_replica, smaller, smaller_replica);
 	add_last_to_smaller(last, smaller, smaller_replica);
-	std::cout << "------------ANTES DE LA RECURSIVIDAD-------------\n\n";
-	std::cout << "bigger: \n";
-	print_vector(bigger);
-	std::cout << "\nbigger_replica: \n";
-	print_vector(bigger_replica);
-	std::cout << "\nsmaller: \n";
-	print_vector(smaller);
-	std::cout << "\nsmaller_replica: \n";
-	print_vector(smaller_replica);
 	if (bigger.size() != 1)			//salida para la recursividad
 		bigger_sort = pmergeme(bigger);
-	std::cout << "······    DESUPUÉS DE LA RECURSIVIDAD     ······\n\n";
-	std::cout << "bigger: \n";
-	print_vector(bigger);
-	std::cout << "\nbigger_replica: \n";
-	print_vector(bigger_replica);
-	std::cout << "\nsmaller: \n";
-	print_vector(smaller);
-	std::cout << "\nsmaller_replica: \n";
-	print_vector(smaller_replica);
+	//sorting
+	sort_with_insertion(bigger_sort, bigger_replica, smaller, smaller_replica, smaller_sorted, last);
+
 	// std::cout << "smaller_sorted: \n";
 	// print_vector(smaller_sorted);
 
@@ -62,7 +46,30 @@ VecPairInt sort_with_insertion(VecPairInt &bigger_sort, VecPairInt &bigger_repli
 	(void)smaller_replica;
 	(void)smaller_sort;
 	(void)last;
-/* 	if (smaller_replica.empty() == false)
+
+	size_t bigger_sort_len;
+	std::vector<int> jacobsthal_serie;
+	std::vector<int> index_aux;
+	VecPairInt auxbig;
+	VecPairInt auxsmall;
+
+	bigger_sort_len = bigger_sort.size();
+	jacobsthal_serie = create_serie(bigger_sort_len - 1);
+	for (size_t i = 0; i < bigger_sort_len; i++)
+	{
+		index_aux.push_back(i);
+		auxbig.push_back(bigger_replica[bigger_sort[i].second]);
+		auxsmall.push_back(smaller_replica[bigger_sort[i].second]);
+	}
+	
+
+/* 	std::cout << "Long vector: " << bigger_sort.size() << std::endl;
+	for (size_t i = 0; i < jacobsthal_serie.size(); i++)
+	{
+		std::cout << jacobsthal_serie[i] << " ";
+	}
+	std::cout << std::endl; */
+ /* 	if (smaller_replica.empty() == false)
 	{
 		replicate_changes(bigger_sort, bigger_replica, smaller, smaller_replica, smaller_sort, last);
 		bigger_sort = insert_small_into_big(bigger_sort, smaller_sort);
@@ -96,11 +103,13 @@ std::vector<int> jacobsthal(int const n)
 	return jacob;
 }
 
-std::vector<int> create_serie(std::vector<int> v, int n)
+std::vector<int> create_serie(int n)
 {
 	int j = 0;
 	std::vector<int> serie;
+	std::vector<int> v;
 
+	v = jacobsthal(n);
 	if (n == 0 || n == 1)
 	{
 		return v;
@@ -284,7 +293,7 @@ void print_vector(VecPairInt vect)
 	for (VectPairIntIter it = vect.begin(); it != vect.end(); it++)
 		std::cout << std::setfill(' ') << std::setw(2) << (*it).second << " ";
 	std::cout << std::endl;
-}
+} 
 
 
 void print_pair(PairInt pair)
@@ -363,3 +372,29 @@ void	sort_len_1(VecPairInt &bigger_replica, VecPairInt &smaller_replica, PairInt
 		smaller_replica.clear();   // aclarar para la explicación en la corrección
 	}
 } */
+/* 
+std::cout << "------------ANTES DE LA RECURSIVIDAD-------------\n\n";
+	std::cout << "bigger parámetro (bigger_sort):\n";
+	print_vector(bigger_sort);
+	std::cout << "bigger: \n";
+	print_vector(bigger);
+	std::cout << "\nbigger_replica: \n";
+	print_vector(bigger_replica);
+	std::cout << "\nsmaller: \n";
+	print_vector(smaller);
+	std::cout << "\nsmaller_replica: \n";
+	print_vector(smaller_replica);
+	if (bigger.size() != 1)			//salida para la recursividad
+		bigger_sort = pmergeme(bigger);
+	std::cout << "······    DESUPUÉS DE LA RECURSIVIDAD     ······\n\n";
+	std::cout << "bigger: \n";
+	print_vector(bigger);
+	std::cout << "\nbigger_replica: \n";
+	print_vector(bigger_replica);
+	std::cout << "\nsmaller: \n";
+	print_vector(smaller);
+	std::cout << "\nsmaller_replica: \n";
+	print_vector(smaller_replica);
+	// std::cout << "smaller_sorted: \n";
+	// print_vector(smaller_sorted); 
+*/

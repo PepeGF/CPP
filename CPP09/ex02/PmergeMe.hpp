@@ -53,6 +53,9 @@ void  binary_insertion(VecPairInt &bigger_sort,
 						PairInt x, 
 						int idx_max, 
 						int idx_min);
+std::vector<int> jacobsthal(int const n);
+std::vector<int> create_serie(int n);
+
 
 
 void print_vector(std::vector< std::pair<int, int> > vect);
