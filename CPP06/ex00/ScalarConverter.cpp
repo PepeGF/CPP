@@ -125,7 +125,8 @@ void float_conversion(const std::string& literal)
 	else
 	{
 		std::cout << "char: impossible" << std::endl;
-		if (aux < __INT_MAX__ && aux > -__INT_MAX__ - 1)
+		if (aux < static_cast<float>(__INT_MAX__) 
+			&& aux > static_cast<float>(-__INT_MAX__ - 1))
 			std::cout << "int: " << static_cast<int>(aux) << std::endl;
 		else
 			std::cout << "int: overflow" << std::endl;

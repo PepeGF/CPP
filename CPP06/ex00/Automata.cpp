@@ -44,8 +44,9 @@ void	Automata::automata_init()
 	this->state_function = &Automata::set_state;
 }
 
-Automata::Automata(void *data) : data(data), state(0)
+Automata::Automata(void *data) : state(0)
 {
+	(void)data;
 	automata_init();
 }
 
@@ -57,8 +58,7 @@ Automata::Automata() : state(0)
 Automata::~Automata()
 {
 	delete[] this->alphabet;
-	// delete this->alphabet;
-	delete[] this->errors; //potencial error si no hay nada en el array de errores
+	delete[] this->errors;
 	
 }
 
@@ -79,7 +79,7 @@ int Automata::evaluate()
 		this->state = this->set_state(this->state, idx(this->alphabet, this->str[this->i]));
 		++(this->i);
 	}
-	return (this->state); //no lo tengo del todo claro...
+	return (this->state);
 }
 
 int Automata::idx(std::string *alphabet, char c)
