@@ -50,6 +50,7 @@ int	get_type(const std::string& literal, Automata *a)
 
 void	char_conversion(const std::string& literal)
 {
+	std::cout << literal << "<-\n";
 	if (literal[0] >= ' ' || literal[0] <= '~')
 		std::cout << "char: '" << literal[0] << "'" << std::endl;
 	else
@@ -75,10 +76,20 @@ void	int_conversion(const std::string& literal)
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: int overflow" << std::endl;
 	}
-	else
+	else if (aux >= 32 && aux <= 126)
 	{
 		std::cout << "char: " << static_cast<char>(aux) << std::endl;
-		std::cout << "int: " << atoi(literal.c_str()) << std::endl;
+		std::cout << "int: " << static_cast<int>(aux) << std::endl;
+	}
+	else if ((aux >= 0 && aux < 32) || (aux > 126 && aux <= 255))
+	{
+		std::cout << "char: not displayable" << std::endl;
+		std::cout << "int: " << static_cast<int>(aux) << std::endl;
+	}
+	else
+	{
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: " << static_cast<int>(aux) << std::endl;
 	}
 		std::cout << "float: " << static_cast<float>(aux) << ".0f" << std::endl;
 		std::cout << "double: " << static_cast<double>(aux) << ".0" << std::endl;
@@ -94,7 +105,7 @@ void	double_conversion(const std::string& literal)
 		if (aux >= 32 && aux <= 126)
 			std::cout << "char: " << static_cast<char>(aux) << std::endl;
 		else
-			std::cout << "char: not printable" << std::endl;
+			std::cout << "char: not displayable" << std::endl;
 		std::cout << "int: " << static_cast<int>(aux) << std::endl;
 	}
 	else
@@ -119,7 +130,7 @@ void float_conversion(const std::string& literal)
 		if (aux >= 32 && aux <= 126)
 			std::cout << "char: " << static_cast<char>(aux) << std::endl;
 		else
-			std::cout << "char: not printable" << std::endl;
+			std::cout << "char: not displayable" << std::endl;
 		std::cout << "int: " << static_cast<int>(aux) << std::endl;
 	}
 	else
