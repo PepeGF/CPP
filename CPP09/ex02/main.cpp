@@ -1,5 +1,7 @@
 # include "PmergeMe.hpp"
 
+int ronda = 0;
+
 int main(int argc, char const *argv[])
 {
 	VecPairInt bigger_sort;
@@ -7,24 +9,14 @@ int main(int argc, char const *argv[])
 	if (argc > 1)
 	{
 		bigger_sort = create_fill_container(argc, argv);
-		print_vector(bigger_sort);
+		// print_vector(bigger_sort);
 		pmergeme(bigger_sort);
 	}
 	return 0;
 }
 
-VecPairInt pmergeme(VecPairInt &bigger_sort) // ojo, quizas no sirva referencia
+void print_all_antes(VecPairInt bigger_sort,VecPairInt bigger,VecPairInt bigger_replica,VecPairInt smaller, VecPairInt smaller_replica, VecPairInt smaller_sorted)
 {
-	PairInt last;
-	VecPairInt bigger;
-	VecPairInt bigger_replica;
-	VecPairInt smaller;
-	VecPairInt smaller_replica;
-	VecPairInt smaller_sorted; 		(void)smaller_sorted;
-	
-	last = get_last_from_odd(bigger_sort); // soluciona el problema impar
-	create_vectors(bigger_sort, bigger, bigger_replica, smaller, smaller_replica);
-	add_last_to_smaller(last, smaller, smaller_replica);
 	std::cout << "------------ANTES DE LA RECURSIVIDAD-------------\n\n";
 	std::cout << "bigger parámetro (bigger_sort):\n";
 	print_vector(bigger_sort);
@@ -38,8 +30,10 @@ VecPairInt pmergeme(VecPairInt &bigger_sort) // ojo, quizas no sirva referencia
 	print_vector(smaller_replica);
 	std::cout << "\nsmaller_sorted: \n";
 	print_vector(smaller_sorted); 
-	if (bigger.size() != 1)			//salida para la recursividad
-		bigger_sort = pmergeme(bigger);
+}
+
+void print_all_despues(VecPairInt bigger_sort,VecPairInt bigger,VecPairInt bigger_replica,VecPairInt smaller, VecPairInt smaller_replica, VecPairInt smaller_sorted)
+{
 	std::cout << "······    DESUPUÉS DE LA RECURSIVIDAD     ······\n\n";
 	std::cout << "bigger parámetro (bigger_sort):\n";
 	print_vector(bigger_sort);
@@ -53,6 +47,28 @@ VecPairInt pmergeme(VecPairInt &bigger_sort) // ojo, quizas no sirva referencia
 	print_vector(smaller_replica);
 	std::cout << "smaller_sorted: \n";
 	print_vector(smaller_sorted); 
+}
+
+VecPairInt pmergeme(VecPairInt &bigger_sort) // ojo, quizas no sirva referencia
+{
+	PairInt last;
+	VecPairInt bigger;
+	VecPairInt bigger_replica;
+	VecPairInt smaller;
+	VecPairInt smaller_replica;
+	VecPairInt smaller_sorted; 		(void)smaller_sorted;
+ronda++;
+	
+	last = get_last_from_odd(bigger_sort); // soluciona el problema impar
+	create_vectors(bigger_sort, bigger, bigger_replica, smaller, smaller_replica);
+	add_last_to_smaller(last, smaller, smaller_replica);
+	// print_all_antes(bigger_sort, bigger, bigger_replica, smaller, smaller_replica, smaller_sorted);
+	if (bigger.size() != 1)			//salida para la recursividad
+		bigger_sort = pmergeme(bigger);
+ronda--;
+std::cout << "Ronda: " << ronda << std::endl;
+	// print_all_despues(bigger_sort, bigger, bigger_replica, smaller, smaller_replica, smaller_sorted);
+	
 	//sorting
 	sort_with_insertion(bigger_sort, bigger_replica, smaller, smaller_replica, smaller_sorted, last);
 
@@ -66,12 +82,7 @@ VecPairInt pmergeme(VecPairInt &bigger_sort) // ojo, quizas no sirva referencia
 
 VecPairInt sort_with_insertion(VecPairInt &bigger_sort, VecPairInt &bigger_replica, VecPairInt &smaller, VecPairInt &smaller_replica, VecPairInt &smaller_sort, PairInt &last)
 {
-	(void)bigger_sort;
-	(void)bigger_replica;
-	(void)smaller;
-	(void)smaller_replica;
-	(void)smaller_sort;
-	(void)last;
+	(void)bigger_sort, (void)bigger_replica; (void)smaller; (void)smaller_replica; (void)smaller_sort; (void)last;
 
 	size_t bigger_sort_len;
 	std::vector<int> jacobsthal_serie;
@@ -82,9 +93,18 @@ VecPairInt sort_with_insertion(VecPairInt &bigger_sort, VecPairInt &bigger_repli
 
 	bigger_sort_len = bigger_sort.size();
 	jacobsthal_serie = create_serie(bigger_sort_len - 1);
+	if (ronda == 0)
+	{
+		std::cout << "bigger_sort_len: " << bigger_sort_len << std::endl;
+	}
 	for (size_t i = 0; i < bigger_sort_len; i++)
 	{
 		index_aux.push_back(i);
+		if (ronda == 0)
+		{
+			std::cout << "i: " << i << std::endl;
+		}
+
 		auxbig.push_back(bigger_replica[bigger_sort[i].second]);
 		auxsmall.push_back(smaller_replica[bigger_sort[i].second]);
 	}
