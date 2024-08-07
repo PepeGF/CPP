@@ -9,13 +9,12 @@ int main(int argc, char const *argv[])
 	if (argc > 1)
 	{
 		bigger_sort = create_fill_container(argc, argv);
-		// print_vector(bigger_sort);
 		pmergeme(bigger_sort);
 	}
 	return 0;
 }
 
-void print_all_antes(VecPairInt bigger_sort,VecPairInt bigger,VecPairInt bigger_replica,VecPairInt smaller, VecPairInt smaller_replica, VecPairInt smaller_sorted)
+void print_all_antes(VecPairInt bigger_sort,VecPairInt bigger,VecPairInt bigger_replica,VecPairInt smaller, VecPairInt smaller_replica)
 {
 	std::cout << "------------ANTES DE LA RECURSIVIDAD-------------\n\n";
 	std::cout << "bigger parámetro (bigger_sort):\n";
@@ -28,11 +27,9 @@ void print_all_antes(VecPairInt bigger_sort,VecPairInt bigger,VecPairInt bigger_
 	print_vector(smaller);
 	std::cout << "\nsmaller_replica: \n";
 	print_vector(smaller_replica);
-	std::cout << "\nsmaller_sorted: \n";
-	print_vector(smaller_sorted); 
 }
 
-void print_all_despues(VecPairInt bigger_sort,VecPairInt bigger,VecPairInt bigger_replica,VecPairInt smaller, VecPairInt smaller_replica, VecPairInt smaller_sorted)
+void print_all_despues(VecPairInt bigger_sort,VecPairInt bigger,VecPairInt bigger_replica,VecPairInt smaller, VecPairInt smaller_replica)
 {
 	std::cout << "······    DESUPUÉS DE LA RECURSIVIDAD     ······\n\n";
 	std::cout << "bigger parámetro (bigger_sort):\n";
@@ -45,8 +42,6 @@ void print_all_despues(VecPairInt bigger_sort,VecPairInt bigger,VecPairInt bigge
 	print_vector(smaller);
 	std::cout << "\nsmaller_replica: \n";
 	print_vector(smaller_replica);
-	std::cout << "smaller_sorted: \n";
-	print_vector(smaller_sorted); 
 }
 
 VecPairInt pmergeme(VecPairInt &bigger_sort) // ojo, quizas no sirva referencia
@@ -56,87 +51,60 @@ VecPairInt pmergeme(VecPairInt &bigger_sort) // ojo, quizas no sirva referencia
 	VecPairInt bigger_replica;
 	VecPairInt smaller;
 	VecPairInt smaller_replica;
-	VecPairInt smaller_sorted; 		(void)smaller_sorted;
 ronda++;
 	
 	last = get_last_from_odd(bigger_sort); // soluciona el problema impar
 	create_vectors(bigger_sort, bigger, bigger_replica, smaller, smaller_replica);
 	add_last_to_smaller(last, smaller, smaller_replica);
-	// print_all_antes(bigger_sort, bigger, bigger_replica, smaller, smaller_replica, smaller_sorted);
+	print_all_antes(bigger_sort, bigger, bigger_replica, smaller, smaller_replica);
 	if (bigger.size() != 1)			//salida para la recursividad
 		bigger_sort = pmergeme(bigger);
+	else
+		print_all_despues(bigger_sort, bigger, bigger_replica, smaller, smaller_replica);
 ronda--;
-std::cout << "Ronda: " << ronda << std::endl;
+// std::cout << "Ronda: " << ronda << std::endl;
 	// print_all_despues(bigger_sort, bigger, bigger_replica, smaller, smaller_replica, smaller_sorted);
 	
 	//sorting
-	sort_with_insertion(bigger_sort, bigger_replica, smaller, smaller_replica, smaller_sorted, last);
+	sort_with_insertion(bigger_sort, bigger_replica, smaller, smaller_replica, last);
 
-	// std::cout << "smaller_sorted: \n";
-	// print_vector(smaller_sorted);
-
-	// sort_len_1(bigger_replica, smaller_replica, last);
-	// sort_with_ insertion(bigger_sort, bigger_replica, smaller, smaller_replica, smaller_sorted, last);
-	return bigger_replica;
+	return bigger_sort;
 }
 
-VecPairInt sort_with_insertion(VecPairInt &bigger_sort, VecPairInt &bigger_replica, VecPairInt &smaller, VecPairInt &smaller_replica, VecPairInt &smaller_sort, PairInt &last)
+VecPairInt sort_with_insertion(VecPairInt &bigger_sort, VecPairInt &bigger_replica, VecPairInt &smaller, VecPairInt &smaller_replica, PairInt &last)
 {
-	(void)bigger_sort, (void)bigger_replica; (void)smaller; (void)smaller_replica; (void)smaller_sort; (void)last;
+	(void)bigger_sort, (void)bigger_replica; (void)smaller; (void)smaller_replica; (void)last;
 
-	size_t bigger_sort_len;
 	std::vector<int> jacobsthal_serie;
 	std::vector<int> index_aux;
 	int insertion_index;
-	VecPairInt auxbig;
-	VecPairInt auxsmall;
+	int bigger_replica_len;
 
-	bigger_sort_len = bigger_sort.size();
-	jacobsthal_serie = create_serie(bigger_sort_len - 1);
-	if (ronda == 0)
-	{
-		std::cout << "bigger_sort_len: " << bigger_sort_len << std::endl;
-	}
-	for (size_t i = 0; i < bigger_sort_len; i++)
-	{
+	bigger_replica_len = static_cast<int>(bigger_sort.size());
+	jacobsthal_serie = create_serie(bigger_replica_len - 1);
+	std::cout << "\nJacobsthal: \n";
+	for (size_t t = 0; t < jacobsthal_serie.size(); t++)
+		std::cout << jacobsthal_serie[t] << " ";
+	std::cout << "\n" << std::endl;
+	for (int i = 0; i < bigger_replica_len; i++)
 		index_aux.push_back(i);
-		if (ronda == 0)
+	for (int i = 0; i < bigger_replica_len; i++)
+	{
+		insertion_index = binary_insertion(bigger_sort, 
+											smaller_replica[jacobsthal_serie[i]], 
+											0, 
+											index_aux[jacobsthal_serie[i]]);
+		for (size_t j = 0; j < index_aux.size(); j++)
 		{
-			std::cout << "i: " << i << std::endl;
+			if (insertion_index <= index_aux[j])
+				index_aux[j]++;
 		}
-
-		auxbig.push_back(bigger_replica[bigger_sort[i].second]);
-		auxsmall.push_back(smaller_replica[bigger_sort[i].second]);
+		if (last.second != -1)
+			insertion_index = binary_insertion(bigger_sort, 
+											last, 
+											0, 
+											static_cast<int>(bigger_sort.size()) - 1);
 	}
-	for (size_t i = 0; i < auxsmall.size(); i++)
-	{
-		insertion_index = binary_insertion(auxbig, auxsmall[i], index_aux[i], 0);
-		for (size_t j = insertion_index; j < smaller.size(); j++)
-		{
-			index_aux[j]++;
-		}
-		
-		//insert auxsmall[i] into auxbig
-		//update index_aux
-	}
-	// if (last.second != -1)
-	// 	binary_insertion(auxbig, last, auxbig.size() - 1, 0);
-	//bigger_srot = auxbig  ???
-	return auxbig;
-
-
-/* 	std::cout << "Long vector: " << bigger_sort.size() << std::endl;
-	for (size_t i = 0; i < jacobsthal_serie.size(); i++)
-	{
-		std::cout << jacobsthal_serie[i] << " ";
-	}
-	std::cout << std::endl; */
- /* 	if (smaller_replica.empty() == false)
-	{
-		replicate_changes(bigger_sort, bigger_replica, smaller, smaller_replica, smaller_sort, last);
-		bigger_sort = insert_small_into_big(bigger_sort, smaller_sort);
-		
-	} */
 	return bigger_sort;
 }
 

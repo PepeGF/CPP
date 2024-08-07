@@ -47,7 +47,6 @@ VecPairInt sort_with_insertion(VecPairInt &bigger_sort,
 							VecPairInt &bigger_replica, 
 							VecPairInt &smaller, 
 							VecPairInt &smaller_replica, 
-							VecPairInt &smaller_sort, 
 							PairInt &last);
 int  binary_insertion(VecPairInt &bigger_sort, 
 						PairInt to_insert, 
