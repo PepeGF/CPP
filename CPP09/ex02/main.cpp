@@ -10,7 +10,7 @@ int main(int argc, char const *argv[])
 	{
 		bigger_sort = create_fill_container(argc, argv);
 		pmergeme(bigger_sort);
-		// print_vector(bigger_sort);
+		print_vector(bigger_sort);
 	}
 	return 0;
 }
@@ -57,19 +57,23 @@ ronda++;
 	last = get_last_from_odd(bigger_sort); // soluciona el problema impar
 	create_vectors(bigger_sort, bigger, bigger_replica, smaller, smaller_replica);
 	add_last_to_smaller(last, smaller, smaller_replica);
-	print_all_antes(bigger_sort, bigger, bigger_replica, smaller, smaller_replica);
-	if (bigger.size() != 1)			//salida para la recursividad
+	// print_all_antes(bigger_sort, bigger, bigger_replica, smaller, smaller_replica);
+	if (bigger.size() != 1)		
+		//salida para la recursividad
 		bigger_sort = pmergeme(bigger);
 ronda--;
+
 	// print_vector(bigger_replica);
 // std::cout << "Ronda: " << ronda << std::endl;
-	// print_all_despues(bigger_sort, bigger, bigger_replica, smaller, smaller_replica, smaller_sorted);
+	// print_all_despues(bigger_sort, bigger, bigger_replica, smaller, smaller_replica);
 	
 	//sorting
-	sort_with_insertion(bigger_sort, bigger_replica, smaller, smaller_replica, last);
+	bigger_sort = sort_with_insertion(bigger_sort, bigger_replica, smaller, smaller_replica, last);
 
 	return bigger_sort;
 }
+
+
 
 VecPairInt sort_with_insertion(VecPairInt &bigger_sort, VecPairInt &bigger_replica, VecPairInt &smaller, VecPairInt &smaller_replica, PairInt &last)
 {
@@ -77,35 +81,40 @@ VecPairInt sort_with_insertion(VecPairInt &bigger_sort, VecPairInt &bigger_repli
 
 	std::vector<int> jacobsthal_serie;
 	std::vector<int> index_aux;
-	int insertion_index;
+	int insert_idx;
 	int bigger_replica_len;
 
 	bigger_replica_len = static_cast<int>(bigger_replica.size());
 	jacobsthal_serie = create_serie(smaller.size() - 1);
-	std::cout << "\nJacobsthal: \n";
-	for (size_t t = 0; t < jacobsthal_serie.size(); t++)
-		std::cout << jacobsthal_serie[t] << " ";
-	std::cout << "\n" << std::endl;
 	for (int i = 0; i < bigger_replica_len; i++)
 		index_aux.push_back(i);
-	for (int i = 0; i < bigger_replica_len; i++)
+	for (int i = 0; i < static_cast<int>(smaller_replica.size()); i++)
 	{
-		insertion_index = binary_insertion(bigger_sort, 
-											smaller_replica[jacobsthal_serie[i]], 
-											0, 
-											index_aux[jacobsthal_serie[i]]);
+		insert_idx = binary_insertion(bigger_replica, 
+									  smaller_replica[jacobsthal_serie[i]], 
+									  0, 
+									  jacobsthal_serie[i] == static_cast<int>(bigger_replica.size()) 
+										  ? static_cast<int>(bigger_sort.size()) - 1 
+										  : index_aux[jacobsthal_serie[i]]);
+
+											/* smaller_replica[jacobsthal_serie[i]] == last 
+												? index_aux[jacobsthal_serie[i]] 
+												: static_cast<int>(bigger_sort.size() - 1)); */
+
 		for (size_t j = 0; j < index_aux.size(); j++)
 		{
-			if (insertion_index <= index_aux[j])
+			if (insert_idx <= index_aux[j])
 				index_aux[j]++;
 		}
-		if (last.second != -1)
-			insertion_index = binary_insertion(bigger_sort, 
+		/* if (last.second != -1)
+			insert_idx = binary_insertion(bigger_sort, 
 											last, 
 											0, 
-											static_cast<int>(bigger_sort.size()) - 1);
+											static_cast<int>(bigger_sort.size()) - 1); */
 	}
-	return bigger_sort;
+	// std::cout << "\nBIGGER_SORT:\n";
+	// print_vector(bigger_sort);
+	return bigger_replica;
 }
 
 
@@ -272,6 +281,10 @@ void wololo(VecPairInt &bigs)
 			i++;
 	}
 	std::cout << &aux << " || " << &bigs << std::endl;
+
+	/* for (size_t t = 0; t < jacobsthal_serie.size(); t++)
+		std::cout << jacobsthal_serie[t] << " ";
+	std::cout << "\n" << std::endl; */
 
 /* void binary_insertion(PairInt pair, VecPairInt &bigger_sort, int index_min, int index_max)
 {
