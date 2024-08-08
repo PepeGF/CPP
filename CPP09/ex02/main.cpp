@@ -15,6 +15,8 @@ int main(int argc, char const *argv[])
 	return 0;
 }
 
+//  shuf -i 1-100 -n 21
+
 void print_all_antes(VecPairInt bigger_sort,VecPairInt bigger,VecPairInt bigger_replica,VecPairInt smaller, VecPairInt smaller_replica)
 {
 	std::cout << "------------ANTES DE LA RECURSIVIDAD-------------\n\n";
@@ -117,6 +119,10 @@ VecPairInt sort_with_insertion(VecPairInt &bigger_sort, VecPairInt &bigger_repli
 	return bigger_replica;
 }
 
+int min(int one, int sec)
+{
+	return (one <= sec ? one : sec);
+}
 
 int  binary_insertion(VecPairInt &bigger_sort, PairInt to_insert, int idx_max, int idx_min)
 {
@@ -131,12 +137,12 @@ int  binary_insertion(VecPairInt &bigger_sort, PairInt to_insert, int idx_max, i
 	{
 		if (to_insert > bigger_sort[idx_min])
 		{
-			bigger_sort.insert(bigger_sort.begin() + idx_min + 1, to_insert);
+			bigger_sort.insert(bigger_sort.begin() + min(idx_max, idx_min) + 1, to_insert);
 			return (idx_min + 1);
 		}
 		else
 		{
-			bigger_sort.insert(bigger_sort.begin() + idx_min, to_insert);
+			bigger_sort.insert(bigger_sort.begin() + min(idx_max, idx_min), to_insert);
 			return (idx_min);
 		}
 	}
