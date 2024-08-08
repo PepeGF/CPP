@@ -10,6 +10,7 @@ int main(int argc, char const *argv[])
 	{
 		bigger_sort = create_fill_container(argc, argv);
 		pmergeme(bigger_sort);
+		// print_vector(bigger_sort);
 	}
 	return 0;
 }
@@ -59,9 +60,8 @@ ronda++;
 	print_all_antes(bigger_sort, bigger, bigger_replica, smaller, smaller_replica);
 	if (bigger.size() != 1)			//salida para la recursividad
 		bigger_sort = pmergeme(bigger);
-	else
-		print_all_despues(bigger_sort, bigger, bigger_replica, smaller, smaller_replica);
 ronda--;
+	// print_vector(bigger_replica);
 // std::cout << "Ronda: " << ronda << std::endl;
 	// print_all_despues(bigger_sort, bigger, bigger_replica, smaller, smaller_replica, smaller_sorted);
 	
@@ -80,8 +80,8 @@ VecPairInt sort_with_insertion(VecPairInt &bigger_sort, VecPairInt &bigger_repli
 	int insertion_index;
 	int bigger_replica_len;
 
-	bigger_replica_len = static_cast<int>(bigger_sort.size());
-	jacobsthal_serie = create_serie(bigger_replica_len - 1);
+	bigger_replica_len = static_cast<int>(bigger_replica.size());
+	jacobsthal_serie = create_serie(smaller.size() - 1);
 	std::cout << "\nJacobsthal: \n";
 	for (size_t t = 0; t < jacobsthal_serie.size(); t++)
 		std::cout << jacobsthal_serie[t] << " ";
