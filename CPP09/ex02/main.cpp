@@ -4,16 +4,119 @@ int ronda = 0;
 
 int main(int argc, char const *argv[])
 {
-	VecPairInt bigger_sort;
+	std::vector<int> numbers;
 
 	if (argc > 1)
 	{
-		bigger_sort = create_fill_container(argc, argv);
-		pmergeme(bigger_sort);
-		print_vector(bigger_sort);
+		numbers = create_fill_container(argc, argv);
+		pmergeme(numbers);
+		print_vector(numbers);
 	}
 	return 0;
 }
+
+int calculate_max_index(VectInt jacob, int i, VectInt index, int big_len)
+{
+	if (jacob[i] == big_len)
+		return (big_len - 1);
+	else
+		return (index[jacob[i]]);
+}
+
+int binary_search(int num, VectInt big, int idx_min, int idx_max)
+{
+	int mid;
+
+	if (idx_min == idx_max)
+	{
+		if (num < big[idx_min])
+			return (idx_min);
+		else
+			return (idx_min + 1);
+	}
+	if (idx_min > idx_max)
+		return idx_min;
+	
+	mid = (idx_min + idx_max) / 2;
+	if (num > big[mid])
+		return binary_search(num, big, mid + 1, idx_max);
+	else if (num < big[mid])
+		return binary_search(num, big, idx_min, mid - 1);
+	else
+		return mid;
+}
+
+VectInt binary_insertion(VectInt &big, VectInt &small)
+{
+	VectInt jacob;
+	VectInt index;
+	VectIntIt it = big.begin();
+	int insert_idx;
+	int big_len;
+	int idx_jacob;
+
+	big_len = static_cast<int>(big.size());
+	jacob = create_serie(static_cast<int>(small.size()) - 1);
+	for (size_t i = 0; i < big.size(); i++)
+		index.push_back(i);
+	for (int i = 0; i < static_cast<int>(small.size()); i++)
+	{
+		idx_jacob = calculate_max_index(jacob, i, index, big_len);
+		insert_idx = binary_search(small[jacob[i]], big, 0, idx_jacob);
+		big.insert(it + insert_idx, small[jacob[i]]);
+	}
+	for (size_t j = 0; j < index.size(); j++)
+	{
+		if (insert_idx <= index[j])
+			index[j]++;
+	}
+	return big;
+}
+
+
+VectInt pmergeme(VectInt &numbers)
+{
+	VectInt big;
+	VectInt small;
+	int		last;
+
+	create_containers(big, small, numbers);
+	if (numbers.size() % 2 == 1)
+	{
+		last = numbers.back();
+		small.push_back(last);
+	}
+	if (big.size() > 1)
+		numbers = pmergeme(big);
+	big = binary_insertion(big, small);
+
+	return big;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
 
 void print_all_antes(VecPairInt bigger_sort,VecPairInt bigger,VecPairInt bigger_replica,VecPairInt smaller, VecPairInt smaller_replica)
 {
@@ -81,6 +184,7 @@ VecPairInt sort_with_insertion(VecPairInt &bigger_sort, VecPairInt &bigger_repli
 
 	std::vector<int> jacobsthal_serie;
 	std::vector<int> index_aux;
+	VectPairIntIter it = bigger_replica.begin();
 	int insert_idx;
 	int bigger_replica_len;
 
@@ -90,27 +194,23 @@ VecPairInt sort_with_insertion(VecPairInt &bigger_sort, VecPairInt &bigger_repli
 		index_aux.push_back(i);
 	for (int i = 0; i < static_cast<int>(smaller_replica.size()); i++)
 	{
-		insert_idx = binary_insertion(bigger_replica, 
+		insert_idx = binary_search(bigger_replica, 
 									  smaller_replica[jacobsthal_serie[i]], 
 									  0, 
 									  jacobsthal_serie[i] == static_cast<int>(bigger_replica.size()) 
 										  ? static_cast<int>(bigger_sort.size()) - 1 
-										  : index_aux[jacobsthal_serie[i]]);
-
-											/* smaller_replica[jacobsthal_serie[i]] == last 
-												? index_aux[jacobsthal_serie[i]] 
-												: static_cast<int>(bigger_sort.size() - 1)); */
-
+										  : index_aux[jacobsthal_serie[i]]);		
+		bigger_replica.insert(it + insert_idx, smaller_replica[jacobsthal_serie[i]]);
 		for (size_t j = 0; j < index_aux.size(); j++)
 		{
 			if (insert_idx <= index_aux[j])
 				index_aux[j]++;
 		}
-		/* if (last.second != -1)
-			insert_idx = binary_insertion(bigger_sort, 
-											last, 
-											0, 
-											static_cast<int>(bigger_sort.size()) - 1); */
+		// if (last.second != -1)
+		// 	insert_idx = binary_insertion(bigger_sort, 
+		// 									last, 
+		// 									0, 
+		// 									static_cast<int>(bigger_sort.size()) - 1);
 	}
 	// std::cout << "\nBIGGER_SORT:\n";
 	// print_vector(bigger_sort);
@@ -118,35 +218,35 @@ VecPairInt sort_with_insertion(VecPairInt &bigger_sort, VecPairInt &bigger_repli
 }
 
 
-int  binary_insertion(VecPairInt &bigger_sort, PairInt to_insert, int idx_max, int idx_min)
+int  binary_search(VecPairInt &bigger_sort, PairInt to_insert, int idx_min, int idx_max)
 {
-	int mid = (idx_max + idx_min) / 2;
+	int mid;
 
 	if (bigger_sort.size() == 0)
 	{
+		// TODO: borrar este print
+		std::cout << "WOLOLOOOOOOOOOOOOOOOOOOOOO\n" << std::endl;
 		bigger_sort.insert(bigger_sort.begin(), to_insert);
 		return (0);
 	}
-	if (idx_max <= idx_min)
+	if (idx_min == idx_max)
 	{
-		if (to_insert > bigger_sort[idx_min])
-		{
-			bigger_sort.insert(bigger_sort.begin() + idx_min + 1, to_insert);
-			return (idx_min + 1);
-		}
-		else
-		{
-			bigger_sort.insert(bigger_sort.begin() + idx_min, to_insert);
+		if (to_insert < bigger_sort[idx_min])
 			return (idx_min);
-		}
+		else
+			return (idx_min + 1);
 	}
+	if (idx_min > idx_max)
+		return idx_min;
+	mid = (idx_max + idx_min) / 2;
 	if (to_insert > bigger_sort[mid])
-		return binary_insertion(bigger_sort, to_insert, idx_max, mid + 1);
+		return binary_search(bigger_sort, to_insert, mid + 1, idx_max);
+	else if (to_insert < bigger_sort[mid])
+		return binary_search(bigger_sort, to_insert, idx_min, mid - 1);
 	else
-		return binary_insertion(bigger_sort, to_insert, mid - 1, idx_min);
+		return mid;
+
 }
-
-
 void replicate_changes(VecPairInt &bigger_sort, VecPairInt &bigger_replica, VecPairInt &smaller, VecPairInt &smaller_replica, VecPairInt &smaller_sort, PairInt &last)
 {
 	for (size_t i = 0; i < bigger_sort.size(); i++)
@@ -281,7 +381,7 @@ void wololo(VecPairInt &bigs)
 			i++;
 	}
 	std::cout << &aux << " || " << &bigs << std::endl;
-
+ */
 	/* for (size_t t = 0; t < jacobsthal_serie.size(); t++)
 		std::cout << jacobsthal_serie[t] << " ";
 	std::cout << "\n" << std::endl; */
@@ -301,7 +401,7 @@ void wololo(VecPairInt &bigs)
 	else
 		binary_insertion(pair, bigger_sort, index_max, middle - 1);
 } */
-}
+
 
 /* VecPairInt insert_small_into_big(VecPairInt bigger_sort, VecPairInt smaller_sort)
 {

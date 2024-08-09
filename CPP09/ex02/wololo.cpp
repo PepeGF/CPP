@@ -2,45 +2,52 @@
 #include <vector>
 #include <algorithm>
 
-int  binary_insertion(std::vector<int> &bigger_sort, int to_insert, int idx_max, int idx_min)
+int  binary_search(std::vector<int> &v, int num, int idx_min, int idx_max)
 {
-	int mid = (idx_max + idx_min) / 2;
+	int mid;
 
-	if (bigger_sort.size() == 0)
+	if (idx_min == idx_max)
 	{
-		bigger_sort.insert(bigger_sort.begin(), to_insert);
-		return (0);
-	}
-	if (idx_max <= idx_min)
-	{
-		if (to_insert > bigger_sort[idx_min])
-		{
-			bigger_sort.insert(bigger_sort.begin() + idx_min + 1, to_insert);
-			return (idx_min + 1);
-		}
-		else
-		{
-			bigger_sort.insert(bigger_sort.begin() + idx_min, to_insert);
+		if (num < v[idx_min])
 			return (idx_min);
-		}
+		else
+			return (idx_min + 1);
 	}
-	if (to_insert > bigger_sort[mid])
-		return binary_insertion(bigger_sort, to_insert, idx_max, mid + 1);
+	if (idx_min > idx_max)
+		return idx_min;
+	
+	mid = (idx_min + idx_max) / 2;
+	if (num > v[mid])
+		return binary_search(v, num, mid + 1, idx_max);
+	else if (num < v[mid])
+		return binary_search(v, num, idx_min, mid - 1);
 	else
-		return binary_insertion(bigger_sort, to_insert, mid - 1, idx_min);
+		return mid;
 }
 
-int main() {
-    std::vector<int> sq;
-    int check;
-    for (int i = 1; i < 3; i++)
-    {
-        sq.push_back(i*i);
-    }
-    check = binary_insertion(sq, 20000, static_cast<int>(sq.size() - 1), 0);
-    std::cout << check << std::endl;
-    for (size_t i = 0; i < sq.size(); i++)
-    {std::cout << sq[i] << " ";}
-    std::cout << std::endl;
-    return 0;
+int main(int argc, char* argv[]) {
+	std::vector<int> v{118, 120, 176, 189, 300, 392, 395, 400, 472, 474, 482, 485, 500, 541, 577, 658, 755, 777, 788, 900, 931};
+					//	0	 1	  2	   3	4	 5	  6	   7	8	 9	  10   11	12	 13	  14   15   16   17   18   19   20
+	int num = atoi(argv[1]);
+	int idx_i = atoi(argv[2]);
+	int idx_f = atoi(argv[3]);
+	int idx_inserted;
+	std::vector<int>::iterator it = v.begin();
+	std::cout << "---->>>> " << v.back() << std::endl;
+	std::cout << "---->>>>" << std::endl;
+	
+	idx_inserted = binary_search(v, num, idx_i, idx_f);
+	v.insert(it + idx_inserted, num);
+	std::cout << "Insertado en: " << idx_inserted << std::endl;
+	for (size_t i = 0; i < v.size(); i++)
+		std::cout << v[i] << " ";
+	std::cout << std::endl;
+	
+	(void)idx_inserted;
+	return 0;
 }
+
+/* 
+118, 119, 176, 189, 300, 392, 395, 400, 472, 474, 482, 485, 500, 541, 577, 658, 755, 777, 789, 900, 931
+
+ */

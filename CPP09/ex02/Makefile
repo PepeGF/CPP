@@ -12,8 +12,8 @@ NAME = PmergeMe
 BIN_PATH = bin/
 
 SRCS =	main.cpp \
-		print_functions.cpp \
-		Jacobsthal_numbers.cpp
+		print_functions.cpp 
+		#Jacobsthal_numbers.cpp
 
 OBJS = $(SRCS:%.cpp=bin/%.o)
 
