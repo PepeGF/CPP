@@ -50,7 +50,7 @@ VectInt binary_insertion(VectInt &big, VectInt &small)
 {
 	VectInt jacob;
 	VectInt index;
-	VectIntIt it = big.begin();
+	VectIntIt it;
 	int insert_idx;
 	int big_len;
 	int idx_jacob;
@@ -63,12 +63,13 @@ VectInt binary_insertion(VectInt &big, VectInt &small)
 	{
 		idx_jacob = calculate_max_index(jacob, i, index, big_len);
 		insert_idx = binary_search(small[jacob[i]], big, 0, idx_jacob);
+		it = big.begin();
 		big.insert(it + insert_idx, small[jacob[i]]);
-	}
-	for (size_t j = 0; j < index.size(); j++)
-	{
-		if (insert_idx <= index[j])
-			index[j]++;
+		for (size_t j = 0; j < index.size(); j++)
+		{
+			if (insert_idx <= index[j])
+				index[j]++;
+		}
 	}
 	return big;
 }
@@ -86,11 +87,12 @@ VectInt pmergeme(VectInt &numbers)
 		last = numbers.back();
 		small.push_back(last);
 	}
+	ronda++;
 	if (big.size() > 1)
 		numbers = pmergeme(big);
-	big = binary_insertion(big, small);
-
-	return big;
+	ronda--;
+	numbers = binary_insertion(big, small);
+	return numbers;
 }
 
 
