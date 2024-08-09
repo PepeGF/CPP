@@ -217,6 +217,10 @@ VecPairInt sort_with_insertion(VecPairInt &bigger_sort, VecPairInt &bigger_repli
 	return bigger_replica;
 }
 
+int min(int one, int sec)
+{
+	return (one <= sec ? one : sec);
+}
 
 int  binary_search(VecPairInt &bigger_sort, PairInt to_insert, int idx_min, int idx_max)
 {
@@ -231,10 +235,20 @@ int  binary_search(VecPairInt &bigger_sort, PairInt to_insert, int idx_min, int 
 	}
 	if (idx_min == idx_max)
 	{
+		if (to_insert > bigger_sort[idx_min])
+		{
+			bigger_sort.insert(bigger_sort.begin() + min(idx_max, idx_min) + 1, to_insert);
 		if (to_insert < bigger_sort[idx_min])
 			return (idx_min);
 		else
 			return (idx_min + 1);
+		}
+		else
+		{
+			bigger_sort.insert(bigger_sort.begin() + min(idx_max, idx_min), to_insert);
+			return (idx_min);
+		}
+	}
 	}
 	if (idx_min > idx_max)
 		return idx_min;
