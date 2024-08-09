@@ -1,0 +1,102 @@
+int calculate_max_index(VectInt jacob, int i, VectInt index, int big_len)
+{
+	if (jacob[i] == big_len)
+		return (big_len - 1);
+	else
+		return (index[jacob[i]]);
+}
+
+int binary_search(int num, VectInt big, int idx_min, int idx_max)
+{
+	int mid;
+
+	if (idx_min == idx_max)
+	{
+		if (num < big[idx_min])
+			return (idx_min);
+		else
+			return (idx_min + 1);
+	}
+	if (idx_min > idx_max)
+		return idx_min;
+	
+	mid = (idx_min + idx_max) / 2;
+	if (num > big[mid])
+		return binary_search(num, big, mid + 1, idx_max);
+	else if (num < big[mid])
+		return binary_search(num, big, idx_min, mid - 1);
+	else
+		return mid;
+}
+
+VectInt binary_insertion(VectInt &big, VectInt &small)
+{
+	VectInt jacob;
+	VectInt index;
+	VectIntIt it = big.begin();
+	int insert_idx;
+	int big_len;
+	int idx_jacob;
+
+	big_len = static_cast<int>(big.size());
+	jacob = create_serie(static_cast<int>(small.size()) - 1);
+	for (size_t i = 0; i < big.size(); i++)
+		index.push_back(i);
+	for (int i = 0; i < static_cast<int>(small.size()); i++)
+	{
+		idx_jacob = calculate_max_index(jacob, i, index, big_len);
+		insert_idx = binary_search(small[jacob[i]], big, 0, idx_jacob);
+		big.insert(it + insert_idx, small[jacob[i]]);
+	}
+	for (size_t j = 0; j < index.size(); j++)
+	{
+		if (insert_idx <= index[j])
+			index[j]++;
+	}
+	return big;
+}
+
+
+VectInt pmergeme(VectInt &numbers)
+{
+	VectInt big;
+	VectInt small;
+	int		last;
+
+	create_containers(big, small, numbers);
+	if (numbers.size() % 2 == 1)
+	{
+		last = numbers.back();
+		small.push_back(last);
+	}
+	if (big.size() > 1)
+		numbers = pmergeme(big);
+	big = binary_insertion(big, small);
+
+	return big;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
